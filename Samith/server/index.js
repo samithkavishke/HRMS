@@ -20,3 +20,4 @@ app.use(express.json());
 // Route for index
 app.use("/login", require("./routes/Login.jsx"));
 app.use("/leave-application", require("./routes/LeaveApplication.jsx"));
+app.use("/user-profile", require("./routes/USerProfile.jsx"));
