@@ -28,7 +28,7 @@ export default function SignIn() {
       password: data.get("password"),
     })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         if (response.data.success) {
           setLoggedIn(true);
           console.log("hehe");
@@ -46,7 +46,7 @@ export default function SignIn() {
   console.log(loggedIn);
   if (loggedIn) {
     // console.log(loggedIn);
-    return <Navigate to="./Home" />;
+    return <Navigate to="/Home" />;
 
     // return redirect("/");
   }
