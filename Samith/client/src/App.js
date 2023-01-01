@@ -4,26 +4,24 @@ import { Route, Routes } from "react-router-dom";
 import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
 import SignIn from "./Components/LoginPageComponents/Login";
 import { LoginContext } from "./Helper/UserContext";
-import { useCookies } from "react-cookie";
-
 import SignUp from "./Components/SignupPageComponents/Signup";
-import Reports from "./Components/AdminPageComponents/FilterPage";
-
+import Welcome from "./Components/WelcomePageComponents/Welcome";
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
+  const [loggedIn, setLoggedIn] = useState(true);  // should be set to false
 
+  const providerValue = useMemo(
+    () => ({ loggedIn, setLoggedIn }),
+    [loggedIn, setLoggedIn]
+  );
   return (
     <BrowserRouter>
-      <LoginContext.Provider
-        value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
-      >
+      <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
         <Routes>
-          <Route path="/Filter" element={<Reports />}></Route>
           <Route path="/Signup" element={<SignUp />}></Route>
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
-          <Route path="/" element={<SignIn />}></Route>
+          <Route path="/Signin" element={<SignIn />}></Route>
+          <Route path="/" element={<Welcome />}></Route>
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>
