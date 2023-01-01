@@ -5,6 +5,7 @@ import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
 import SignIn from "./Components/LoginPageComponents/Login";
 import { LoginContext } from "./Helper/UserContext";
 import SignUp from "./Components/SignupPageComponents/Signup";
+import Reports from "./Components/AdminPageComponents/FilterPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,6 +18,7 @@ function App() {
     <BrowserRouter>
       <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
         <Routes>
+          <Route path="/Filter" element={<Reports />}></Route>
           <Route path="/Signup" element={<SignUp />}></Route>
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
           <Route path="/" element={<SignIn />}></Route>
