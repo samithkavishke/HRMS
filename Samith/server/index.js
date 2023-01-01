@@ -21,3 +21,4 @@ app.use(express.json());
 app.use("/login", require("./routes/Login.jsx"));
 app.use("/leave-application", require("./routes/LeaveApplication.jsx"));
 app.use("/user-profile", require("./routes/USerProfile.jsx"));
+app.use("/filter",require("./routes/FilterData.jsx"))
