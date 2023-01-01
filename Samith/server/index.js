@@ -23,3 +23,4 @@ app.use(cookieParser());
 app.use("/login", require("./routes/Login.jsx"));
 app.use("/leave-application", require("./routes/LeaveApplication.jsx"));
 app.use("/user-profile", require("./routes/UserProfile.jsx"));
+app.use("/filter",require("./routes/FilterData.jsx"))
