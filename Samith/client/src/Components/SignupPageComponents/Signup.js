@@ -14,8 +14,12 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import { Axios } from "axios";
+import { color } from "@mui/system";
 
 const theme = createTheme();
+const passwordcheck = document.getElementById('password');
+const passwordcheck2 = document.getElementById('password2');
+
 
 export default function SignUp() {
     
@@ -36,7 +40,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -49,8 +53,8 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+          <Typography component="h1" variant="h2" align="center">
+            Start your HR journey with Jupiter
           </Typography>
           <Box
             component="form"
@@ -59,27 +63,28 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  name="regnum"
+                  label="Business Registration Number"
+                  id="regnum"
+                  autoComplete="regnum"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="companyname"
+                  required
+                  fullWidth
+                  id="companyname"
+                  label="Organization Name"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
+             
               <Grid item xs={12}>
                 <TextField
                   required
@@ -94,6 +99,37 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  name="mainaddress2"
+                  label="Main Branch Address Line 2"
+                  id="mainaddress2"
+                  autoComplete="mainaddress2"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="mainaddress1"
+                  label="Main Branch Address Line 1"
+                  id="mainaddress1"
+                  autoComplete="mainaddress1"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="town"
+                  label="Main Branch Town"
+                  id="town"
+                  autoComplete="town"
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -101,14 +137,19 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password2"
+                  label="Confirm password"
+                  type="password"
+                  id="password2"
+                  autoComplete="new-password2"
+                  
                 />
               </Grid>
+             
             </Grid>
             <Button
               type="submit"
@@ -120,8 +161,11 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="http://localhost:3000/Signin" variant="body1">
+                  
+                  Does your organization already have a Jupiter Database? Click here
+
+                  
                 </Link>
               </Grid>
             </Grid>
