@@ -16,7 +16,8 @@ import { useContext } from "react";
 const theme = createTheme();
 
 export default function SignIn() {
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { loggedIn, setLoggedIn, cookies, setCookie } =
+    useContext(LoginContext);
 
   let navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -31,7 +32,7 @@ export default function SignIn() {
         console.log(response);
         if (response.data.success) {
           setLoggedIn(true);
-          console.log("hehe");
+          setCookie("token", response.data.token, { path: "/" });
           // navigate("/Home");
           return <Navigate to="/Home" />;
           // window.location = "/Home";
