@@ -5,17 +5,17 @@ import { Route, Routes } from "react-router-dom";
 import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
 import SignIn from "./Components/LoginPageComponents/Login";
 import { LoginContext } from "./Helper/UserContext";
+import { useCookies } from "react-cookie";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
 
-  const providerValue = useMemo(
-    () => ({ loggedIn, setLoggedIn }),
-    [loggedIn, setLoggedIn]
-  );
   return (
     <BrowserRouter>
-      <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
+      <LoginContext.Provider
+        value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
+      >
         <Routes>
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
           <Route path="/" element={<SignIn />}></Route>

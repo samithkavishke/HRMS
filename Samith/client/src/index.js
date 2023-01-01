@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ErrorBoundary from "react";
-
+import { CookiesProvider } from "react-cookie";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <CookiesProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </CookiesProvider>
 );

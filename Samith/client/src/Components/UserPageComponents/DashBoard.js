@@ -80,7 +80,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const navigate = useNavigate();
 
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -245,6 +245,7 @@ export default function PersistentDrawerLeft() {
             component={Link}
             to={"/"}
             onClick={() => {
+              removeCookie("token", []);
               setLoggedIn(false);
             }}
           >
