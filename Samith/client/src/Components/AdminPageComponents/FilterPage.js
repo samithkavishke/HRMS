@@ -84,9 +84,9 @@ export default function Reports() {
         <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
           <TextField
             id="department-select"
+            onChange={handleDepartmentChange}
             value={department}
             label="Department Name"
-            onChange={handleDepartmentChange}
             select
           >
             <MenuItem value="None">
@@ -100,9 +100,9 @@ export default function Reports() {
         <FormControl sx={{ m: 2, minWidth: 200 }}>
           <TextField
             id="pay-grade-select"
+            onChange={handlePayGradeChange}
             value={payGrade}
             label="Pay Grade"
-            onChange={handlePayGradeChange}
             select
           >
             <MenuItem value="None">
@@ -116,9 +116,9 @@ export default function Reports() {
         <FormControl sx={{ m: 2, minWidth: 200 }}>
           <TextField
             id="job-title-select"
+            onChange={handleJobTitleChange}
             value={jobTitle}
             label="Job Title"
-            onChange={handleJobTitleChange}
             select
           >
             <MenuItem value="None">

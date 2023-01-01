@@ -36,17 +36,6 @@ export default function UserProfile() {
       // console.log(response);
       if (response.data.success) {
         console.log(response.data.result[0].first_name);
-        // console.log(response.data.result);
-        // first_name = response.data.result.first_name;
-        // last_name = response.data.result.last_name;
-        // address_line1 = response.data.result.address_line1;
-        // address_line2 = response.data.result.address_line2;
-        // town = response.data.result.town;
-        // birth_year = response.data.result.birth_year;
-        // birth_month = response.data.result.birth_month;
-        // birth_date = response.data.result.birth_date;
-        // console.log(response.data.result);
-        // setFirstName(response.data.result.first_name);
         setAddress1(response.data.result[0].address_line1);
         setAddress2(response.data.result[0].address_line2);
         setBirthDate(response.data.result[0].birth_date);
