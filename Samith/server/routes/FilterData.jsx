@@ -53,11 +53,12 @@ let employee_id = "";
 //   });
 // });
 
-router.get("/:dept-:grade-:title", (req, res) => {
-  const dept = req.params.dept;
-  const grade = req.params.grade;
-  const title = req.params.title;
-
+router.get("/", (req, res) => {
+  const dept = req.query.department;
+  const grade = req.query.payGrade;
+  const title = req.query.jobTitle;
+  console.log(grade);
+  console.log(title);
   let dept_string;
   if (dept == "None") {
     dept_string = ` department != "None" `;
@@ -68,18 +69,15 @@ router.get("/:dept-:grade-:title", (req, res) => {
   if (grade == "None") {
     grade_string = ` pay_grade != "None" `;
   } else {
-    grade_string = ` pay_grade = "${dept}" `;
+    grade_string = ` pay_grade = "${grade}" `;
   }
 
   if (title == "None") {
     title_string = ` job_title != "None" `;
   } else {
-    title_string = ` job_title = "${dept}" `;
+    title_string = ` job_title = "${title}" `;
   }
 
-  // console.log(
-  //   `SELECT * FROM sql6587376.employee_work where ` + dept_string + `;`
-  // );
   pool.query(
     `SELECT * FROM sql6587376.employee_work where ` +
       dept_string +
@@ -93,7 +91,7 @@ router.get("/:dept-:grade-:title", (req, res) => {
         return console.log(err);
       }
       let result = JSON.parse(JSON.stringify(row));
-      console.log(result);
+      // console.log(result);
       res.send({ result: result });
     }
   );

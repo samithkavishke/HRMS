@@ -14,14 +14,7 @@ import { useState } from "react";
 
 export default function UserProfile() {
   const employee_id = "10001";
-  // let first_name = "";
-  // let last_name = "";
-  // let address_line1 = "";
-  // let address_line2 = "";
-  // let town = "";
-  // let birth_year = "";
-  // let birth_month = "";
-  // let birth_date = "";
+
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [address_line1, setAddress1] = useState("");
@@ -33,7 +26,7 @@ export default function UserProfile() {
 
   Axios.get(`http://localhost:3001/user-profile/${employee_id}`)
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       if (response.data.success) {
         console.log(response.data.result[0].first_name);
         setAddress1(response.data.result[0].address_line1);

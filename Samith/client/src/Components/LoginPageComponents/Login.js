@@ -33,10 +33,7 @@ export default function SignIn() {
         if (response.data.success) {
           setLoggedIn(true);
           setCookie("token", response.data.token, { path: "/" });
-          // navigate("/Home");
           return <Navigate to="/Home" />;
-          // window.location = "/Home";
-          // navigate( {pathname:"/", state:{authorized: true, username: data.get("username")}});
         }
       })
       .catch((e) => {
@@ -46,22 +43,9 @@ export default function SignIn() {
 
   console.log(loggedIn);
   if (loggedIn) {
-    // console.log(loggedIn);
     return <Navigate to="/Home" />;
-
-    // return redirect("/");
   }
-  // console.log(loggedIn);
-  // useEffect(() => {
-  //   return () => {
-  //     if (loggedIn) {
-  //       console.log(loggedIn);
-  //       return navigate("/Home");
 
-  //       // return redirect("/");
-  //     }
-  //   };
-  // });
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

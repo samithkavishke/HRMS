@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -15,121 +16,105 @@ import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import { FormControlUnstyledContext } from "@mui/base";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
-let rows = [];
-// const rows = [
-//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-//   createData("Eclair", 262, 16.0, 24, 6.0),
-//   createData("Cupcake", 305, 3.7, 67, 4.3),
-//   createData("Gingerbread", 356, 16.0, 49, 3.9),
-// ];
+
 
 export default function Reports() {
+  const [rows,setRows] = useState([]);
   const [department, setDepartment] = useState("None");
   const [payGrade, setPayGrade] = useState("None");
   const [jobTitle, setJobTitle] = useState("None");
-  // ${department}-${payGrade}-${jobTitle}
-  const handleDepartmentChange = (event) => {
-    setDepartment(event.target.value);
-    Axios.get(
-      `http://localhost:3001/filter/${department}-${payGrade}-${jobTitle}`
-    )
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/filter`, {
+      params: {
+        department: department,
+        payGrade: payGrade,
+        jobTitle: jobTitle,
+      },
+    })
       .then((response) => {
-        rows = response.data.result;
+        setRows(response.data.result)
         console.log(rows);
       })
       .catch((e) => {
         console.log(e);
       });
+  }, [department, payGrade, jobTitle]);
+
+  const handleDepartmentChange = (event) => {
+    setDepartment(event.target.value);
   };
 
   const handlePayGradeChange = (event) => {
     setPayGrade(event.target.value);
-    Axios.get(
-      `http://localhost:3001/filter/${department}-${payGrade}-${jobTitle}`
-    )
-      .then((response) => {
-        rows = response.data.result;
-        // console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
 
   const handleJobTitleChange = (event) => {
     setJobTitle(event.target.value);
-    Axios.get(
-      `http://localhost:3001/filter/${department}-${payGrade}-${jobTitle}`
-    )
-      .then((response) => {
-        rows = response.data.result;
-        console.log(rows);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
 
   return (
     <Container>
       <div>
-        <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
-          <TextField
-            id="department-select"
-            onChange={handleDepartmentChange}
-            value={department}
-            label="Department Name"
-            select
-          >
-            <MenuItem value="None">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"finance"}>Finance</MenuItem>
-            <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
-            <MenuItem value={"IT"}>IT</MenuItem>
-          </TextField>
-        </FormControl>
-        <FormControl sx={{ m: 2, minWidth: 200 }}>
-          <TextField
-            id="pay-grade-select"
-            onChange={handlePayGradeChange}
-            value={payGrade}
-            label="Pay Grade"
-            select
-          >
-            <MenuItem value="None">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"Level 1"}>Level 1</MenuItem>
-            <MenuItem value={"Level 2"}>Level 2</MenuItem>
-            <MenuItem value={"Level 3"}>Level 3</MenuItem>
-          </TextField>
-        </FormControl>
-        <FormControl sx={{ m: 2, minWidth: 200 }}>
-          <TextField
-            id="job-title-select"
-            onChange={handleJobTitleChange}
-            value={jobTitle}
-            label="Job Title"
-            select
-          >
-            <MenuItem value="None">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"accountant"}>Accountant</MenuItem>
-            <MenuItem value={"manager"}>Manager</MenuItem>
-            <MenuItem value={"designer"}>Designer</MenuItem>
-            <MenuItem value={"engineer"}>Engineer</MenuItem>
-          </TextField>
-        </FormControl>
+        <Box>
+          <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
+            <TextField
+              id="department-select"
+              value={department}
+              onChange={handleDepartmentChange}
+              label="Department Name"
+              select
+            >
+              <MenuItem value="None">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"finance"}>Finance</MenuItem>
+              <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
+              <MenuItem value={"IT"}>IT</MenuItem>
+            </TextField>
+          </FormControl>
+          <FormControl sx={{ m: 2, minWidth: 200 }}>
+            <TextField
+              id="pay-grade-select"
+              value={payGrade}
+              onChange={handlePayGradeChange}
+              label="Pay Grade"
+              select
+            >
+              <MenuItem value="None">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"Level 1"}>Level 1</MenuItem>
+              <MenuItem value={"Level 2"}>Level 2</MenuItem>
+              <MenuItem value={"Level 3"}>Level 3</MenuItem>
+            </TextField>
+          </FormControl>
+          <FormControl sx={{ m: 2, minWidth: 200 }}>
+            <TextField
+              id="job-title-select"
+              value={jobTitle}
+              onChange={handleJobTitleChange}
+              label="Job Title"
+              select
+            >
+              <MenuItem value="None">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"accountant"}>Accountant</MenuItem>
+              <MenuItem value={"manager"}>Manager</MenuItem>
+              <MenuItem value={"designer"}>Designer</MenuItem>
+              <MenuItem value={"engineer"}>Engineer</MenuItem>
+            </TextField>
+          </FormControl>
+          <Button type="submit"> Click Here</Button>
+        </Box>
       </div>
 
       <Box margin={5} marginTop={5}>
@@ -138,16 +123,18 @@ export default function Reports() {
             <TableHead>
               <TableRow>
                 <TableCell>Employee ID</TableCell>
-                <TableCell align="right">First Name</TableCell>
-                <TableCell align="right">Last Name</TableCell>
-                <TableCell align="right">Address</TableCell>
-                <TableCell align="right">Birth Date</TableCell>
+                <TableCell align="right">Job Title</TableCell>
+                <TableCell align="right">Pay Grade</TableCell>
+                <TableCell align="right">Employee Status</TableCell>
+                <TableCell align="right">Contract Period</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
+              {/* {useEffect(() => { */}
               {rows.map((row) => (
+                
                 <TableRow
-                  key={row.name}
+                  key={row.employee_id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
@@ -159,6 +146,7 @@ export default function Reports() {
                   <TableCell align="right">{row.contract_period}</TableCell>
                 </TableRow>
               ))}
+              {/* })} */}
             </TableBody>
           </Table>
         </TableContainer>
