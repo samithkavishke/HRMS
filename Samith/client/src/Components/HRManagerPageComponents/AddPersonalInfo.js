@@ -8,10 +8,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useState } from "react";
 
 const theme = createTheme();
 
-export default function AddPersonalInfo() {
+const AddPersonalInfo = () => {
+  const [birthdate, setBirthDate] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -30,42 +36,43 @@ export default function AddPersonalInfo() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm">
-        <CssBaseline />
+      <Container component="main" maxWidth="sm" style={{ height: "100%" }}>
+        {/* <CssBaseline /> */}
+        {/* <div style={{ overflow: "scroll" }}> */}
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 6,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h2" align="center">
-            Add Emergency Info
+          <Typography component="h1" variant="h3" align="center">
+            Add Personal Info
           </Typography>
           <Box
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 1 }}
           >
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="employee_contact"
-                  label="Employee's Contact Number"
-                  id="employee_contact"
+                  name="first_name"
+                  label="First Name"
+                  id="first_name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  name="contact_first_name"
+                  name="last_name"
                   required
                   fullWidth
-                  id="contact_first_name"
-                  label="First Name"
+                  id="last_name"
+                  label="Last Name"
                   autoFocus
                 />
               </Grid>
@@ -74,43 +81,76 @@ export default function AddPersonalInfo() {
                 <TextField
                   required
                   fullWidth
-                  id="contact_last_name"
-                  label="Contact Last Name"
-                  name="contact_last_name"
+                  id="address_line_1"
+                  label="Address Line"
                 />
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="address_line_2"
+                    label="Address Line 2"
+                    name="address_line_2"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="town"
+                    label="Town"
+                    name="town"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      format
+                      label="BirthDate"
+                      value={birthdate}
+                      onChange={(newValue) => {
+                        setBirthDate(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="contact_number"
+                    label="Contact Number"
+                    name="contact_number"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="emergency_name"
+                    label="Emergency Contact Name"
+                    id="emergency_name"
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="contact_phone_number"
-                  label="Contact Number"
-                  id="contact_phone_number"
-                  autoComplete="contact_phone_number"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="contract_relation"
-                  label="Relation"
-                  id="contract_relation"
-                  autoComplete="contract_relation"
-                />
-              </Grid>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Add Details
+              </Button>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              ADD EMERGENCY INFO
-            </Button>
           </Box>
         </Box>
+        {/* </div> */}
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default AddPersonalInfo;
