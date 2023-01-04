@@ -9,16 +9,12 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import { FormControlUnstyledContext } from "@mui/base";
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };

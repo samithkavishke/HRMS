@@ -12,28 +12,20 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import Axios from "axios";
-import Database from "./DatabaseDetails";
 
 const theme = createTheme();
-const passwordcheck = document.getElementById("password");
-const passwordcheck2 = document.getElementById("password2");
 
-export default function SignUp() {
+export default function NewUser() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    Axios.post("http://localhost:3001/login", {
+    Axios.post("http://localhost:3001/AddNewUser", {
       username: data.get("username"),
       password: data.get("password"),
     })
       .then((response) => {
         console.log(response);
-        if (response.data.success) {
-          // setLoggedIn(true);
-          // setCookie("token", response.data.token, { path: "/" });
-          return <Navigate to="/DB-details" />;
-        }
       })
       .catch((e) => {
         console.log(e);
@@ -52,11 +44,8 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h2" align="center">
-            Start your HR journey with Jupiter
+            Add New Employee
           </Typography>
           <Box
             component="form"
@@ -69,20 +58,18 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="regnum"
-                  label="Business Registration Number"
-                  id="regnum"
-                  autoComplete="regnum"
+                  name="employeeid"
+                  label="Employe ID"
+                  id="employeeid"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="companyname"
+                  name="job_title"
                   required
                   fullWidth
-                  id="companyname"
-                  label="Organization Name"
+                  id="job_title"
+                  label="Job Title"
                   autoFocus
                 />
               </Grid>
@@ -91,40 +78,39 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="paygrade"
+                  label="Pay Grade"
+                  name="payGrade"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="mainaddress2"
-                  label="Main Branch Address Line 2"
-                  id="mainaddress2"
-                  autoComplete="mainaddress2"
+                  name="employee_status"
+                  label="Employee Status"
+                  id="employee_status"
+                  autoComplete="employee_status"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="mainaddress1"
-                  label="Main Branch Address Line 1"
-                  id="mainaddress1"
-                  autoComplete="mainaddress1"
+                  name="contract_period"
+                  label="Contract Period"
+                  id="contract_period"
+                  autoComplete="contract_period"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="town"
-                  label="Main Branch Town"
-                  id="town"
-                  autoComplete="town"
+                  name="department"
+                  label="Department"
+                  id="department"
+                  autoComplete="department"
                 />
               </Grid>
 
@@ -132,11 +118,19 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
+                  name="username"
+                  label="Username"
+                  id="username"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password1"
+                  label="New password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  id="password1"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -147,7 +141,6 @@ export default function SignUp() {
                   label="Confirm password"
                   type="password"
                   id="password2"
-                  autoComplete="new-password2"
                 />
               </Grid>
             </Grid>
@@ -157,16 +150,8 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Next
+              ADD EMPLOYEE
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="http://localhost:3000/Signin" variant="body1">
-                  Does your organization already have a Jupiter Database? Click
-                  here
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

@@ -28,7 +28,6 @@ import UserProfile from "./Profile";
 import Axios from "axios";
 import { Link, Navigate, redirect } from "react-router-dom";
 
-
 import { LoginContext } from "../../Helper/UserContext";
 
 const drawerWidth = 240;

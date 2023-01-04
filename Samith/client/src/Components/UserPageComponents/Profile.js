@@ -10,38 +10,46 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CakeIcon from "@mui/icons-material/Cake";
 import Axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function UserProfile() {
   const employee_id = "10001";
 
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [address_line1, setAddress1] = useState("");
-  const [address_line2, setAddress2] = useState("");
-  const [town, setTown] = useState("");
-  const [birth_year, setBirthYear] = useState("");
-  const [birth_month, setBirthMonth] = useState("");
-  const [birth_date, setBirthDate] = useState("");
+  const [userData, setUserData] = useState({
+    first_name: "",
+    last_name: "",
+    address_line1: "",
+    address_line2: "",
+    town: "",
+    birth_date: "",
+    birth_month: "",
+    birth_year: "",
+  });
 
-  Axios.get(`http://localhost:3001/user-profile/${employee_id}`)
-    .then((response) => {
-      console.log(response);
-      if (response.data.success) {
-        console.log(response.data.result[0].first_name);
-        setAddress1(response.data.result[0].address_line1);
-        setAddress2(response.data.result[0].address_line2);
-        setBirthDate(response.data.result[0].birth_date);
-        setBirthMonth(response.data.result[0].birth_month);
-        setBirthYear(response.data.result[0].birth_year);
-        setFirstName(response.data.result[0].first_name);
-        setLastName(response.data.result[0].last_name);
-        setTown(response.data.result[0].town);
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/user-profile/${employee_id}`)
+      .then((response) => {
+        console.log(response);
+        if (response.data.success) {
+          console.log(response.data.result[0].first_name);
+          setUserData(response.data.result[0]);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []); // the empty array ensures that the effect only runs once when the component is mounted
+
+  const {
+    first_name,
+    last_name,
+    address_line1,
+    address_line2,
+    town,
+    birth_date,
+    birth_month,
+    birth_year,
+  } = userData;
 
   return (
     <Box padding={2} margin={7}>
@@ -88,7 +96,7 @@ export default function UserProfile() {
             primary={<Typography variant="caption">Birth Date</Typography>}
             secondary={
               <Typography variant="body2">
-                {birth_year + " " + birth_month + " " + birth_date}
+                {birth_date + " " + birth_month + " " + birth_year}
               </Typography>
             }
             disableTypography
