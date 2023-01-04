@@ -10,6 +10,7 @@ import SignUp from "./Components/SignupPageComponents/Signup";
 import Reports from "./Components/ManagerPageComponents/FilterPage";
 import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
 import AddEmergencyInfo from "./Components/HRManagerPageComponents/AddEmergencyInfo";
+import Welcome from "./Components/WelcomePageComponents/Welcome";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -26,7 +27,8 @@ function App() {
           <Route path="/Filter" element={<Reports />}></Route>
           <Route path="/Signup" element={<SignUp />}></Route>
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
-          <Route path="/" element={<SignIn />}></Route>
+          <Route path="/SignIn" element={<SignIn />}></Route>
+          <Route path="/" element={<Welcome />}></Route>
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>
