@@ -56,7 +56,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h2" align="center">
-            Start your HR journey with Jupiter
+            Start your HR journey with Jupiter!
           </Typography>
           <Box
             component="form"
@@ -163,7 +163,7 @@ export default function SignUp() {
               <Grid item>
                 <Link href="http://localhost:3000/Signin" variant="body1">
                   Does your organization already have a Jupiter Database? Click
-                  here
+                  here!
                 </Link>
               </Grid>
             </Grid>
