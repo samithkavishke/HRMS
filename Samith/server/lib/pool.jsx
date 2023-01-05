@@ -5,7 +5,7 @@ const pool = createPool({
   password: "MQ8xrwNjKu",
   database: "sql6587376",
   port: 3306,
-  connectionLimit: 10,
+  connectionLimit: 50,
 });
 
 module.exports = pool;

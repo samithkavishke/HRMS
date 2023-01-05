@@ -37,8 +37,8 @@ const AddPersonalInfo = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm" style={{ height: "100%" }}>
-        {/* <CssBaseline /> */}
-        {/* <div style={{ overflow: "scroll" }}> */}
+        <CssBaseline />
+
         <Box
           sx={{
             marginTop: 6,
@@ -147,7 +147,6 @@ const AddPersonalInfo = () => {
             </Grid>
           </Box>
         </Box>
-        {/* </div> */}
       </Container>
     </ThemeProvider>
   );
