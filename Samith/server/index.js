@@ -31,4 +31,7 @@ app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
 app.use("/show_tables", require("./routes/ShowTables.jsx"));
 app.use("/show_columns", require("./routes/ShowTableColumns.jsx"));
 app.use("/Alter_Table", require("./routes/Alter_Table.jsx"));
+app.use("/Change_Salary", require("./routes/Change_Salary.jsx"));
+app.use("/get_salaries", require("./routes/GetSalaries.jsx"));
+
 

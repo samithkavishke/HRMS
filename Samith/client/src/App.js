@@ -17,10 +17,12 @@ import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
 import AddDependent from "./Components/HRManagerPageComponents/AddDependent";
 
 import ChangeTable from "./Components/AdminPageComponents/AlterTable";
+import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
+  const [user_id, setUserID] = useState("");
 
   return (
     <BrowserRouter>
@@ -28,6 +30,7 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route path="/ChangeSalary" element={<ChangeSalary />}></Route>
           <Route path="/ChangeTable" element={<ChangeTable />}></Route>
 
           <Route path="/AddNewUser" element={<AddNewUser />}></Route>
