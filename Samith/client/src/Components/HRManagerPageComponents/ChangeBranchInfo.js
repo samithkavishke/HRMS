@@ -68,9 +68,9 @@ export default function ChangeBranchInfo() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log(data.get("username"));
-    Axios.post("http://localhost:3001/AddBranchEntry", {
-      branch_code: data.get("branch_code"),
-      branch_name: data.get("branch_name"),
+    Axios.post("http://localhost:3001/add_branch_entry", {
+      branch_code: data.get("new_branch_code"),
+      branch_name: data.get("new_branch_name"),
       address_line1: data.get("address_line1"),
       address_line2: data.get("address_line2"),
       town: data.get("town"),

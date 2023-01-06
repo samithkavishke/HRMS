@@ -5,8 +5,15 @@ const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `INSERT INTO sql6587376.basic_salary (pay_grade, job_title, salary) VALUES (?,?,?);`,
-    [req.body.pay_grade, req.body.job_title, req.body.salary],
+    `INSERT INTO sql6587376.branch_info (branch_code, branch_name, address_line1, address_line2, town, reg_number) VALUES (?,?,?,?,?,?);`,
+    [
+      req.body.branch_code,
+      req.body.branch_name,
+      req.body.address_line1,
+      req.body.address_line2,
+      req.body.town,
+      req.body.reg_number,
+    ],
     (err, row, field) => {
       if (err) {
         return console.log(err);

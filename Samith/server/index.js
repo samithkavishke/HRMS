@@ -37,13 +37,27 @@ app.use(
   require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
 );
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
+
+/* Routing the request to the ALTER TABLE files. */
 app.use("/show_tables", require("./routes/AlterTableRoutes/ShowTables.jsx"));
 app.use(
   "/show_columns",
   require("./routes/AlterTableRoutes/ShowTableColumns.jsx")
 );
-app.use("/Alter_Table", require("./routes/AlterTableRoutes/Alter_Table.jsx"));
-app.use("/Change_Salary", require("./routes/SalaryRoutes/Change_Salary.jsx"));
+app.use("/Alter_Table", require("./routes/AlterTableRoutes/AlterTable.jsx"));
+
+/* Routing the request to the SALARY CHANGE files. */
+app.use("/Change_Salary", require("./routes/SalaryRoutes/ChangeSalary.jsx"));
 app.use("/get_salaries", require("./routes/SalaryRoutes/GetSalaries.jsx"));
 app.use("/AddSalaryEntry", require("./routes/SalaryRoutes/AddSalaryEntry.jsx"));
+
+/* Routing the request to the BRANCH INFO files. */
+app.use(
+  "/change_branch_info",
+  require("./routes/BranchRoutes/ChangeBranches.jsx")
+);
 app.use("/get_branch_info", require("./routes/BranchRoutes/GetBranches.jsx"));
+app.use(
+  "/add_branch_entry",
+  require("./routes/BranchRoutes/AddBranchEntry.jsx")
+);
