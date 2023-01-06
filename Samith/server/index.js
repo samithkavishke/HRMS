@@ -28,4 +28,7 @@ app.use("/details-by-employee-id", require("./routes/EmployeeData.jsx"));
 app.use("/submit-changes", require("./routes/EditDetails.jsx"));
 app.use("/AddEmergencyInfo", require("./routes/AddNewEmergencyInfo.jsx"));
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
+app.use("/show_tables", require("./routes/ShowTables.jsx"));
+app.use("/show_columns", require("./routes/ShowTableColumns.jsx"));
+app.use("/Alter_Table", require("./routes/Alter_Table.jsx"));
 

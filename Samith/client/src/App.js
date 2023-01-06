@@ -15,6 +15,8 @@ import AddPersonalInfo from "./Components/HRManagerPageComponents/AddPersonalInf
 import EditDetails from "./Components/HRManagerPageComponents/EditWoker";
 import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
 
+import ChangeTable from "./Components/AdminPageComponents/AlterTable";
+
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
@@ -25,6 +27,8 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route path="/ChangeTable" element={<ChangeTable />}></Route>
+
           <Route path="/AddNewUser" element={<AddNewUser />}></Route>
           <Route path="/EditDetails" element={<EditDetails />}></Route>
           <Route path="/AddPersonalInfo" element={<AddPersonalInfo />}></Route>
