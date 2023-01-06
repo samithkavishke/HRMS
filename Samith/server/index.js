@@ -61,3 +61,17 @@ app.use(
   "/add_branch_entry",
   require("./routes/BranchRoutes/AddBranchEntry.jsx")
 );
+
+/* Routing the request to the Dependencies files. */
+app.use(
+  "/change_dependents",
+  require("./routes/DependentRoutes/ChangeDependents.jsx")
+);
+app.use(
+  "/get_dependents",
+  require("./routes/DependentRoutes/GetDependencies.jsx")
+);
+app.use(
+  "/add_dependent",
+  require("./routes/DependentRoutes/AddDependentEntry.jsx")
+);
