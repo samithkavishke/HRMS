@@ -20,7 +20,7 @@ import Axios from "axios";
 const theme = createTheme();
 
 export default function AddNewUser() {
-  const usertypes = ["Admin", "Level 1", "Level 2"];
+  const usertypes = ["Level 1", "Level 2"];
 
   const [userType, setUserType] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);

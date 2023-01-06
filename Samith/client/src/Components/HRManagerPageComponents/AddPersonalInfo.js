@@ -64,7 +64,7 @@ const AddPersonalInfo = () => {
             onSubmit={handleSubmit}
             sx={{ mt: 1 }}
           >
-            <Grid container spacing={1}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -92,59 +92,59 @@ const AddPersonalInfo = () => {
                   id="address_line_1"
                   label="Address Line"
                 />
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="address_line_2"
-                    label="Address Line 2"
-                    name="address_line_2"
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="town"
-                    label="Town"
-                    name="town"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                      format
-                      label="BirthDate"
-                      value={birthdate}
-                      onChange={(newValue) => {
-                        setBirthDate(newValue);
-                      }}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="marital_status"
-                    label="Marital Status"
-                    name="marital_status"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="gender"
-                    label="Gender"
-                    id="gender"
-                  />
-                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="address_line_2"
+                  label="Address Line 2"
+                  name="address_line_2"
+                />
               </Grid>
 
-              <Button
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="town"
+                  label="Town"
+                  name="town"
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    format
+                    label="BirthDate"
+                    value={birthdate}
+                    onChange={(newValue) => {
+                      setBirthDate(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="marital_status"
+                  label="Marital Status"
+                  name="marital_status"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="gender"
+                  label="Gender"
+                  id="gender"
+                />
+              </Grid>
+            </Grid>
+            <Button
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -152,7 +152,6 @@ const AddPersonalInfo = () => {
               >
                 Add Details
               </Button>
-            </Grid>
           </Box>
         </Box>
       </Container>
