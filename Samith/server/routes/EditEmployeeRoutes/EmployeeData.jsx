@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const pool = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
@@ -38,11 +38,11 @@ router.get("/", (req, res) => {
               let result3 = JSON.parse(JSON.stringify(row3));
 
               let result = result1.concat(result2, result3);
-              if (result.length==0){
-                return res.send({success:false})
+              if (result.length == 0) {
+                return res.send({ success: false });
               }
               // console.log(result);
-              return res.send({ result: result ,success:true});
+              return res.send({ result: result, success: true });
             }
           );
         }

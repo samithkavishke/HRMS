@@ -1,19 +1,12 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const pool = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `INSERT INTO sql6587376.employee_work (employee_id, job_title, pay_grade, employee_status, contract_period, department) VALUES (?,?,?,?,?,?);`,
-    [
-      req.body.employee_id,
-      req.body.job_title,
-      req.body.pay_grade,
-      req.body.employee_status,
-      req.body.contract_period,
-      req.body.department,
-    ],
+    `INSERT INTO sql6587376.basic_salary (pay_grade, job_title, salary) VALUES (?,?,?);`,
+    [req.body.pay_grade, req.body.job_title, req.body.salary],
     (err, row, field) => {
       if (err) {
         return console.log(err);

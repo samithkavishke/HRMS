@@ -24,13 +24,26 @@ app.use("/login", require("./routes/Login.jsx"));
 app.use("/leave-application", require("./routes/LeaveApplication.jsx"));
 app.use("/user-profile", require("./routes/UserProfile.jsx"));
 app.use("/filter", require("./routes/FilterData.jsx"));
-app.use("/details-by-employee-id", require("./routes/EmployeeData.jsx"));
-app.use("/submit-changes", require("./routes/EditDetails.jsx"));
-app.use("/AddEmergencyInfo", require("./routes/AddNewEmergencyInfo.jsx"));
+app.use(
+  "/details-by-employee-id",
+  require("./routes/EditEmployeeRoutes/EmployeeData.jsx")
+);
+app.use(
+  "/submit-changes",
+  require("./routes/EditEmployeeRoutes/EditDetails.jsx")
+);
+app.use(
+  "/AddEmergencyInfo",
+  require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
+);
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
-app.use("/show_tables", require("./routes/ShowTables.jsx"));
-app.use("/show_columns", require("./routes/ShowTableColumns.jsx"));
-app.use("/Alter_Table", require("./routes/Alter_Table.jsx"));
-app.use("/Change_Salary", require("./routes/Change_Salary.jsx"));
-app.use("/get_salaries", require("./routes/GetSalaries.jsx"));
-app.use("/AddSalaryEntry", require("./routes/AddSalaryEntry.jsx"));
+app.use("/show_tables", require("./routes/AlterTableRoutes/ShowTables.jsx"));
+app.use(
+  "/show_columns",
+  require("./routes/AlterTableRoutes/ShowTableColumns.jsx")
+);
+app.use("/Alter_Table", require("./routes/AlterTableRoutes/Alter_Table.jsx"));
+app.use("/Change_Salary", require("./routes/SalaryRoutes/Change_Salary.jsx"));
+app.use("/get_salaries", require("./routes/SalaryRoutes/GetSalaries.jsx"));
+app.use("/AddSalaryEntry", require("./routes/SalaryRoutes/AddSalaryEntry.jsx"));
+app.use("/get_branch_info", require("./routes/BranchRoutes/GetBranches.jsx"));

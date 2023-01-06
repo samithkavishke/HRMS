@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const pool = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 

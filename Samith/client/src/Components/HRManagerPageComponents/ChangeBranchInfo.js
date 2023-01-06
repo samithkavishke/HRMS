@@ -9,14 +9,11 @@ import { MenuItem, Typography } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
 
-export default function ChangeSalary() {
+export default function ChangeBranchInfo() {
   const [rows, setRows] = useState([]);
-  const [new_job_title, setNewJobTitle] = useState("");
-  const [new_pay_grade, setPayGrade] = useState("");
-  const [new_salary, setSalary] = useState("");
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/get_salaries`, {})
+    Axios.get(`http://localhost:3001/get_branch_info`, {})
       .then((response) => {
         const fetchedrows = response.data.result;
         for (let i = 0; i < response.data.result.length; i++) {
@@ -39,8 +36,6 @@ export default function ChangeSalary() {
 
     // Find the index of the row that was edited
     const index = rows.findIndex((row) => row.id === id);
-    const pre_pay_grade = rows[index].pay_grade;
-    const pre_job_title = rows[index].job_title;
 
     // Create a new copy of the rows array
     const updatedRows = [...rows];
@@ -53,12 +48,13 @@ export default function ChangeSalary() {
     // Update the rows state with the new rows array
     setRows(updatedRows);
     console.log(updatedRows[index]);
-    Axios.post("http://localhost:3001/Change_Salary", {
-      pay_grade: updatedRows[index].pay_grade,
-      job_title: updatedRows[index].job_title,
-      salary: updatedRows[index].salary,
-      pre_pay_grade: pre_pay_grade,
-      pre_job_title: pre_job_title,
+    Axios.post("http://localhost:3001/change_branch_info", {
+      branch_code: updatedRows[index].branch_code,
+      branch_name: updatedRows[index].branch_name,
+      address_line1: updatedRows[index].address_line1,
+      address_line2: updatedRows[index].address_line2,
+      town: updatedRows[index].town,
+      reg_number: updatedRows[index].reg_number,
     })
       .then((response) => {
         console.log(response);
@@ -69,14 +65,16 @@ export default function ChangeSalary() {
   };
 
   const handleSubmit = (event) => {
-    
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log(data.get("username"));
-    Axios.post("http://localhost:3001/AddSalaryEntry", {
-      pay_grade: data.get("new_pay_grade"),
-      job_title: data.get("new_job_title"),
-      salary: data.get("new_salary"),
+    Axios.post("http://localhost:3001/AddBranchEntry", {
+      branch_code: data.get("branch_code"),
+      branch_name: data.get("branch_name"),
+      address_line1: data.get("address_line1"),
+      address_line2: data.get("address_line2"),
+      town: data.get("town"),
+      reg_number: data.get("reg_number"),
     })
       .then((response) => {
         console.log(response);
@@ -97,24 +95,28 @@ export default function ChangeSalary() {
       <div>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <TextField
-            id="new_pay_grade"
-            name="new_pay_grade"
-            label="Pay Grade"
+            id="new_branch_code"
+            name="new_branch_code"
+            label="Branch Code"
           />
           <TextField
             required
-            id="new_job_title"
-            name="new_job_title"
-            label="Job Title"
-            // name="new_job_title"
-            // value={new_job_title}
+            id="new_branch_name"
+            name="new_branch_name"
+            label="Branch Name"
           />
           <TextField
-            id="new_salary"
-            name="new_salary"
-            // value={new_salary}
-            label="New Salary"
+            id="address_line1"
+            name="address_line1"
+            label="Address Line 1"
           />
+          <TextField
+            id="address_line2"
+            name="address_line2"
+            label="Address Line 2"
+          />
+          <TextField id="town" name="town" label="Town" />
+          <TextField id="reg_number" name="reg_number" label="Reg Number" />
           <Button variant="contained" type="submit">
             {" "}
             Add New Entry
@@ -126,13 +128,40 @@ export default function ChangeSalary() {
 }
 
 const columns = [
-  { field: "pay_grade", headerName: "Pay Grade", width: 180, editable: false },
-  { field: "job_title", headerName: "Job Title", width: 180, editable: false },
   {
-    field: "salary",
-    headerName: "Salary",
+    field: "branch_code",
+    headerName: "Branch Code",
     width: 180,
-    type: "number",
+    editable: false,
+  },
+  {
+    field: "branch_name",
+    headerName: "Branch Name",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "address_line1",
+    headerName: "Address Line 1",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "address_line2",
+    headerName: "Address Line 2",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "town",
+    headerName: "Town",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "reg_number",
+    headerName: "Reg Number",
+    width: 180,
     editable: true,
   },
 ];

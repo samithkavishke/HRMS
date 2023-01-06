@@ -1,22 +1,20 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const pool = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
-
+const bcrypt = require("bcrypt");
 router.post("/", (req, res) => {
+  //   let password_hash = "";
+  //   console.log(req);
+
   pool.query(
-    `UPDATE sql6587376.basic_salary SET pay_grade = ?, job_title = ?,  salary = ? WHERE pay_grade = ? AND job_title = ? ;`,
-    [
-      req.body.pay_grade,
-      req.body.job_title,
-      req.body.salary,
-      req.body.pre_pay_grade,
-      req.body.pre_job_title,
-    ],
+    `ALTER TABLE sql6587376.` +
+      `${req.body.table} ADD ${req.body.column} ${req.body.datatype};`,
     (err, row, field) => {
       if (err) {
         return console.log(err);
       } else {
+        // console.log(row)
         res.send({ success: true });
       }
     }
