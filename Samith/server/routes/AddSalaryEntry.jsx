@@ -5,14 +5,8 @@ const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `UPDATE sql6587376.basic_salary SET pay_grade = ?, job_title = ?,  salary = ? WHERE pay_grade = ? AND job_title = ? ;`,
-    [
-      req.body.pay_grade,
-      req.body.job_title,
-      req.body.salary,
-      req.body.pre_pay_grade,
-      req.body.pre_job_title,
-    ],
+    `INSERT INTO sql6587376.basic_salary (pay_grade, job_title, salary) VALUES (?,?,?);`,
+    [req.body.pay_grade, req.body.job_title, req.body.salary],
     (err, row, field) => {
       if (err) {
         return console.log(err);
@@ -21,9 +15,8 @@ router.post("/", (req, res) => {
       }
     }
   );
+  console.log(req.body.employerID);
+  console.log(req.body);
 });
-
-//   console.log(req.body.employerID);
-//   console.log(req.body);
 
 module.exports = router;

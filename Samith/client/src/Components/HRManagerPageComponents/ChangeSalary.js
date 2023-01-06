@@ -1,12 +1,19 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
+import { MenuItem, Typography } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
 
 export default function ChangeSalary() {
-  const [rows, setRows] = useState([
-  ]);
+  const [rows, setRows] = useState([]);
+  const [new_job_title, setNewJobTitle] = useState("");
+  const [new_pay_grade, setPayGrade] = useState("");
+  const [new_salary, setSalary] = useState("");
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_salaries`, {})
@@ -24,7 +31,6 @@ export default function ChangeSalary() {
   }, []);
 
   const handleRowEditCommit = (params) => {
-    
     console.log("hi");
     const id = params.id;
     const key = params.field;
@@ -48,12 +54,29 @@ export default function ChangeSalary() {
     setRows(updatedRows);
     console.log(updatedRows[index]);
     Axios.post("http://localhost:3001/Change_Salary", {
-
       pay_grade: updatedRows[index].pay_grade,
       job_title: updatedRows[index].job_title,
       salary: updatedRows[index].salary,
-      pre_pay_grade:pre_pay_grade,
-      pre_job_title:pre_job_title
+      pre_pay_grade: pre_pay_grade,
+      pre_job_title: pre_job_title,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // console.log(data.get("username"));
+    Axios.post("http://localhost:3001/AddSalaryEntry", {
+      pay_grade: data.get("new_pay_grade"),
+      job_title: data.get("new_job_title"),
+      salary: data.get("new_salary"),
     })
       .then((response) => {
         console.log(response);
@@ -71,6 +94,33 @@ export default function ChangeSalary() {
         columns={columns}
         onCellEditCommit={handleRowEditCommit}
       />
+      <div>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <TextField
+            id="new_pay_grade"
+            name="new_pay_grade"
+            label="Pay Grade"
+          />
+          <TextField
+            required
+            id="new_job_title"
+            name="new_job_title"
+            label="Job Title"
+            // name="new_job_title"
+            // value={new_job_title}
+          />
+          <TextField
+            id="new_salary"
+            name="new_salary"
+            // value={new_salary}
+            label="New Salary"
+          />
+          <Button variant="contained" type="submit">
+            {" "}
+            Add New Entry
+          </Button>
+        </Box>
+      </div>
     </div>
   );
 }
