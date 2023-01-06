@@ -14,6 +14,7 @@ import Welcome from "./Components/WelcomePageComponents/Welcome";
 import AddPersonalInfo from "./Components/HRManagerPageComponents/AddPersonalInfo";
 import EditDetails from "./Components/HRManagerPageComponents/EditWoker";
 import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
+import AddDependent from "./Components/HRManagerPageComponents/AddDependent";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -37,6 +38,7 @@ function App() {
           {/* <Route path="/Signup" element={<SignUp />}></Route> */}
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
           <Route path="/" element={<SignIn />}></Route>
+          <Route path="/AddDependent" element={<AddDependent />}></Route>
           {/* <Route path="/" element={<Welcome />}></Route> */}
         </Routes>
       </LoginContext.Provider>
