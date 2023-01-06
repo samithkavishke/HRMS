@@ -17,8 +17,13 @@ export default function AddEmergencyInfo() {
     const data = new FormData(event.currentTarget);
 
     Axios.post("http://localhost:3001/AddEmergencyInfo", {
-      username: data.get("username"),
-      password: data.get("password"),
+      employee_id:"10001",
+      employee_contact: data.get("employee_contact"),
+      contact_first_name: data.get("contact_first_name"),
+      contact_last_name: data.get("contact_last_name"),
+      contact_phone_number: data.get("contact_phone_number"),
+      contract_relation: data.get("employee_contact"),
+      // password: data.get("password"),
     })
       .then((response) => {
         console.log(response);

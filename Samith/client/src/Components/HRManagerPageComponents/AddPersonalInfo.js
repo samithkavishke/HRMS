@@ -23,8 +23,16 @@ const AddPersonalInfo = () => {
     const data = new FormData(event.currentTarget);
 
     Axios.post("http://localhost:3001/AddPersonalInfo", {
-      username: data.get("username"),
-      password: data.get("password"),
+      employee_id: "10001",
+      first_name: data.get("first_name"),
+      last_name: data.get("last_name"),
+      address_line_1: data.get("address_line_1"),
+      address_line_2: data.get("address_line_2"),
+      town: data.get("town"),
+      contact_number: data.get("contact_number"),
+      birthdate: birthdate,
+      marital_status: data.get("marital_status"),
+      gender: data.get("gender"),
     })
       .then((response) => {
         console.log(response);
@@ -120,18 +128,18 @@ const AddPersonalInfo = () => {
                   <TextField
                     required
                     fullWidth
-                    id="contact_number"
-                    label="Contact Number"
-                    name="contact_number"
+                    id="marital_status"
+                    label="Marital Status"
+                    name="marital_status"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    name="emergency_name"
-                    label="Emergency Contact Name"
-                    id="emergency_name"
+                    name="gender"
+                    label="Gender"
+                    id="gender"
                   />
                 </Grid>
               </Grid>

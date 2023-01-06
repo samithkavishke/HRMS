@@ -21,8 +21,12 @@ export default function NewUser() {
     const data = new FormData(event.currentTarget);
 
     Axios.post("http://localhost:3001/AddNewUser", {
-      username: data.get("username"),
-      password: data.get("password"),
+      employee_id: data.get("employee_id"),
+      job_title: data.get("job_title"),
+      pay_grade: data.get("pay_grade"),
+      employee_status: data.get("employee_status"),
+      contract_period: data.get("contract_period"),
+      department: data.get("department")
     })
       .then((response) => {
         console.log(response);
@@ -58,9 +62,9 @@ export default function NewUser() {
                 <TextField
                   required
                   fullWidth
-                  name="employeeid"
+                  name="employee_id"
                   label="Employe ID"
-                  id="employeeid"
+                  id="employee_id"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -78,9 +82,9 @@ export default function NewUser() {
                 <TextField
                   required
                   fullWidth
-                  id="paygrade"
+                  id="pay_grade"
                   label="Pay Grade"
-                  name="payGrade"
+                  name="pay_grade"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,36 +115,6 @@ export default function NewUser() {
                   label="Department"
                   id="department"
                   autoComplete="department"
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  name="username"
-                  label="Username"
-                  id="username"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password1"
-                  label="New password"
-                  type="password"
-                  id="password1"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password2"
-                  label="Confirm password"
-                  type="password"
-                  id="password2"
                 />
               </Grid>
             </Grid>

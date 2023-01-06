@@ -12,9 +12,8 @@ import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
 import AddEmergencyInfo from "./Components/HRManagerPageComponents/AddEmergencyInfo";
 import Welcome from "./Components/WelcomePageComponents/Welcome";
 import AddPersonalInfo from "./Components/HRManagerPageComponents/AddPersonalInfo";
-// import Form from "./Components/HRManagerPageComponents/AcceptLeave";
-import BankAccountDetails from "./Components/HRManagerPageComponents/EditWoker";
 import EditDetails from "./Components/HRManagerPageComponents/EditWoker";
+import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -26,9 +25,8 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route path="/AddNewUser" element={<AddNewUser />}></Route>
           <Route path="/EditDetails" element={<EditDetails />}></Route>
-
-          {/* <Route path="/Form" element={<Form />}></Route> */}
           <Route path="/AddPersonalInfo" element={<AddPersonalInfo />}></Route>
           <Route
             path="/AddEmergencyInfo"

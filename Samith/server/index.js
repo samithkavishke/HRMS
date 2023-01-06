@@ -26,4 +26,6 @@ app.use("/user-profile", require("./routes/UserProfile.jsx"));
 app.use("/filter", require("./routes/FilterData.jsx"));
 app.use("/details-by-employee-id", require("./routes/EmployeeData.jsx"));
 app.use("/submit-changes", require("./routes/EditDetails.jsx"));
+app.use("/AddEmergencyInfo", require("./routes/AddNewEmergencyInfo.jsx"));
+app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
 
