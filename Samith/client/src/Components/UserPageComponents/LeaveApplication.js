@@ -22,14 +22,15 @@ function LeaveForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const totalValid = true;
+    let totalValid = true;
     setEmployerID(event.target.employerid);
     // setLeaveType(event.target.leavetype);
+    console.log(toValue - fromValue);
     if (fromValue < toValue) {
       setValid(true);
     } else {
       setValid(false);
-      let totalValid = false;
+      totalValid = false;
     }
 
     if (totalValid) {
