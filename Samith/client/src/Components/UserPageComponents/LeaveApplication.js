@@ -16,7 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import Navigate from "React";
+import Navigate from "react";
 
 const theme = createTheme();
 
