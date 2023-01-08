@@ -17,7 +17,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
 import Axios from "axios";
 import { useEffect } from "react";
-import Navigate from "React";
+import Navigate from "react";
 
 const theme = createTheme();
 
