@@ -20,8 +20,10 @@ import ChangeTable from "./Components/AdminPageComponents/AlterTable";
 import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
 import ChangeBranchInfo from "./Components/HRManagerPageComponents/ChangeBranchInfo";
 import ChangeDependents from "./Components/HRManagerPageComponents/ChangeDependents";
+import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
+import DepartmentLeaves from "./Components/Reports/TotalLeaves";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -34,6 +36,11 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route
+            path="/DepartmentLeaves"
+            element={<DepartmentLeaves />}
+          ></Route>
+          <Route path="/LeaveForm" element={<LeaveForm />}></Route>
           <Route
             path="/LeaveApplicationTable"
             element={<LeaveApplicationTable />}

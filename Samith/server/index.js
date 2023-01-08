@@ -89,3 +89,8 @@ app.use(
   "/reject_leave",
   require("./routes/LeaveApplicationRoutes/RejectLeaveApplication.jsx")
 );
+
+app.use(
+  "/get_leaves_by_department",
+  require("./routes/LeaveReportRoutes/DepartmentLeaves.jsx")
+);
