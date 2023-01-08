@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         return console.log(err);
       }
       let stringResult = JSON.parse(JSON.stringify(rows));
-      const result = stringResult.map((item) => item.COLUMN_NAME);
+      const result = stringResult.map((item) => item.field_name);
       console.log(result);
       //   let result = "";
       //   let result = stringResult.map((item) => item.Tables_in_sql6587376);

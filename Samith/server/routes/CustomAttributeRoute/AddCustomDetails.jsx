@@ -5,24 +5,41 @@ const cors = require("cors");
 
 let employee_id = "";
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
+  // console.log(
+  //   `Update ${dbname}.add_emp_details SET ${req.body.column} = "${req.body.value}" WHERE employee_id = ${req.body.employee_id}; `
+  // );
   pool.query(
-    `Update ${dbname}.custom_attributes SET ${req.body.column} = ?; `,
-    [req.body.value],
+    `SELECT * FROM ${dbname}.add_emp_details WHERE employee_id = ${req.body.employee_id}; `,
 
     (err, rows, field) => {
       if (err) {
         return console.log(err);
       }
-      let stringResult = JSON.parse(JSON.stringify(rows));
-      const result = stringResult.map((item) => item.COLUMN_NAME);
-      console.log(result);
+      if (rows.length > 0) {
+        pool.query(
+          `Update ${dbname}.add_emp_details SET ${req.body.column} = "${req.body.value}" WHERE employee_id = ${req.body.employee_id}; `,
 
-      if (result.length > 0) {
-        res.send({ result: result, success: true });
+          (err, rows, field) => {
+            if (err) {
+              return console.log(err);
+            }
+            // return res.send({ success: true });
+          }
+        );
       } else {
-        res.send({ success: false });
+        pool.query(
+          `INSERT INTO ${dbname}.add_emp_details (employee_id, ${req.body.column}) VALUES (?,?);`,
+          [req.body.employee_id, req.body.value],
+          (err, rows, field) => {
+            if (err) {
+              return console.log(err);
+            }
+            // return res.send({ success: true });
+          }
+        );
       }
+      return res.send({ success: false });
     }
   );
 });

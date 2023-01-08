@@ -14,7 +14,7 @@ import { AppBar, Toolbar } from "@mui/material";
 export default function EditCustomDetails() {
   const [columns, setColumns] = useState([]);
   const [column, setColumn] = useState("");
-  const [employee_id, setEmployerID] = useState("");
+  const [employee_id, setEmployerID] = useState("10001");
   const [customColumnValue, setCustomColumnValue] = useState("");
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function EditCustomDetails() {
     Axios.post("http://localhost:3001/add_details", {
       column: column,
       value: customColumnValue,
+      employee_id: employee_id,
     })
       .then((response) => {
         console.log(response);
