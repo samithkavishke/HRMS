@@ -1,43 +1,118 @@
-// import React from "react";
-// import { makeStyles } from "@mui/material/styles";
-// import TextField from "@mui/material/TextField";
+import React from "react";
+import PropTypes from "prop-types";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
-// const useStyles = makeStyles((theme) => ({
-//   container: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1),
-//     width: 200,
-//   },
-// }));
+let id = 0;
+function createData(name, calories, fat, carbs, protein) {
+  id += 1;
+  return { id, name, calories, fat, carbs, protein };
+}
 
-// export default function Form() {
-//   const classes = useStyles();
+function LeaveApplicationTable(props) {
+  const { classes } = props;
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/get_leave_applications`, {})
+      .then((response) => {
+        const fetchedrows = response.data.result;
+        // for (let i = 0; i < response.data.result.length; i++) {
+        //   fetchedrows[i].id = i + 1;
+        // }
+        // setRows(fetchedrows);
+        setRows(fetchedrows);
+        console.log(fetchedrows);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
-//   return (
-//     <form className={classes.container} noValidate autoComplete="off">
-//       <TextField
-//         id="standard-name"
-//         label="Name"
-//         className={classes.textField}
-//         margin="normal"
-//       />
-//       <TextField
-//         id="standard-email"
-//         label="Email"
-//         className={classes.textField}
-//         margin="normal"
-//       />
-//       <TextField
-//         id="standard-password"
-//         label="Password"
-//         className={classes.textField}
-//         type="password"
-//         margin="normal"
-//       />
-//     </form>
-//   );
-// }
+  const handleAccept = (id) => {
+    Axios.post("http://localhost:3001/accept_leave", {
+      leave_id: id,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    console.log(id);
+  };
+
+  const handleReject = (id) => {
+    Axios.post("http://localhost:3001/reject_leave", {
+      leave_id: id,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    console.log(id);
+  };
+
+  return (
+    <Paper>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Leave ID </TableCell>
+            <TableCell>Employee ID</TableCell>
+            <TableCell> Leave Type</TableCell>
+            <TableCell>From Date </TableCell>
+            <TableCell>To Date </TableCell>
+
+            <TableCell>Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => {
+            return (
+              <TableRow key={row.leave_id}>
+                <TableCell component="th" scope="row">
+                  {row.leave_id}
+                </TableCell>
+                <TableCell>{row.employee_id}</TableCell>
+                <TableCell>{row.leave_type}</TableCell>
+                <TableCell>{row.from_date}</TableCell>
+                <TableCell>{row.to_date}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleAccept(row.leave_id)}
+                  >
+                    Accept
+                  </Button>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleReject(row.leave_id)}
+                  >
+                    Decline
+                  </Button>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
+}
+
+// LeaveApplicationTable.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
+
+export default LeaveApplicationTable;

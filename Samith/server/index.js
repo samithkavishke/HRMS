@@ -38,7 +38,7 @@ app.use(
 );
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));
 
-/* Routing the request to the ALTER TABLE files. */
+/* Routing the request to the ALTER TABLE file. */
 app.use("/show_tables", require("./routes/AlterTableRoutes/ShowTables.jsx"));
 app.use(
   "/show_columns",
@@ -46,12 +46,12 @@ app.use(
 );
 app.use("/Alter_Table", require("./routes/AlterTableRoutes/AlterTable.jsx"));
 
-/* Routing the request to the SALARY CHANGE files. */
+/* Routing the request to the SALARY CHANGE file. */
 app.use("/Change_Salary", require("./routes/SalaryRoutes/ChangeSalary.jsx"));
 app.use("/get_salaries", require("./routes/SalaryRoutes/GetSalaries.jsx"));
 app.use("/AddSalaryEntry", require("./routes/SalaryRoutes/AddSalaryEntry.jsx"));
 
-/* Routing the request to the BRANCH INFO files. */
+/* Routing the request to the BRANCH INFO file. */
 app.use(
   "/change_branch_info",
   require("./routes/BranchRoutes/ChangeBranches.jsx")
@@ -62,7 +62,7 @@ app.use(
   require("./routes/BranchRoutes/AddBranchEntry.jsx")
 );
 
-/* Routing the request to the Dependencies files. */
+/* Routing the request to the Dependencies file. */
 app.use(
   "/change_dependents",
   require("./routes/DependentRoutes/ChangeDependents.jsx")
@@ -74,4 +74,18 @@ app.use(
 app.use(
   "/add_dependent",
   require("./routes/DependentRoutes/AddDependentEntry.jsx")
+);
+
+/* Routing the request to the LeaveApplication file */
+app.use(
+  "/get_leave_applications",
+  require("./routes/LeaveApplicationRoutes/GetLeaveApplications.jsx")
+);
+app.use(
+  "/accept_leave",
+  require("./routes/LeaveApplicationRoutes/AcceptLeaveApplication.jsx")
+);
+app.use(
+  "/reject_leave",
+  require("./routes/LeaveApplicationRoutes/RejectLeaveApplication.jsx")
 );

@@ -21,6 +21,8 @@ import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
 import ChangeBranchInfo from "./Components/HRManagerPageComponents/ChangeBranchInfo";
 import ChangeDependents from "./Components/HRManagerPageComponents/ChangeDependents";
 
+import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
+
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
@@ -32,6 +34,10 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route
+            path="/LeaveApplicationTable"
+            element={<LeaveApplicationTable />}
+          ></Route>
           <Route
             path="/ChangeDependents"
             element={<ChangeDependents />}
