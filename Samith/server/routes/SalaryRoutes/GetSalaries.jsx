@@ -8,7 +8,7 @@ let employee_id = "";
 router.get("/", (req, res) => {
   //   console.log(req.query);
   pool.query(
-    `SELECT * FROM sql6587376.basic_salary `,
+    `SELECT * FROM ${dbname}.basic_salary `,
 
     (err, rows, field) => {
       if (err) {

@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const {pool,dbname} = require("../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
@@ -8,7 +8,7 @@ let employee_id = "";
 router.get("/:id", (req, res) => {
   //   console.log(req.params);
   pool.query(
-    `SELECT first_name,last_name,address_line1,address_line2,town,birth_year,birth_month,birth_date,marital_status,gender FROM sql6587376.employee_personal WHERE employee_id = "${req.params.id}";`,
+    `SELECT first_name,last_name,address_line1,address_line2,town,birth_year,birth_month,birth_date,marital_status,gender FROM ${dbname}.employee_personal WHERE employee_id = "${req.params.id}";`,
     (err, row, field) => {
       if (err) {
         return console.log(err);

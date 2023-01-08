@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
   console.log(emergencyData);
 
   pool.query(
-    `Update sql6587376.employee_work SET ` +
+    `Update ${dbname}.employee_work SET ` +
       `job_title = "${workData["job_title"]}", ` +
       `pay_grade = "${workData["pay_grade"]}", ` +
       `employee_status = "${workData["employee_status"]}", ` +
@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
         return console.log(err);
       }
       pool.query(
-        `Update sql6587376.employee_personal SET ` +
+        `Update ${dbname}.employee_personal SET ` +
           `first_name = "${personalData["first_name"]}", ` +
           `last_name = "${personalData["last_name"]}", ` +
           `address_line1 = "${personalData["address_line1"]}", ` +
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
             return console.log(err);
           }
           pool.query(
-            `Update sql6587376.emergency_info SET ` +
+            `Update ${dbname}.emergency_info SET ` +
               `employee_contact = "${emergencyData["employee_contact"]}", ` +
               `contact_first_name = "${emergencyData["contact_first_name"]}", ` +
               `contact_last_name = "${emergencyData["contact_last_name"]}", ` +

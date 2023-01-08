@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const { pool, dbname } = require("../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
       // Store hash in the database
       console.log(hash);
       pool.query(
-        `INSERT INTO sql6587376.user_info (username, employee_id, passcode_hash, user_type, branch_code) VALUES (?,?,?,?,?);`,
+        `INSERT INTO ${dbname}.user_info (username, employee_id, passcode_hash, user_type, branch_code) VALUES (?,?,?,?,?);`,
         [
           req.body.username,
           req.body.employee_id,

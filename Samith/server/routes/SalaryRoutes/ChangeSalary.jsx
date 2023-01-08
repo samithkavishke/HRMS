@@ -5,7 +5,7 @@ const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `UPDATE sql6587376.basic_salary SET pay_grade = ?, job_title = ?,  salary = ? WHERE pay_grade = ? AND job_title = ? ;`,
+    `UPDATE ${dbname}.basic_salary SET pay_grade = ?, job_title = ?,  salary = ? WHERE pay_grade = ? AND job_title = ? ;`,
     [
       req.body.pay_grade,
       req.body.job_title,

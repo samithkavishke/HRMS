@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const { pool, dbname } = require("../lib/pool.jsx");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -14,7 +14,7 @@ const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `SELECT username,passcode_hash,employee_id,user_type FROM sql6587376.user_info WHERE username = "${req.body.username}";`,
+    `SELECT username,passcode_hash,employee_id,user_type FROM ${dbname}.user_info WHERE username = "${req.body.username}";`,
     (err, row, field) => {
       if (err) {
         return console.log(err);

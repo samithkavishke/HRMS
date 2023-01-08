@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
@@ -7,7 +7,7 @@ let employee_id = "";
 
 router.get("/", (req, res) => {
   //   console.log(req.params);
-  pool.query(`SHOW TABLES FROM sql6587376;`, (err, rows, field) => {
+  pool.query(`SHOW TABLES FROM ${dbname};`, (err, rows, field) => {
     if (err) {
       return console.log(err);
     }

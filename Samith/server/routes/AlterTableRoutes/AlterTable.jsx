@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -8,7 +8,7 @@ router.post("/", (req, res) => {
   //   console.log(req);
 
   pool.query(
-    `ALTER TABLE sql6587376.` +
+    `ALTER TABLE ${dbname}.` +
       `${req.body.table} ADD ${req.body.column} ${req.body.datatype};`,
     (err, row, field) => {
       if (err) {

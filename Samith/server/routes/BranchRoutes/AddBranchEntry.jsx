@@ -1,11 +1,11 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `INSERT INTO sql6587376.branch_info (branch_code, branch_name, address_line1, address_line2, town, reg_number) VALUES (?,?,?,?,?,?);`,
+    `INSERT INTO ${dbname}.branch_info (branch_code, branch_name, address_line1, address_line2, town, reg_number) VALUES (?,?,?,?,?,?);`,
     [
       req.body.branch_code,
       req.body.branch_name,

@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../lib/pool.jsx");
+const { pool, dbname } = require("../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
   }
 
   pool.query(
-    `SELECT * FROM sql6587376.employee_work where ` +
+    `SELECT * FROM ${dbname}.employee_work where ` +
       dept_string +
       ` and ` +
       grade_string +

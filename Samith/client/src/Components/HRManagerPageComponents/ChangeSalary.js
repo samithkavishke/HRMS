@@ -106,13 +106,10 @@ export default function ChangeSalary() {
             id="new_job_title"
             name="new_job_title"
             label="Job Title"
-            // name="new_job_title"
-            // value={new_job_title}
           />
           <TextField
             id="new_salary"
             name="new_salary"
-            // value={new_salary}
             label="New Salary"
           />
           <Button variant="contained" type="submit">

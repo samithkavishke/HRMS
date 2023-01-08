@@ -1,11 +1,11 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `UPDATE sql6587376.branch_info SET  branch_name = ?,  address_line1 = ?,address_line2 = ?,town = ?,reg_number = ?  WHERE branch_code = ?;`,
+    `UPDATE ${dbname}.branch_info SET  branch_name = ?,  address_line1 = ?,address_line2 = ?,town = ?,reg_number = ?  WHERE branch_code = ?;`,
     [
       req.body.branch_name,
       req.body.address_line1,

@@ -1,11 +1,11 @@
 const express = require("express");
-const pool = require("../../lib/pool.jsx");
+const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `INSERT INTO sql6587376.emergency_info (employee_id, employee_contact, contact_first_name, contact_last_name, contact_relation, contact_phone_number) VALUES (?,?,?,?,?,?);`,
+    `INSERT INTO ${dbname}.emergency_info (employee_id, employee_contact, contact_first_name, contact_last_name, contact_relation, contact_phone_number) VALUES (?,?,?,?,?,?);`,
     [
       req.body.employee_id,
       req.body.employee_contact,
