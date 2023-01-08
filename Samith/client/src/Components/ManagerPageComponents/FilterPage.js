@@ -14,6 +14,7 @@ import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import { AppBar, Toolbar } from "@mui/material";
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -57,6 +58,12 @@ export default function Reports() {
   };
 
   return (
+    <div>
+    <AppBar position="relative" color='primary'>
+      <Toolbar>
+        <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+      </Toolbar>
+    </AppBar>
     <Container>
       <div>
         <Box>
@@ -148,5 +155,6 @@ export default function Reports() {
         </TableContainer>
       </Box>
     </Container>
+    </div>
   );
 }

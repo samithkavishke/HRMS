@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import { MenuItem, Typography } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
+import { AppBar, Toolbar } from "@mui/material";
 
 export default function ChangeSalary() {
   const [rows, setRows] = useState([]);
@@ -118,6 +119,11 @@ export default function ChangeSalary() {
           </Button>
         </Box>
       </div>
+      <AppBar position="relative" color='primary'>
+        <Toolbar>
+          <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }

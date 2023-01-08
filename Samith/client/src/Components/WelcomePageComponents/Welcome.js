@@ -25,9 +25,9 @@ export default function Welcome() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="relative" color='primary'>
         <Toolbar>
-          <Button href="http://localhost:3000/" variant='contained'>Jupiter Human Resource Manager</Button>
+          <Button href="http://localhost:3000/" variant='contained' color='info'>Jupiter Human Resource Manager</Button>
         </Toolbar>
       </AppBar>
       <main>

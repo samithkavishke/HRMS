@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import axios from "axios";
 import { useRef } from "react";
+import { AppBar, Toolbar } from "@mui/material";
 
 // ...
 
@@ -99,6 +100,11 @@ export default function ChangeTable() {
   return (
     <Container>
       <div>
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+          </Toolbar>
+        </AppBar>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
             <TextField

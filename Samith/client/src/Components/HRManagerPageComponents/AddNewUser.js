@@ -16,6 +16,7 @@ import { useState } from "react";
 import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
+import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
@@ -56,6 +57,11 @@ export default function AddNewUser() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+          </Toolbar>
+        </AppBar>
         <Box
           sx={{
             marginTop: 8,

@@ -12,6 +12,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
+import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
@@ -46,7 +47,11 @@ const AddPersonalInfo = () => {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm" style={{ height: "100%" }}>
         <CssBaseline />
-
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+          </Toolbar>
+        </AppBar>
         <Box
           sx={{
             marginTop: 6,

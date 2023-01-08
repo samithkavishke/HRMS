@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import Axios from "axios";
+import { AppBar, Toolbar } from "@mui/material";
 import Database from "./DatabaseDetails";
 
 const theme = createTheme();
@@ -42,8 +43,13 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm">
         <CssBaseline />
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/" variant='contained' color='info'>Jupiter Human Resource Manager</Button>
+          </Toolbar>
+        </AppBar>
+        <Container component="main" maxWidth="sm">
         <Box
           sx={{
             marginTop: 8,
