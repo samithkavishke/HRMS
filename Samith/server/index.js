@@ -21,7 +21,8 @@ app.use(cookieParser());
 
 // Route for index
 app.use("/login", require("./routes/Login.jsx"));
-app.use("/leave-application", require("./routes/LeaveApplication.jsx"));
+
+
 app.use("/user-profile", require("./routes/UserProfile.jsx"));
 app.use("/filter", require("./routes/FilterData.jsx"));
 app.use(
@@ -76,21 +77,33 @@ app.use(
   require("./routes/DependentRoutes/AddDependentEntry.jsx")
 );
 
-/* Routing the request to the LeaveApplication file */
+/* Routing the request to the LeaveAcceptApplication file */
 app.use(
   "/get_leave_applications",
-  require("./routes/LeaveApplicationRoutes/GetLeaveApplications.jsx")
+  require("./routes/LeaveAcceptRoutes/GetLeaveApplications.jsx")
 );
 app.use(
   "/accept_leave",
-  require("./routes/LeaveApplicationRoutes/AcceptLeaveApplication.jsx")
+  require("./routes/LeaveAcceptRoutes/AcceptLeaveApplication.jsx")
 );
 app.use(
   "/reject_leave",
-  require("./routes/LeaveApplicationRoutes/RejectLeaveApplication.jsx")
+  require("./routes/LeaveAcceptRoutes/RejectLeaveApplication.jsx")
 );
 
+/* Routing the request to the LeaveAcceptApplication file */
 app.use(
   "/get_leaves_by_department",
   require("./routes/LeaveReportRoutes/DepartmentLeaves.jsx")
+);
+
+
+/* Routing the request to the LeaveFillApplication file */
+app.use(
+  "/leave-application",
+  require("./routes/LeaveFillRoutes/LeaveApplication.jsx")
+);
+app.use(
+  "/is_applicable",
+  require("./routes/LeaveFillRoutes/Applicable.jsx")
 );

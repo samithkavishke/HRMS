@@ -15,10 +15,32 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
+import Axios from "axios";
+import { useEffect } from "react";
+import Navigate from "React";
 
 const theme = createTheme();
 
 function LeaveForm() {
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/is_applicable`, {})
+      .then((response) => {
+        const applicable = response.data.applicable;
+        if (!applicable) {
+          return <Navigate />;
+        }
+        // const fetchedrows = response.data.result;
+        // for (let i = 0; i < response.data.result.length; i++) {
+        //   fetchedrows[i].id = i + 1;
+        // }
+        // setRows(fetchedrows);
+        // console.log(fetchedrows);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
