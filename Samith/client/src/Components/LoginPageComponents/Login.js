@@ -12,6 +12,7 @@ import Axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../Helper/UserContext";
 import { useContext } from "react";
+import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 //Login start
@@ -49,8 +50,13 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/" variant='contained' color='info'>Jupiter Human Resource Manager</Button>
+          </Toolbar>
+        </AppBar>
+        <Container component="main" maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,

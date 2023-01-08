@@ -65,11 +65,11 @@ function App() {
           ></Route>
           <Route path="/Newuser" element={<NewUser />}></Route>
           <Route path="/Filter" element={<Reports />}></Route>
-          {/* <Route path="/Signup" element={<SignUp />}></Route> */}
+          <Route path="/Signup" element={<SignUp />}></Route>
           <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
-          <Route path="/" element={<SignIn />}></Route>
+          <Route path="/SignIn" element={<SignIn />}></Route>
           <Route path="/AddDependent" element={<AddDependent />}></Route>
-          {/* <Route path="/" element={<Welcome />}></Route> */}
+          <Route path="/" element={<Welcome />}></Route>
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>

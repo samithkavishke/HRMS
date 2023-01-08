@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { AppBar, Toolbar } from "@mui/material";
 import Axios from "axios";
 
 let id = 0;
@@ -62,6 +63,12 @@ function LeaveApplicationTable(props) {
   };
 
   return (
+    <div>
+    <AppBar position="relative" color='primary'>
+      <Toolbar>
+        <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+      </Toolbar>
+    </AppBar>
     <Paper>
       <Table>
         <TableHead>
@@ -108,6 +115,7 @@ function LeaveApplicationTable(props) {
         </TableBody>
       </Table>
     </Paper>
+    </div>
   );
 }
 

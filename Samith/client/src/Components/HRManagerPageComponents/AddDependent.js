@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
+import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
@@ -35,6 +36,11 @@ export default function AddDependent() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
+        <AppBar position="relative" color='primary'>
+          <Toolbar>
+            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+          </Toolbar>
+        </AppBar>
         <Box
           sx={{
             marginTop: 8,

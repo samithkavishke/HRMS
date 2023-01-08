@@ -15,6 +15,7 @@ import Stack from "@mui/material/Stack";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AppBar, Toolbar } from "@mui/material";
 
 export default function EditDetails() {
   const valuRef = useRef();
@@ -194,6 +195,12 @@ export default function EditDetails() {
   };
 
   return (
+    <div>
+      <AppBar position="relative" color='primary'>
+        <Toolbar>
+          <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+        </Toolbar>
+      </AppBar>
     <Box justifyItems={"center"}>
       <Box
         sx={{
@@ -566,5 +573,6 @@ export default function EditDetails() {
         </Box>
       </Box>
     </Box>
+    </div>
   );
 }
