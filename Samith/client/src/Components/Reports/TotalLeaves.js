@@ -19,10 +19,13 @@ export default function DepartmentLeaves() {
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_leaves_by_department`, {})
       .then((response) => {
-        const fetchedrows = response.data.result;
-        for (let i = 0; i < response.data.result.length; i++) {
-          fetchedrows[i].id = i + 1;
+        let fetchedrows = response.data.result;
+        if (fetchedrows === undefined) {
+          fetchedrows = [];
         }
+        // for (let i = 0; i < response.data.result.length; i++) {
+        //   fetchedrows[i].id = i + 1;
+        // }
         setRows(fetchedrows);
         console.log(fetchedrows);
       })

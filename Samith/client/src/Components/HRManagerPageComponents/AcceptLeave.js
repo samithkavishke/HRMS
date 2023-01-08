@@ -23,10 +23,10 @@ function LeaveApplicationTable(props) {
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_leave_applications`, {})
       .then((response) => {
-        const fetchedrows = response.data.result;
-        // for (let i = 0; i < response.data.result.length; i++) {
-        //   fetchedrows[i].id = i + 1;
-        // }
+        let fetchedrows = response.data.result;
+        if (fetchedrows === undefined) {
+          fetchedrows = [];
+        }
         // setRows(fetchedrows);
         setRows(fetchedrows);
         console.log(fetchedrows);
@@ -64,57 +64,63 @@ function LeaveApplicationTable(props) {
 
   return (
     <div>
-    <AppBar position="relative" color='primary'>
-      <Toolbar>
-        <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-      </Toolbar>
-    </AppBar>
-    <Paper>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Leave ID </TableCell>
-            <TableCell>Employee ID</TableCell>
-            <TableCell> Leave Type</TableCell>
-            <TableCell>From Date </TableCell>
-            <TableCell>To Date </TableCell>
+      <AppBar position="relative" color="primary">
+        <Toolbar>
+          <Button
+            href="http://localhost:3000/Home"
+            variant="contained"
+            color="info"
+          >
+            Home
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Paper>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Leave ID </TableCell>
+              <TableCell>Employee ID</TableCell>
+              <TableCell> Leave Type</TableCell>
+              <TableCell>From Date </TableCell>
+              <TableCell>To Date </TableCell>
 
-            <TableCell>Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => {
-            return (
-              <TableRow key={row.leave_id}>
-                <TableCell component="th" scope="row">
-                  {row.leave_id}
-                </TableCell>
-                <TableCell>{row.employee_id}</TableCell>
-                <TableCell>{row.leave_type}</TableCell>
-                <TableCell>{row.from_date}</TableCell>
-                <TableCell>{row.to_date}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="contained"
-                    onClick={() => handleAccept(row.leave_id)}
-                  >
-                    Accept
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="contained"
-                    onClick={() => handleReject(row.leave_id)}
-                  >
-                    Decline
-                  </Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => {
+              return (
+                <TableRow key={row.leave_id}>
+                  <TableCell component="th" scope="row">
+                    {row.leave_id}
+                  </TableCell>
+                  <TableCell>{row.employee_id}</TableCell>
+                  <TableCell>{row.leave_type}</TableCell>
+                  <TableCell>{row.from_date}</TableCell>
+                  <TableCell>{row.to_date}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleAccept(row.leave_id)}
+                    >
+                      Accept
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleReject(row.leave_id)}
+                    >
+                      Decline
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     </div>
   );
 }

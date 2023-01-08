@@ -8,7 +8,7 @@ let employee_id = "";
 router.get("/", (req, res) => {
   //   console.log(req.query);
   pool.query(
-    `SELECT * FROM ${dbname}.leave_application `,
+    `SELECT * FROM ${dbname}.leave_application where approval_status is NULL `,
 
     (err, rows, field) => {
       if (err) {

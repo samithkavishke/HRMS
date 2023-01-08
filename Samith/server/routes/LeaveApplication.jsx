@@ -5,7 +5,7 @@ const cors = require("cors");
 
 router.post("/", (req, res) => {
   pool.query(
-    `INSERT INTO ${dbname}.leave_application(employee_id,leave_type,from_date,to_date) VALUES (?,?,?,?,null);`,
+    `INSERT INTO ${dbname}.leave_application(employee_id,leave_type,from_date,to_date) VALUES (?,?,?,?);`,
     [
       req.body.employerID,
       req.body.leaveType,
