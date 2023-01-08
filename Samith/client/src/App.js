@@ -25,6 +25,10 @@ import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";
 
+import EditCustomDetails from "./Components/CustomAttrinutePageComponents/AddCustomValues";
+import CustomizeTable from "./Components/CustomAttrinutePageComponents/CustomizeTable";
+// import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
+
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
@@ -36,6 +40,11 @@ function App() {
         value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
       >
         <Routes>
+          <Route path="/CustomizeTable" element={<CustomizeTable />}></Route>
+          <Route
+            path="/EditCustomDetails"
+            element={<EditCustomDetails />}
+          ></Route>
           <Route
             path="/DepartmentLeaves"
             element={<DepartmentLeaves />}

@@ -16,14 +16,16 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
 import Axios from "axios";
-import { useEffect } from "react";
-import Navigate from "React";
+import { useEffect, useState } from "react";
+import Navigate from "react";
 
 const theme = createTheme();
 
 function LeaveForm() {
   useEffect(() => {
-    Axios.get(`http://localhost:3001/is_applicable`, {})
+    Axios.get(`http://localhost:3001/is_applicable`, {
+      params: { employee_id: "10001" },
+    })
       .then((response) => {
         const applicable = response.data.applicable;
         if (!applicable) {
@@ -56,26 +58,26 @@ function LeaveForm() {
     }
 
     if (totalValid) {
-      axios
-        .post("http://localhost:3001/leave-application", {
-          employerID: data.get("employerid"),
-          leaveType: leaveType,
-          fromValue: fromValue,
-          toValue: toValue,
-          // username: data.get("username"),
-          // password: data.get("password"),
-        })
+      Axios.post("http://localhost:3001/leave-application", {
+        employerID: data.get("employerid"),
+        leaveType: leaveType,
+        fromValue: fromValue,
+        toValue: toValue,
+        // username: data.get("username"),
+        // password: data.get("password"),
+      })
         .then((response) => {})
         .catch((e) => {
           console.log(e);
         });
     }
   };
-  const [employerID, setEmployerID] = React.useState("");
-  const [leaveType, setLeaveType] = React.useState("");
-  const [fromValue, setFromValue] = React.useState(null);
-  const [toValue, setToValue] = React.useState(null);
-  const [valid, setValid] = React.useState(false);
+  // const handleSubmit = () =>{}
+  const [employerID, setEmployerID] = useState("");
+  const [leaveType, setLeaveType] = useState("");
+  const [fromValue, setFromValue] = useState(null);
+  const [toValue, setToValue] = useState(null);
+  const [valid, setValid] = useState(false);
 
   const typeChange = (event) => {
     setLeaveType(event.target.value);
