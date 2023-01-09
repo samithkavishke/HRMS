@@ -20,8 +20,6 @@ router.post("/", (req, res) => {
       }
     }
   );
-  // console.log(req.body.employerID);
-  // console.log(req.body);
 });
 
 module.exports = router;

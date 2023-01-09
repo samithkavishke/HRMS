@@ -22,7 +22,6 @@ app.use(cookieParser());
 // Route for index
 app.use("/login", require("./routes/Login.jsx"));
 
-
 app.use("/user-profile", require("./routes/UserProfile.jsx"));
 app.use("/filter", require("./routes/FilterData.jsx"));
 app.use(
@@ -97,13 +96,25 @@ app.use(
   require("./routes/LeaveReportRoutes/DepartmentLeaves.jsx")
 );
 
-
 /* Routing the request to the LeaveFillApplication file */
 app.use(
   "/leave-application",
   require("./routes/LeaveFillRoutes/LeaveApplication.jsx")
 );
+app.use("/is_applicable", require("./routes/LeaveFillRoutes/Applicable.jsx"));
+
+/* Routing the request to the Custom Attributes file */
 app.use(
-  "/is_applicable",
-  require("./routes/LeaveFillRoutes/Applicable.jsx")
+  "/add_custom_field",
+  require("./routes/CustomAttributeRoute/CustomField.jsx")
 );
+app.use(
+  "/get_custom_columns",
+  require("./routes/CustomAttributeRoute/GetCustomColumns.jsx")
+);
+app.use(
+  "/add_details",
+  require("./routes/CustomAttributeRoute/AddCustomDetails.jsx")
+);
+
+// C:\Engineering\DBMS\Project\Group Project\Humans\Humans\Samith\server\routes\CustomAttributeRoute\AddCustomDetails.jsx

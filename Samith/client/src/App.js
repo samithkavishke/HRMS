@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { BrowserRouter, Outlet } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
+
 import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
 import SignIn from "./Components/LoginPageComponents/Login";
 import { LoginContext, UserContext } from "./Helper/UserContext";
+
 import { useCookies } from "react-cookie";
 
+import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
+import SignIn from "./Components/LoginPageComponents/Login";
 import SignUp from "./Components/SignupPageComponents/Signup";
 import Reports from "./Components/ManagerPageComponents/FilterPage";
 import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
@@ -25,8 +29,14 @@ import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";
 
+
 import { GuestAuth, ManagerAuth, UserAuth } from "./Components/RouteAuth/Auth";
 import Axios from "axios";
+import EditCustomDetails from "./Components/CustomAttrinutePageComponents/AddCustomValues";
+import CustomizeTable from "./Components/CustomAttrinutePageComponents/CustomizeTable";
+import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
+// import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
+
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -35,6 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <UserContext.Provider value={{ user, setUser }}>
         <LoginContext.Provider
           value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
@@ -89,6 +100,8 @@ function App() {
           </Routes>
         </LoginContext.Provider>
       </UserContext.Provider>
+
+
     </BrowserRouter>
   );
 }
