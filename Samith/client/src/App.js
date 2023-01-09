@@ -39,8 +39,9 @@ import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const [loggedIn, setLoggedIn] = useState(Boolean(cookies.token));
+  const [loggedIn, setLoggedIn] = useState(true); // Boolean(cookies.token)
   const [user, setUser] = useState("hrm"); // guest, hrm, user
+  console.log(user, loggedIn)
 
   return (
     <BrowserRouter>
@@ -54,6 +55,7 @@ function App() {
               <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
             </Route>
             <Route element={<ManagerAuth />}>
+              <Route path="/HRHome" element={<HRDashboard />}></Route>
               <Route path="/Home" element={<PersistentDrawerLeft />}></Route>
               <Route
                 path="/DepartmentLeaves"
@@ -90,7 +92,6 @@ function App() {
             </Route>
 
             <Route element={<GuestAuth />}>
-              {/* <GuestAuth /> */}
               <Route path="/Signup" element={<SignUp />} />
               <Route path="/SignIn" element={<SignIn />} />
               <Route path="/" element={<Welcome />} />
