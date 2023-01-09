@@ -25,8 +25,8 @@ export default function ChangeTable() {
     { name: "SHORT TEXT", val: "VARCHAR(5)" },
     { name: "LONG TEXT", val: "VARCHAR(20)" },
     { name: "INTEGER", val: "INT(20)" },
-    { name: "FIEXED SHORT TEXT", val: "CHAR(5)" },
-    { name: "FIEXED LONG TEXT", val: "CHAR(15)" },
+    { name: "FIXED SHORT TEXT", val: "CHAR(5)" },
+    { name: "FIXED LONG TEXT", val: "CHAR(15)" },
   ];
 
   useEffect(() => {

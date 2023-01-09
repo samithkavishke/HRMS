@@ -15,20 +15,36 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import PersonIcon from '@mui/icons-material/Person';
 import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import AddIcon from '@mui/icons-material/Add';
+import PublicIcon from '@mui/icons-material/Public';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import EditIcon from '@mui/icons-material/Edit';
 import { useState, useContext, useEffect } from "react";
-import LeaveForm from "./LeaveApplication";
 import { useNavigate } from "react-router-dom";
-import UserProfile from "./Profile";
 import Axios from "axios";
 import { Link, Navigate, redirect } from "react-router-dom";
 
 import { LoginContext } from "../../Helper/UserContext";
+
+import AddNewUser from "./AddNewUser";
+import AddDependent from "./AddDependent";
+import ChangeDependents from "./ChangeDependents";
+import ChangeSalary from "./ChangeSalary";
+import LeaveApplicationTable from "./AcceptLeave";
+import AddEmergencyInfo from "./AddEmergencyInfo";
+import NewUser from "./AddNewWorker";
+import AddPersonalInfo from "./AddPersonalInfo";
+import EditDetails from "./EditWoker";
+import LeaveForm from "../UserPageComponents/LeaveApplication";
+import UserProfile from "../UserPageComponents/Profile";
+// import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
 
@@ -77,7 +93,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft() {
+export default function HRDashboard() {
   const navigate = useNavigate();
 
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
@@ -86,33 +102,95 @@ export default function PersistentDrawerLeft() {
   const [open, setOpen] = React.useState(false);
 
   const [dashBoardSelect, enableDashboard] = useState(true);
-  const [profileSelect, enableProfile] = useState(false);
-  const [applicationSelect, enableApplication] = useState(false);
+  const [editDetailsSelect, enableEditDetails] = useState(false);
+  const [leaveApproveSelect, enableLeaveApprove] = useState(false);
   const [signoutSelect, enableSignout] = useState(false);
+  const [profileSelect, enableProfile] = useState(false);
+  const [ApplicationSelect, enableApplication] = useState(false);
+  const [NewEmployeeSelect, enableNewEmployee] = useState(false);
+  const [NewUserSelect, enableNewUser] = useState(false);
 
   const toggleDashboard = () => {
     enableDashboard(true);
     enableProfile(false);
     enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
     enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
   };
-  const toggleProfile = () => {
+  const toggleEditDetails = () => {
     enableDashboard(false);
-    enableProfile(true);
+    enableProfile(false);
     enableApplication(false);
+    enableEditDetails(true);
+    enableLeaveApprove(false);
     enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
   };
   const toggleApplication = () => {
     enableDashboard(false);
     enableProfile(false);
     enableApplication(true);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
     enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+  };
+  const toggleLeaveApprove = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(true);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
   };
   const toggleSignout = () => {
     enableDashboard(false);
     enableProfile(false);
     enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
     enableSignout(true);
+    enableNewEmployee(false);
+    enableNewUser(false);
+  };
+
+  const toggleProfile = () => {
+    enableDashboard(false);
+    enableProfile(true);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(true);
+    enableNewEmployee(false);
+    enableNewUser(false);
+  }
+
+  const toggleNewEmployee = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(true);
+    enableNewUser(false);
+  }
+  const toggleNewUser = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(true);
   };
 
   const handleDrawerOpen = () => {
@@ -126,12 +204,12 @@ export default function PersistentDrawerLeft() {
   const dashboardContent = (
     <Main open={open}>
       <DrawerHeader />
-      <Typography variant="h3">
-        Hey User
+      <Typography variant="h1">
+        Hey HR Manager
       </Typography>
+      
     </Main>
   );
-
 
   console.log(loggedIn);
   if (!loggedIn) {
@@ -142,7 +220,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color="success">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -182,6 +260,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
+
           <ListItemButton onClick={toggleDashboard}>
             <ListItemIcon>
               <DashboardCustomizeIcon />
@@ -191,16 +270,44 @@ export default function PersistentDrawerLeft() {
 
           <ListItemButton onClick={toggleProfile}>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <PersonIcon />
             </ListItemIcon>
-            <ListItemText primary="Your Profile" />
+            <ListItemText primary="Profile" />
           </ListItemButton>
-          {/* <UserProfile2 /> */}
+
           <ListItemButton onClick={toggleApplication} href="">
             <ListItemIcon>
               <FeedIcon />
             </ListItemIcon>
             <ListItemText primary="Leave Application" />
+          </ListItemButton>
+
+          <ListItemButton onClick={toggleNewEmployee}>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add New Employee" />
+          </ListItemButton>
+
+          <ListItemButton onClick={toggleNewUser}>
+            <ListItemIcon>
+              <PublicIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add New User Account" />
+          </ListItemButton>
+
+          <ListItemButton onClick={toggleEditDetails}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText primary="Edit Employee Details" />
+          </ListItemButton>
+          {/* <UserProfile2 /> */}
+          <ListItemButton onClick={toggleLeaveApprove} href="">
+            <ListItemIcon>
+              <AddTaskIcon />
+            </ListItemIcon>
+            <ListItemText primary="Approve Leave Forms" />
           </ListItemButton>
         </List>
         <Divider />
@@ -221,8 +328,12 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       {dashBoardSelect && dashboardContent}
-      {applicationSelect && <LeaveForm />}
-      {profileSelect && <UserProfile />}
+      {leaveApproveSelect && <LeaveApplicationTable />}
+      {editDetailsSelect && <EditDetails />}
+      {profileSelect && <UserProfile/>}
+      {ApplicationSelect && <LeaveForm/>}
+      {NewEmployeeSelect && <AddPersonalInfo/>}
+      {NewUserSelect && <AddNewUser/>}
     </Box>
   );
 }

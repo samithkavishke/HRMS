@@ -24,7 +24,7 @@ const AddPersonalInfo = () => {
     const data = new FormData(event.currentTarget);
 
     Axios.post("http://localhost:3001/AddPersonalInfo", {
-      employee_id: "10001",
+      employee_id: "10005",
       first_name: data.get("first_name"),
       last_name: data.get("last_name"),
       address_line_1: data.get("address_line_1"),

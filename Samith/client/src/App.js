@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
-import SignIn from "./Components/LoginPageComponents/Login";
 import { LoginContext } from "./Helper/UserContext";
 import { useCookies } from "react-cookie";
 
+import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
+import SignIn from "./Components/LoginPageComponents/Login";
 import SignUp from "./Components/SignupPageComponents/Signup";
 import Reports from "./Components/ManagerPageComponents/FilterPage";
 import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
@@ -27,6 +27,8 @@ import DepartmentLeaves from "./Components/Reports/TotalLeaves";
 
 import EditCustomDetails from "./Components/CustomAttrinutePageComponents/AddCustomValues";
 import CustomizeTable from "./Components/CustomAttrinutePageComponents/CustomizeTable";
+
+import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 // import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
 
 function App() {
@@ -79,6 +81,7 @@ function App() {
           <Route path="/SignIn" element={<SignIn />}></Route>
           <Route path="/AddDependent" element={<AddDependent />}></Route>
           <Route path="/" element={<Welcome />}></Route>
+          <Route path="/HRHome" element={<HRDashboard />}></Route>
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>
