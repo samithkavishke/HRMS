@@ -8,8 +8,7 @@ import { LoginContext, UserContext } from "./Helper/UserContext";
 
 import { useCookies } from "react-cookie";
 
-import PersistentDrawerLeft from "./Components/UserPageComponents/DashBoard";
-import SignIn from "./Components/LoginPageComponents/Login";
+
 import SignUp from "./Components/SignupPageComponents/Signup";
 import Reports from "./Components/ManagerPageComponents/FilterPage";
 import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";

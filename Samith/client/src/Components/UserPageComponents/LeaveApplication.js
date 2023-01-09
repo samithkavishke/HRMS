@@ -30,12 +30,6 @@ function LeaveForm() {
         if (!applicable) {
           return <Navigate />;
         }
-        // const fetchedrows = response.data.result;
-        // for (let i = 0; i < response.data.result.length; i++) {
-        //   fetchedrows[i].id = i + 1;
-        // }
-        // setRows(fetchedrows);
-        // console.log(fetchedrows);
       })
       .catch((e) => {
         console.log(e);
