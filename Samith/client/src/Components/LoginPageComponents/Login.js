@@ -18,10 +18,8 @@ const theme = createTheme();
 //Login start
 
 export default function SignIn() {
-  const { loggedIn, setLoggedIn, cookies, setCookie } =
-    useContext(LoginContext);
+  const { setLoggedIn, setCookie } = useContext(LoginContext);
 
-  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -43,20 +41,21 @@ export default function SignIn() {
       });
   };
 
-  console.log(loggedIn);
-  if (loggedIn) {
-    return <Navigate to="/Home" />;
-  }
-
   return (
     <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <Button href="http://localhost:3000/" variant='contained' color='info'>Jupiter Human Resource Manager</Button>
-          </Toolbar>
-        </AppBar>
-        <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <AppBar position="relative" color="primary">
+        <Toolbar>
+          <Button
+            href="http://localhost:3000/"
+            variant="contained"
+            color="info"
+          >
+            Jupiter Human Resource Manager
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,

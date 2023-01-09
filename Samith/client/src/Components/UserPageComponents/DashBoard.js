@@ -133,12 +133,6 @@ export default function PersistentDrawerLeft() {
   );
 
 
-  console.log(loggedIn);
-  if (!loggedIn) {
-    //console.log(loggedIn);
-    return <Navigate to="/" />;
-  }
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
