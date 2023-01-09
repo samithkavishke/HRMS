@@ -28,7 +28,8 @@ import UserProfile from "./Profile";
 import Axios from "axios";
 import { Link, Navigate, redirect } from "react-router-dom";
 
-import { LoginContext } from "../../Helper/UserContext";
+import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { selectedIdsLookupSelector } from "@mui/x-data-grid";
 
 const drawerWidth = 240;
 
@@ -81,6 +82,7 @@ export default function PersistentDrawerLeft() {
   const navigate = useNavigate();
 
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
+  const { setUser } = useContext(UserContext)
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -205,6 +207,7 @@ export default function PersistentDrawerLeft() {
             onClick={() => {
               removeCookie("token", []);
               setLoggedIn(false);
+              setUser("guest")
             }}
           >
             <ListItemIcon>
