@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { Chip } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Navigate } from 'react-router-dom';
 
 // const cards = [1, 3];
 
@@ -59,10 +60,10 @@ export default function Welcome() {
               justifyContent="center"
             >
               <div>
-              <Button href="/Signup" variant="contained" size="large">Start your HR journey here</Button>
+              <Button onClick={() => {return <Navigate to="/Signup" />}} variant="contained" size="large">Start your HR journey here</Button>
               </div>
               <div>
-              <Button href="/Signin" variant="outlined" size="large">Login to existing company</Button>
+              <Button onClick={() => {return <Navigate to="/SignIn" />}} variant="outlined" size="large">Login to existing company</Button>
               </div>
             </Stack>
           </Container>
