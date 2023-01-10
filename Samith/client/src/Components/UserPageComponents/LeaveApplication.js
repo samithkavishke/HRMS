@@ -133,9 +133,10 @@ function LeaveForm() {
                     onChange={typeChange}
                     defaultValue=""
                   >
-                    <MenuItem value={"Annual_leave"}>Annual_leave</MenuItem>
-                    <MenuItem value={"Maternal_leave"}>Maternal_leave</MenuItem>
-                    <MenuItem value={"Casual_leave"}>Casual_leave</MenuItem>
+                    <MenuItem value={"Annual_leave"}>Annual Leave</MenuItem>
+                    <MenuItem value={"Maternal_leave"}>Maternal Leave</MenuItem>
+                    <MenuItem value={"Casual_leave"}>Casual Leave</MenuItem>
+                    <MenuItem value={"no_pay_leave"}>No Pay Leave</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
