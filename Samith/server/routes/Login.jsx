@@ -14,9 +14,7 @@ SELECT employee_id FROM sql6588944.user_info WHERE username = ?);`,
         return console.log(err);
       }
       let stringResult = JSON.parse(JSON.stringify(row1));
-      // console.log(result1);
-      const result1 = stringResult.map((item) => item.supervisor_id);
-      console.log(result1);
+      const supervisors = stringResult.map((item) => item.supervisor_id);
       pool.query(
         `SELECT username,passcode_hash,employee_id,user_type FROM ${dbname}.user_info WHERE username = "${req.body.username}";`,
         (err, row2, field) => {
@@ -25,19 +23,18 @@ SELECT employee_id FROM sql6588944.user_info WHERE username = ?);`,
           }
           let result2 = JSON.parse(JSON.stringify(row2));
           let out = result2[0];
-          let token = "";
           if (result2.length > 0) {
             console.log(out.passcode_hash, req.body.password);
             bcrypt
               .compare(req.body.password, out.passcode_hash)
-              .then((result2) => {
-                // if (result) {
-                //   res.send({ success: true });
-                // }
-                res.send({ success: result2,supervisors:result1, token });
+              .then((result) => {
+                if (result) {
+                  res.send({ success: true, info: [out.username, out.employee_id, out.user_type, supervisors]});
+                }
+                res.send({ success: false});
               });
           } else {
-            res.send({ success: false, token });
+            res.send({ success: false});
           }
         }
       );
