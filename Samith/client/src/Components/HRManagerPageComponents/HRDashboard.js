@@ -31,7 +31,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { Link, Navigate, redirect } from "react-router-dom";
 
-import { LoginContext } from "../../Helper/UserContext";
+import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 import AddNewUser from "./AddNewUser";
 import AddDependent from "./AddDependent";
@@ -94,9 +94,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function HRDashboard() {
-  const navigate = useNavigate();
-
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
+  const { user, setUser } = useContext(UserContext)
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -205,7 +204,7 @@ export default function HRDashboard() {
     <Main open={open}>
       <DrawerHeader />
       <Typography variant="h1">
-        Hey HR Manager
+        Hey {user}
       </Typography>
       
     </Main>
@@ -316,8 +315,11 @@ export default function HRDashboard() {
             component={Link}
             to={"/"}
             onClick={() => {
-              removeCookie("token", []);
+              removeCookie("depends", []);
+              removeCookie("emp_id", []);
+              removeCookie("user_type", []);
               setLoggedIn(false);
+              setUser("guest")
             }}
           >
             <ListItemIcon>

@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
-import { LoginContext } from "../../Helper/UserContext";
+import { LoginContext, UserContext } from "../../Helper/UserContext";
 import { useContext } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 
@@ -19,6 +19,7 @@ const theme = createTheme();
 
 export default function SignIn() {
   const { setLoggedIn, setCookie } = useContext(LoginContext);
+  const { info, setUser, setInfo, setId } = useContext(UserContext)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,9 +32,14 @@ export default function SignIn() {
       .then((response) => {
         console.log(response);
         if (response.data.success) {
-          console.log(response.data.supervisors);
+          console.log(response.data.info);
           setLoggedIn(true);
-          setCookie("token", response.data.token, { path: "/" });
+          setUser(response.data.info.user_type)
+          setInfo([response.data.info.emp_id, response.data.info.supervisors])
+          setCookie('user_type', response.data.info.user_type, {path: "/"})
+          setCookie('emp_id', response.data.info.emp_id, {path: "/"})
+          setCookie('depends', response.data.info.supervisors, {path: "/"})
+          
           return <Navigate to="/Home" />;
         }
       })

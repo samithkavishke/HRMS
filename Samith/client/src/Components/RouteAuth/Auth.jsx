@@ -3,29 +3,49 @@ import { UserContext } from "../../Helper/UserContext";
 import { Navigate, Outlet } from "react-router-dom";
 
 export const UserAuth = () => {
-  const { user } = useContext(UserContext);
+  const { loggedIn } = useContext(UserContext);
 
-  if (user === "hrm" || user === "user") {
+
+  if (loggedIn) {
     return <Outlet />;
   } else {
     return <Navigate to="SignIn" />;
+  }
+};
+
+export const AdminAuth = () => {
+  const { user} = useContext(UserContext);
+
+  if (user === "admin") {
+    return <Outlet />;
+  } else if (user === "guest") {
+    return <Navigate to="SignIn" /> 
+  } else {
+    return <Navigate to="403" />;
   }
 };
 
 export const ManagerAuth = () => {
   const { user } = useContext(UserContext);
-
-  if (user === "hrm") {
-    return <Outlet />;
-  } else if (user === "user") {
-    return <Navigate to="403" />;
-  } else {
-    return <Navigate to="SignIn" />;
+  
+  if (user === "hrm" || user === "admin") {
+    return <Outlet />
+  } else if (user === "guest") {
+    return <Navigate to="SignIn" />
   }
+  return <Navigate to="403" />
 };
 
 export const GuestAuth = () => {
-  const { user } = useContext(UserContext);
+  const { loggedIn } = useContext(UserContext);
 
-  return user !== "guest" ? <Navigate to="Home" /> : <Outlet />;
+  if (!loggedIn) {
+    return <Outlet />;
+  } else {
+    return <Navigate to="Home" />
+  }
 };
+
+export const ProfileAuth = () => {
+  return <Outlet />
+}

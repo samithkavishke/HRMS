@@ -24,17 +24,16 @@ SELECT employee_id FROM sql6588944.user_info WHERE username = ?);`,
           let result2 = JSON.parse(JSON.stringify(row2));
           let out = result2[0];
           if (result2.length > 0) {
-            console.log(out.passcode_hash, req.body.password);
             bcrypt
               .compare(req.body.password, out.passcode_hash)
               .then((result) => {
                 if (result) {
-                  res.send({ success: true, info: [out.username, out.employee_id, out.user_type, supervisors]});
+                  return res.send({ success: true, info: {username: out.username, emp_id: out.employee_id, user_type: out.user_type, supervisors}});
                 }
-                res.send({ success: false});
+                return res.send({ success: false});
               });
           } else {
-            res.send({ success: false});
+            return res.send({ success: false});
           }
         }
       );
