@@ -6,6 +6,7 @@ const cors = require("cors");
 let employee_id = "";
 
 router.get("/", (req, res) => {
+  console.log("Applicable.jsx is Running");
   const todayDate = new Date();
   const year = todayDate.getFullYear();
   let month = todayDate.getMonth() + 1;
@@ -18,11 +19,11 @@ router.get("/", (req, res) => {
     day = `0${day}`;
   }
   const today = `${year}${month}${day}`;
-  console.log();
-  console.log(today);
+  // console.log();
+  // console.log(today);
   //   console.log(req.query);
   pool.query(
-    `SELECT * FROM  ${dbname}.leave_application WHERE employee_id = ${req.body.employee_id} and approval_status != 0 and from_date<=${today} and ${today}<=to_date ;`,
+    `SELECT * FROM  ${dbname}.leave_application WHERE employee_id = ${req.query.employee_id} and approval_status != 0 and from_date<=${today} and ${today}<=to_date ;`,
     (err, rows, field) => {
       if (err) {
         return console.log(err);
@@ -33,9 +34,9 @@ router.get("/", (req, res) => {
       //   let result = "";
       //   let result = stringResult.map((item) => item.Tables_in_sql6587376);
       if (result.length > 0) {
-        res.send({ applicable: true, success: true });
+        res.send({ applicable: false, success: true });
       } else {
-        res.send({ applicable: false, success: false });
+        res.send({ applicable: true, success: true });
       }
     }
   );

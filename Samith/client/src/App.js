@@ -8,7 +8,6 @@ import { LoginContext, UserContext } from "./Helper/UserContext";
 
 import { useCookies } from "react-cookie";
 
-
 import SignUp from "./Components/SignupPageComponents/Signup";
 import Reports from "./Components/ManagerPageComponents/FilterPage";
 import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
@@ -28,25 +27,35 @@ import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";
 
-
-import { GuestAuth, ManagerAuth, UserAuth, AdminAuth, ProfileAuth } from "./Components/RouteAuth/Auth";
+import {
+  GuestAuth,
+  ManagerAuth,
+  UserAuth,
+  AdminAuth,
+  ProfileAuth,
+} from "./Components/RouteAuth/Auth";
 import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 // import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
 
 import UserProfile from "./Components/UserPageComponents/Profile";
 
-
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(["user_type", "emp_id", "depends"]);
-  const [loggedIn, setLoggedIn] = useState(cookies.user_type ? cookies.user_type !== "guest" : "guest"); // Boolean(cookies.token)
-  const [user, setUser] = useState(cookies.user_type ? cookies.user_type : "guest"); // guest, hrm, user, supervisor, admin
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "user_type",
+    "emp_id",
+    "depends",
+  ]);
+  const [loggedIn, setLoggedIn] = useState(
+    cookies.user_type ? cookies.user_type !== "guest" : false
+  ); // Boolean(cookies.token)
+  const [user, setUser] = useState(
+    cookies.user_type ? cookies.user_type : "guest"
+  ); // guest, hrm, user, supervisor, admin
   const [info, setInfo] = useState([]);
-  console.log(user, loggedIn, info)
-
+  console.log(user, loggedIn, info);
 
   return (
     <BrowserRouter>
-
       <UserContext.Provider value={{ user, setUser, info, setInfo, loggedIn }}>
         <LoginContext.Provider
           value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
@@ -59,12 +68,17 @@ function App() {
             {/* Routes accessible by admin */}
             <Route element={<AdminAuth />}>
               <Route path="/ChangeTable" element={<ChangeTable />}></Route>
-
             </Route>
 
             {/* Routes accessible by regular employee */}
             <Route element={<UserAuth />}>
-              <Route path="/Home" element={user === "user" ? <PersistentDrawerLeft /> : <HRDashboard />}></Route>
+              <Route
+                path="/Home"
+                element={
+                  user === "user" ? <PersistentDrawerLeft /> : <HRDashboard />
+                }
+              ></Route>
+              <Route path="/LeaveApplication" element={<LeaveForm />}></Route>
             </Route>
 
             {/* Routes accessible by hrm */}
@@ -114,8 +128,6 @@ function App() {
           </Routes>
         </LoginContext.Provider>
       </UserContext.Provider>
-
-
     </BrowserRouter>
   );
 }

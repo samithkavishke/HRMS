@@ -10,10 +10,12 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CakeIcon from "@mui/icons-material/Cake";
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 export default function UserProfile() {
-  const employee_id = "10001";
+  const { cookies } = useContext(LoginContext);
+  const employee_id = cookies.emp_id;
 
   const [userData, setUserData] = useState({
     first_name: "",

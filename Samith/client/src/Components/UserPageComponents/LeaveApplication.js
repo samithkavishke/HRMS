@@ -15,20 +15,25 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Navigate from "react";
+import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 const theme = createTheme();
 
 function LeaveForm() {
+  const { cookies } = useContext(LoginContext);
+  const employee_id = cookies.emp_id;
+  console.log(employee_id);
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
-      params: { employee_id: "10001" },
+      params: { employee_id: cookies.emp_id },
     })
       .then((response) => {
         const applicable = response.data.applicable;
         if (!applicable) {
-          return <Navigate />;
+          console.log("Not Applicable", employee_id);
+          // return <Navigate />;
         }
       })
       .catch((e) => {
@@ -40,7 +45,7 @@ function LeaveForm() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     let totalValid = true;
-    setEmployerID(event.target.employerid);
+    // setEmployerID(event.target.employerid);
     // setLeaveType(event.target.leavetype);
     console.log(toValue - fromValue);
     if (fromValue < toValue) {
@@ -52,7 +57,7 @@ function LeaveForm() {
 
     if (totalValid) {
       Axios.post("http://localhost:3001/leave-application", {
-        employerID: data.get("employerid"),
+        employerID: employee_id,
         leaveType: leaveType,
         fromValue: fromValue,
         toValue: toValue,
@@ -66,7 +71,7 @@ function LeaveForm() {
     }
   };
   // const handleSubmit = () =>{}
-  const [employerID, setEmployerID] = useState("");
+  // const [employerID, setEmployerID] = useState("");
   const [leaveType, setLeaveType] = useState("");
   const [fromValue, setFromValue] = useState(null);
   const [toValue, setToValue] = useState(null);
@@ -99,7 +104,7 @@ function LeaveForm() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <TextField
                   autoComplete="given-name"
                   name="employerid"
@@ -109,7 +114,7 @@ function LeaveForm() {
                   label="Employer ID"
                   autoFocus
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="leave-type-label" defaultValue={""}>
