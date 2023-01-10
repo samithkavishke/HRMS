@@ -18,10 +18,11 @@ import Axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import Navigate from "react";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
 const theme = createTheme();
 
-function LeaveForm() {
+function LeaveForm(props) {
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
   console.log(employee_id);
@@ -45,6 +46,28 @@ function LeaveForm() {
         console.log(e);
       });
   }, []);
+
+
+
+  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code 
+  const { classes } = props;
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/get_leave_applications`, {})
+      .then((response) => {
+        let fetchedrows = response.data.result;
+        if (fetchedrows === undefined) {
+          fetchedrows = [];
+        }
+        // setRows(fetchedrows);
+        setRows(fetchedrows);
+        console.log(fetchedrows);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+  ///////////////
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -186,6 +209,35 @@ function LeaveForm() {
             </Button>
           </Box>
         </Box>
+
+
+        <br></br>
+        <Typography variant="h5">Number of days of leave remaining</Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Annual Leave</TableCell>
+              <TableCell>Maternal Leave</TableCell>
+              <TableCell>Casual Leave</TableCell>
+              <TableCell>No Pay Leave</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => {
+              return(
+                <TableRow key={row.employee_id}>
+                  <TableCell>{row.Annual_leave}</TableCell>
+                  <TableCell>{row.Maternal_leave}</TableCell>
+                  <TableCell>{row.Casual_leave}</TableCell>
+                  <TableCell>{row.no_pay_leave}</TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+
+        </Table>
+      
+
       </Container>
     </ThemeProvider>
   );

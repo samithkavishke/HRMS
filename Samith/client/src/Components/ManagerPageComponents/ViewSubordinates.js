@@ -79,7 +79,7 @@ function ViewSubordinates(props) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Employee ID </TableCell>
+              <TableCell>Employee ID</TableCell>
               <TableCell>First Name</TableCell>
               <TableCell>Last Name</TableCell>
               <TableCell>Pay Grade</TableCell>
