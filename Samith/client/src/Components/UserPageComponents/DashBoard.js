@@ -79,10 +79,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
-  const navigate = useNavigate();
-
-  const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
-  const { setUser } = useContext(UserContext)
+  const { setLoggedIn, removeCookie } = useContext(LoginContext);
+  const { user, setUser } = useContext(UserContext)
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -129,7 +127,7 @@ export default function PersistentDrawerLeft() {
     <Main open={open}>
       <DrawerHeader />
       <Typography variant="h3">
-        Hey User
+        Hey {user}
       </Typography>
     </Main>
   );
@@ -205,7 +203,9 @@ export default function PersistentDrawerLeft() {
             component={Link}
             to={"/"}
             onClick={() => {
-              removeCookie("token", []);
+              removeCookie("depends", []);
+              removeCookie("emp_id", []);
+              removeCookie("user_type", []);
               setLoggedIn(false);
               setUser("guest")
             }}
