@@ -15,17 +15,17 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import AddIcon from '@mui/icons-material/Add';
-import PublicIcon from '@mui/icons-material/Public';
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import AddIcon from "@mui/icons-material/Add";
+import PublicIcon from "@mui/icons-material/Public";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -43,7 +43,7 @@ import NewUser from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
 import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import UserProfile from "../UserPageComponents/Profile";
+import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -95,7 +95,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function HRDashboard() {
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -169,7 +169,7 @@ export default function HRDashboard() {
     enableSignout(true);
     enableNewEmployee(false);
     enableNewUser(false);
-  }
+  };
 
   const toggleNewEmployee = () => {
     enableDashboard(false);
@@ -180,7 +180,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(true);
     enableNewUser(false);
-  }
+  };
   const toggleNewUser = () => {
     enableDashboard(false);
     enableProfile(false);
@@ -203,10 +203,7 @@ export default function HRDashboard() {
   const dashboardContent = (
     <Main open={open}>
       <DrawerHeader />
-      <Typography variant="h1">
-        Hey {user}
-      </Typography>
-      
+      <Typography variant="h1">Hey {user}</Typography>
     </Main>
   );
 
@@ -259,7 +256,6 @@ export default function HRDashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-
           <ListItemButton onClick={toggleDashboard}>
             <ListItemIcon>
               <DashboardCustomizeIcon />
@@ -319,7 +315,7 @@ export default function HRDashboard() {
               removeCookie("emp_id", []);
               removeCookie("user_type", []);
               setLoggedIn(false);
-              setUser("guest")
+              setUser("guest");
             }}
           >
             <ListItemIcon>
@@ -332,10 +328,10 @@ export default function HRDashboard() {
       {dashBoardSelect && dashboardContent}
       {leaveApproveSelect && <LeaveApplicationTable />}
       {editDetailsSelect && <EditDetails />}
-      {profileSelect && <UserProfile/>}
-      {ApplicationSelect && <LeaveForm/>}
-      {NewEmployeeSelect && <AddPersonalInfo/>}
-      {NewUserSelect && <AddNewUser/>}
+      {profileSelect && <UserProfile />}
+      {ApplicationSelect && <LeaveForm />}
+      {NewEmployeeSelect && <AddPersonalInfo />}
+      {NewUserSelect && <AddNewUser />}
     </Box>
   );
 }

@@ -11,11 +11,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import CakeIcon from "@mui/icons-material/Cake";
 import Axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { LoginContext, UserContext } from "../../../Helper/UserContext";
+import { Button } from "@mui/material";
 
-export default function UserProfile() {
+export default function UserProfile(props) {
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
+
+  // const [mainPageView, setMainPageView] = useState(true);
 
   const [userData, setUserData] = useState({
     first_name: "",
@@ -105,6 +108,15 @@ export default function UserProfile() {
           />
         </ListItem>
       </List>
+      <Button
+        variant={"contained"}
+        onClick={() => {
+          // setMainPageView(false);
+          props.updateValue(false);
+        }}
+      >
+        Change Password
+      </Button>
     </Box>
   );
 }

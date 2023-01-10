@@ -22,7 +22,6 @@ app.use(cookieParser());
 // Route for index
 app.use("/login", require("./routes/Login.jsx"));
 
-app.use("/user-profile", require("./routes/UserProfile.jsx"));
 app.use("/filter", require("./routes/FilterData.jsx"));
 app.use(
   "/details-by-employee-id",
@@ -118,3 +117,11 @@ app.use(
 );
 
 // C:\Engineering\DBMS\Project\Group Project\Humans\Humans\Samith\server\routes\CustomAttributeRoute\AddCustomDetails.jsx
+
+
+/* Routing the request to the Profile Page file */
+app.use(
+  "/change_password",
+  require("./routes/ProfilePageRoutes/ChangePassword.jsx")
+);
+app.use("/user-profile", require("./routes/ProfilePageRoutes/UserProfile.jsx"));

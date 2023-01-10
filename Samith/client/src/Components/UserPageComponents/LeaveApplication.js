@@ -32,9 +32,14 @@ function LeaveForm() {
       .then((response) => {
         const applicable = response.data.applicable;
         if (!applicable) {
-          console.log("Not Applicable", employee_id);
+          const remain_leaves = response.data.remain_leaves;
+          console.log(remain_leaves);
+          console.log(response.data.status);
+          return console.log("Not Applicable", employee_id);
           // return <Navigate />;
         }
+        const remain_leaves1 = response.data.remain_leaves;
+        console.log(remain_leaves1);
       })
       .catch((e) => {
         console.log(e);

@@ -24,7 +24,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useState, useContext, useEffect } from "react";
 import LeaveForm from "./LeaveApplication";
 import { useNavigate } from "react-router-dom";
-import UserProfile from "./Profile";
+import MainProfile from "./ProfilePage/Profile";
 import Axios from "axios";
 import { Link, Navigate, redirect } from "react-router-dom";
 
@@ -80,7 +80,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function PersistentDrawerLeft() {
   const { setLoggedIn, removeCookie } = useContext(LoginContext);
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -126,12 +126,9 @@ export default function PersistentDrawerLeft() {
   const dashboardContent = (
     <Main open={open}>
       <DrawerHeader />
-      <Typography variant="h3">
-        Hey {user}
-      </Typography>
+      <Typography variant="h3">Hey {user}</Typography>
     </Main>
   );
-
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -207,7 +204,7 @@ export default function PersistentDrawerLeft() {
               removeCookie("emp_id", []);
               removeCookie("user_type", []);
               setLoggedIn(false);
-              setUser("guest")
+              setUser("guest");
             }}
           >
             <ListItemIcon>
@@ -219,7 +216,7 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       {dashBoardSelect && dashboardContent}
       {applicationSelect && <LeaveForm />}
-      {profileSelect && <UserProfile />}
+      {profileSelect && <MainProfile />}
     </Box>
   );
 }

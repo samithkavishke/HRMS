@@ -37,7 +37,7 @@ import {
 import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 // import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
 
-import UserProfile from "./Components/UserPageComponents/Profile";
+import UserProfile from "./Components/UserPageComponents/ProfilePage/ProfileViewPage";
 import SupervisorDashboard from "./Components/ManagerPageComponents/SupervisorDashboard";
 import ViewSubordinates from "./Components/ManagerPageComponents/ViewSubordinates";
 
@@ -80,11 +80,14 @@ function App() {
                   user === "user" ? <PersistentDrawerLeft /> : <HRDashboard />
                 }
               ></Route>
-              <Route path="/LeaveApplication" element={<LeaveForm />}></Route>
+              {/* <Route path="/LeaveApplication" element={<LeaveForm />}></Route> */}
             </Route>
 
-        {/* New pages added here -- Should be added to Manager or Supervisor*/}
-            <Route path="/SupervisorHome" element={<SupervisorDashboard />}></Route>
+            {/* New pages added here -- Should be added to Manager or Supervisor*/}
+            <Route
+              path="/SupervisorHome"
+              element={<SupervisorDashboard />}
+            ></Route>
             <Route path="/ViewSubs" element={<ViewSubordinates />}></Route>
 
             {/* Routes accessible by hrm */}

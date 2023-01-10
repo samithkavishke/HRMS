@@ -15,14 +15,14 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import GroupsIcon from '@mui/icons-material/Groups';
-import EditIcon from '@mui/icons-material/Edit';
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import GroupsIcon from "@mui/icons-material/Groups";
+import EditIcon from "@mui/icons-material/Edit";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -33,7 +33,7 @@ import { LoginContext, UserContext } from "../../Helper/UserContext";
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import UserProfile from "../UserPageComponents/Profile";
+import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -85,7 +85,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function SupervisorDashboard() {
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -109,9 +109,6 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(true);
     enableLeaveApprove(false);
-    
-    
-    
   };
   const toggleApplication = () => {
     enableDashboard(false);
@@ -119,9 +116,6 @@ export default function SupervisorDashboard() {
     enableApplication(true);
     enableEditDetails(false);
     enableLeaveApprove(false);
-    
-    
-    
   };
   const toggleLeaveApprove = () => {
     enableDashboard(false);
@@ -129,9 +123,6 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(false);
     enableLeaveApprove(true);
-    
-    
-    
   };
 
   const toggleProfile = () => {
@@ -140,10 +131,7 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(false);
     enableLeaveApprove(false);
-    
-    
-    
-  }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -156,10 +144,7 @@ export default function SupervisorDashboard() {
   const dashboardContent = (
     <Main open={open}>
       <DrawerHeader />
-      <Typography variant="h1">
-        Hey {user}
-      </Typography>
-      
+      <Typography variant="h1">Hey {user}</Typography>
     </Main>
   );
 
@@ -212,7 +197,6 @@ export default function SupervisorDashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-
           <ListItemButton onClick={toggleDashboard}>
             <ListItemIcon>
               <DashboardCustomizeIcon />
@@ -258,7 +242,7 @@ export default function SupervisorDashboard() {
               removeCookie("emp_id", []);
               removeCookie("user_type", []);
               setLoggedIn(false);
-              setUser("guest")
+              setUser("guest");
             }}
           >
             <ListItemIcon>
@@ -271,8 +255,8 @@ export default function SupervisorDashboard() {
       {dashBoardSelect && dashboardContent}
       {leaveApproveSelect && <LeaveApplicationTable />}
       {editDetailsSelect && <EditDetails />}
-      {profileSelect && <UserProfile/>}
-      {ApplicationSelect && <LeaveForm/>}
+      {profileSelect && <UserProfile />}
+      {ApplicationSelect && <LeaveForm />}
     </Box>
   );
 }
