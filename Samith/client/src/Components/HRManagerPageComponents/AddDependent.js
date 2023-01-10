@@ -12,13 +12,13 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-export default function AddDependent() {
+export default function AddDependent({ dependantData, setDependantData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     Axios.post("http://localhost:3001/AddDependent", {
-      employee_id:"10001",
+      employee_id: "10001",
       employee_contact: data.get("dependent_id"),
       contact_first_name: data.get("dependent_first_name"),
       contact_last_name: data.get("dependent_last_name"),
@@ -33,73 +33,67 @@ export default function AddDependent() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm">
-        <CssBaseline />
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-          </Toolbar>
-        </AppBar>
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h2" align="center">
-            Add Employee's Dependent Information
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="dependent_id"
-                  label="Enter Dependent ID number"
-                  id="dependent_id"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="dependent_first_name"
-                  required
-                  fullWidth
-                  id="dependent_first_name"
-                  label="Dependent's First Name"
-                  autoFocus
-                />
-              </Grid>
+    <Box
+      sx={{
+        marginTop: 8,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="dependent_id"
+            label="Enter Dependent ID number"
+            id="dependent_id"
+            defaultValue={dependantData.employee_contact}
+            onChange={(e) =>
+              setDependantData({
+                ...dependantData,
+                employee_contact: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name="dependent_first_name"
+            required
+            fullWidth
+            id="dependent_first_name"
+            label="Dependent's First Name"
+            defaultValue={dependantData.contact_first_name}
+            onChange={(e) =>
+              setDependantData({
+                ...dependantData,
+                contact_first_name: e.target.value,
+              })
+            }
+            autoFocus
+          />
+        </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="dependent_last_name"
-                  label="Dependent's Last Name"
-                  name="dependent_last_name"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              ADD DEPENDENT INFO
-            </Button>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="dependent_last_name"
+            label="Dependent's Last Name"
+            name="dependent_last_name"
+            defaultValue={dependantData.contact_last_name}
+            onChange={(e) =>
+              setDependantData({
+                ...dependantData,
+                contact_last_name: e.target.value,
+              })
+            }
+          />
+        </Grid>
+      </Grid>
+      <Button onClick={() => console.log(dependantData)}>LOG</Button>
+    </Box>
   );
 }
