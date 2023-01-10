@@ -34,6 +34,7 @@ import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 // import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
 
 import UserProfile from "./Components/UserPageComponents/Profile";
+import SupervisorDashboard from "./Components/ManagerPageComponents/SupervisorDashboard";
 
 
 function App() {
@@ -66,6 +67,8 @@ function App() {
             <Route element={<UserAuth />}>
               <Route path="/Home" element={user === "user" ? <PersistentDrawerLeft /> : <HRDashboard />}></Route>
             </Route>
+
+            <Route path="/SupervisorHome" element={<SupervisorDashboard />}></Route>
 
             {/* Routes accessible by hrm */}
             <Route element={<ManagerAuth />}>
