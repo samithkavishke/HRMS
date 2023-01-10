@@ -38,6 +38,8 @@ import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 // import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
 
 import UserProfile from "./Components/UserPageComponents/Profile";
+import SupervisorDashboard from "./Components/ManagerPageComponents/SupervisorDashboard";
+import ViewSubordinates from "./Components/ManagerPageComponents/ViewSubordinates";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies([
@@ -80,6 +82,10 @@ function App() {
               ></Route>
               <Route path="/LeaveApplication" element={<LeaveForm />}></Route>
             </Route>
+
+        {/* New pages added here -- Should be added to Manager or Supervisor*/}
+            <Route path="/SupervisorHome" element={<SupervisorDashboard />}></Route>
+            <Route path="/ViewSubs" element={<ViewSubordinates />}></Route>
 
             {/* Routes accessible by hrm */}
             <Route element={<ManagerAuth />}>
