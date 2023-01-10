@@ -13,9 +13,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { Chip } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Navigate, Link } from 'react-router-dom';
 
 // const cards = [1, 3];
 
@@ -59,10 +59,10 @@ export default function Welcome() {
               justifyContent="center"
             >
               <div>
-              <Button href="/Signup" variant="contained" size="large">Start your HR journey here</Button>
+              <Link to="/Signup"><Button variant="contained" size="large">Start your HR journey here</Button></Link> {/* asd*/}
               </div>
               <div>
-              <Button href="/Signin" variant="outlined" size="large">Login to existing company</Button>
+              <Link to="/SignIn"><Button variant="outlined" size="large">Login to existing company</Button></Link>
               </div>
             </Stack>
           </Container>

@@ -2,7 +2,6 @@ const express = require("express");
 const { pool, dbname } = require("../lib/pool.jsx");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
 // router.post("/", (req, res) => {
@@ -26,9 +25,7 @@ router.post("/", (req, res) => {
         console.log(out.passcode_hash, req.body.password);
         bcrypt.compare(req.body.password, out.passcode_hash).then((result) => {
           if (result) {
-            token = jwt.sign({ username: out.username }, "AAAA", {
-              expiresIn: "90d",
-            });
+            res.send({success: true, })
           }
           return res.send({ success: result, token });
         });
