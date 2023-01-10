@@ -31,6 +31,7 @@ export default function SignIn() {
       .then((response) => {
         console.log(response);
         if (response.data.success) {
+          console.log(response.data.supervisors);
           setLoggedIn(true);
           setCookie("token", response.data.token, { path: "/" });
           return <Navigate to="/Home" />;

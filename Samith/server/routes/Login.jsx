@@ -4,36 +4,44 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 
-// router.post("/", (req, res) => {
-//   console.log(req.body);
-//   const userName = req.body.username;
-//   const password = req.body.password;
-//   console.log(userName + " " + password);
-// });
-
 router.post("/", (req, res) => {
   pool.query(
-    `SELECT username,passcode_hash,employee_id,user_type FROM ${dbname}.user_info WHERE username = "${req.body.username}";`,
-    (err, row, field) => {
+    `SELECT supervisor_id FROM ${dbname}.subordinates WHERE subordinate_id  in  (
+SELECT employee_id FROM sql6588944.user_info WHERE username = ?);`,
+    [req.body.username],
+    (err, row1, field) => {
       if (err) {
         return console.log(err);
       }
-      let result = JSON.parse(JSON.stringify(row));
-      let out = result[0];
-      let token = "";
-      if (result.length > 0) {
-        console.log(out.passcode_hash, req.body.password);
-        bcrypt.compare(req.body.password, out.passcode_hash).then((result) => {
-          if (result) {
-            res.send({success: true, })
+      let stringResult = JSON.parse(JSON.stringify(row1));
+      // console.log(result1);
+      const result1 = stringResult.map((item) => item.supervisor_id);
+      console.log(result1);
+      pool.query(
+        `SELECT username,passcode_hash,employee_id,user_type FROM ${dbname}.user_info WHERE username = "${req.body.username}";`,
+        (err, row2, field) => {
+          if (err) {
+            return console.log(err);
           }
-          return res.send({ success: result, token });
-        });
-      } else {
-        res.send({ success: false, token });
-      }
+          let result2 = JSON.parse(JSON.stringify(row2));
+          let out = result2[0];
+          let token = "";
+          if (result2.length > 0) {
+            console.log(out.passcode_hash, req.body.password);
+            bcrypt
+              .compare(req.body.password, out.passcode_hash)
+              .then((result2) => {
+                // if (result) {
+                //   res.send({ success: true });
+                // }
+                res.send({ success: result2,supervisors:result1, token });
+              });
+          } else {
+            res.send({ success: false, token });
+          }
+        }
+      );
     }
   );
 });
-
 module.exports = router;
