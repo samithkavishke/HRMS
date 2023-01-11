@@ -17,7 +17,7 @@ import Box from "@mui/material/Box";
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import PendingIcon from '@mui/icons-material/Pending';
-import { pink } from '@mui/material/colors';
+import { pink, blue, green } from '@mui/material/colors';
 
 
 let id = 0;
@@ -165,8 +165,8 @@ function LeaveApplicationTable(props) {
           onChange={handleChange}
           aria-label="icon label tabs example"
         >
-          <Tab icon={<PendingIcon />} label="PENDING" fontSize="large" color="success" {...a11yProps(0)} />
-          <Tab icon={<CheckIcon />} label="ACCEPTED" fontSize="large"  color="secondary" {...a11yProps(1)} />
+          <Tab icon={<PendingIcon />} label="PENDING" fontSize="large" sx={{ color: blue[500] }} {...a11yProps(0)} />
+          <Tab icon={<CheckIcon />} label="ACCEPTED" fontSize="large"  sx={{ color: green[900] }} {...a11yProps(1)} />
           <Tab icon={<ClearIcon />} label="DECLINED" fontSize="large" sx={{ color: pink[500] }} {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
@@ -196,6 +196,8 @@ function LeaveApplicationTable(props) {
                     <TableCell>
                       <Button
                         variant="contained"
+                        color= "primary"
+                        startIcon={<CheckIcon />}
                         onClick={() => handleAccept(row.leave_id)}
                       >
                         Accept
@@ -204,6 +206,8 @@ function LeaveApplicationTable(props) {
                     <TableCell>
                       <Button
                         variant="contained"
+                        startIcon={<ClearIcon />}
+                        color= "inherit"
                         onClick={() => handleReject(row.leave_id)}
                       >
                         Decline
@@ -242,17 +246,10 @@ function LeaveApplicationTable(props) {
                     <TableCell>
                       <Button
                         variant="contained"
-                        onClick={() => handleAccept(row.leave_id)}
+                        color= "success"
+                        startIcon={<CheckIcon />}
                       >
-                        Accept
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
-                        onClick={() => handleReject(row.leave_id)}
-                      >
-                        Decline
+                        Accepted
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -286,19 +283,12 @@ function LeaveApplicationTable(props) {
                     <TableCell>{row.from_date}</TableCell>
                     <TableCell>{row.to_date}</TableCell>
                     <TableCell>
-                      <Button
+                    <Button
                         variant="contained"
-                        onClick={() => handleAccept(row.leave_id)}
+                        color= "error"
+                        startIcon={<ClearIcon />}
                       >
-                        Accept
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
-                        onClick={() => handleReject(row.leave_id)}
-                      >
-                        Decline
+                        Declined
                       </Button>
                     </TableCell>
                   </TableRow>
