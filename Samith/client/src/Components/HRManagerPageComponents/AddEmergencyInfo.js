@@ -108,6 +108,7 @@ export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
             }
           />
         </Grid>
+        <Button onClick={() => console.log(emergencyData)}>LOG</Button>
       </Grid>
     </Box>
   );

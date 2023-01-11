@@ -17,25 +17,25 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 export default function AddNewWorker({ workerData, setWorkerData }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
 
-    Axios.post("http://localhost:3001/AddNewWorker", {
-      employee_id: data.get("employee_id"),
-      job_title: data.get("job_title"),
-      pay_grade: data.get("pay_grade"),
-      employee_status: data.get("employee_status"),
-      contract_period: data.get("contract_period"),
-      department: data.get("department"),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  //   Axios.post("http://localhost:3001/AddNewWorker", {
+  //     employee_id: data.get("employee_id"),
+  //     job_title: data.get("job_title"),
+  //     pay_grade: data.get("pay_grade"),
+  //     employee_status: data.get("employee_status"),
+  //     contract_period: data.get("contract_period"),
+  //     department: data.get("department"),
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -166,6 +166,7 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                   }}
                 />
               </Grid>
+              <Button onClick={() => console.log(workerData)}>LOG</Button>
             </Grid>
           </Box>
         </Box>

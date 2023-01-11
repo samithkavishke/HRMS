@@ -37,22 +37,22 @@ app.use(
   "/AddEmployeeInfo",
   require("./routes/NewEmployeeRoutes/AddEmployeeInfo.jsx")
 );
-app.use(
-  "/AddNewWorker",
-  require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
-);
-app.use(
-  "/AddNewPersonalInfo",
-  require("./routes/NewEmployeeRoutes/AddNewPersonalInfo.jsx")
-);
-app.use(
-  "/AddEmergencyInfo",
-  require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
-);
-app.use(
-  "/AddNewDependent",
-  require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
-);
+// app.use(
+//   "/AddNewWorker",
+//   require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
+// );
+// app.use(
+//   "/AddNewPersonalInfo",
+//   require("./routes/NewEmployeeRoutes/AddNewPersonalInfo.jsx")
+// );
+// app.use(
+//   "/AddEmergencyInfo",
+//   require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
+// );
+// app.use(
+//   "/AddNewDependent",
+//   require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
+// );
 
 /* Routing the request to the NewUser Routes file. */
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));

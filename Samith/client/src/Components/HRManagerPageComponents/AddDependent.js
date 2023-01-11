@@ -13,7 +13,6 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 export default function AddDependent({ dependantData, setDependantData }) {
-
   return (
     <Box
       sx={{
@@ -31,11 +30,11 @@ export default function AddDependent({ dependantData, setDependantData }) {
             name="dependent_id"
             label="Enter Dependent ID number"
             id="dependent_id"
-            defaultValue={dependantData.employee_contact}
+            defaultValue={dependantData.dependant_id}
             onChange={(e) =>
               setDependantData({
                 ...dependantData,
-                employee_contact: e.target.value,
+                dependant_id: e.target.value,
               })
             }
           />
@@ -47,11 +46,11 @@ export default function AddDependent({ dependantData, setDependantData }) {
             fullWidth
             id="dependent_first_name"
             label="Dependent's First Name"
-            defaultValue={dependantData.contact_first_name}
+            defaultValue={dependantData.dependant_first_name}
             onChange={(e) =>
               setDependantData({
                 ...dependantData,
-                contact_first_name: e.target.value,
+                dependant_first_name: e.target.value,
               })
             }
             autoFocus
@@ -65,11 +64,11 @@ export default function AddDependent({ dependantData, setDependantData }) {
             id="dependent_last_name"
             label="Dependent's Last Name"
             name="dependent_last_name"
-            defaultValue={dependantData.contact_last_name}
+            defaultValue={dependantData.dependant_last_name}
             onChange={(e) =>
               setDependantData({
                 ...dependantData,
-                contact_last_name: e.target.value,
+                dependant_last_name: e.target.value,
               })
             }
           />

@@ -7,13 +7,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Axios from "axios";
 import { AppBar, Toolbar } from "@mui/material";
 import AddDependent from "./AddDependent";
 import AddNewUser from "./AddNewUser";
 import AddEmergencyInfo from "./AddEmergencyInfo";
 import AddNewWorker from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
+
+import Axios from "axios";
 
 const theme = createTheme();
 
@@ -26,9 +27,9 @@ export default function AddEmployee() {
   ];
   const [page, setPage] = useState(0);
   const [dependantData, setDependantData] = useState({
-    employee_contact: "",
-    contact_first_name: "",
-    contact_last_name: "",
+    dependant_id: "",
+    dependant_first_name: "",
+    dependant_last_name: "",
   });
 
   const [personalData, setPersonalData] = useState({
@@ -62,21 +63,21 @@ export default function AddEmployee() {
   // console.log(workerData);
 
   const submit = () => {
+    console.log("hi");
     // Axios.post()
-    const handleSubmit = (event) => {
-      Axios.post("http://localhost:3001/AddEmployeeInfo", {
-        workerData: workerData,
-        personalData: personalData,
-        emergencyData: emergencyData,
-        dependantData: dependantData,
+    console.log(dependantData);
+    Axios.post("http://localhost:3001/AddEmployeeInfo", {
+      workerData: workerData,
+      emergencyData: emergencyData,
+      personalData: personalData,
+      dependantData: dependantData,
+    })
+      .then((response) => {
+        console.log(response);
       })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -155,9 +156,7 @@ export default function AddEmployee() {
             </Button>
             {page === title.length - 1 ? (
               <Button
-                onClick={() => {
-                  submit();
-                }}
+                onClick={submit}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
