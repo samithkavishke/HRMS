@@ -3,12 +3,19 @@ const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
+
 let employee_id = "";
 
 router.get("/", (req, res) => {
   //   console.log(req.query);
+
+  const status = req.query.status;
+
+  let query = status=="NULL" ?" is NULL" : "=" + status;
+
   pool.query(
-    `SELECT * FROM ${dbname}.leave_application where approval_status is NULL `,
+
+    `SELECT * FROM ${dbname}.leave_application where approval_status${query} `,
 
     (err, rows, field) => {
       if (err) {
