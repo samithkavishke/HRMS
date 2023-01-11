@@ -16,7 +16,7 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-export default function AddNewWorker() {
+export default function AddNewWorker({ workerData, setWorkerData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -58,19 +58,27 @@ export default function AddNewWorker() {
             Add New Employee
           </Typography> */}
           <Box
-            component="form"
+            // component="form"
             noValidate
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  name="employee_id"
                   required
                   fullWidth
-                  name="employee_id"
-                  label="Employe ID"
                   id="employee_id"
+                  label="Employee ID"
+                  defaultValue={workerData.employee_id}
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      employee_id: e.target.value,
+                    });
+                  }}
+                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -80,6 +88,13 @@ export default function AddNewWorker() {
                   fullWidth
                   id="job_title"
                   label="Job Title"
+                  defaultValue={workerData.job_title}
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      job_title: e.target.value,
+                    });
+                  }}
                   autoFocus
                 />
               </Grid>
@@ -88,9 +103,16 @@ export default function AddNewWorker() {
                 <TextField
                   required
                   fullWidth
+                  defaultValue={workerData.pay_grade}
                   id="pay_grade"
                   label="Pay Grade"
                   name="pay_grade"
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      pay_grade: e.target.value,
+                    });
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -101,6 +123,13 @@ export default function AddNewWorker() {
                   label="Employee Status"
                   id="employee_status"
                   autoComplete="employee_status"
+                  defaultValue={workerData.employee_status}
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      employee_status: e.target.value,
+                    });
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +140,13 @@ export default function AddNewWorker() {
                   label="Contract Period"
                   id="contract_period"
                   autoComplete="contract_period"
+                  defaultValue={workerData.contract_period}
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      contract_period: e.target.value,
+                    });
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -121,6 +157,13 @@ export default function AddNewWorker() {
                   label="Department"
                   id="department"
                   autoComplete="department"
+                  defaultValue={workerData.department}
+                  onChange={(e) => {
+                    setWorkerData({
+                      ...workerData,
+                      department: e.target.value,
+                    });
+                  }}
                 />
               </Grid>
             </Grid>
