@@ -42,6 +42,7 @@ import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
 import UserProfile from "./Components/UserPageComponents/ProfilePage/ProfileViewPage";
 import SupervisorDashboard from "./Components/ManagerPageComponents/SupervisorDashboard";
 import ViewSubordinates from "./Components/ManagerPageComponents/ViewSubordinates";
+import AdminDashboard from "./Components/AdminPageComponents/AdminDashboard";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies([
@@ -86,8 +87,7 @@ function App() {
                   ) : user === "supervisor" ? (
                     <SupervisorDashboard />
                   ) : (
-                    <HRDashboard />
-                    // <AdminDashboard /> here
+                    <AdminDashboard/>
                   )
                 }
               ></Route>
