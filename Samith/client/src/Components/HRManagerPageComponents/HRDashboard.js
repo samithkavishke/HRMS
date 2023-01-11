@@ -24,6 +24,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import EditIcon from "@mui/icons-material/Edit";
@@ -47,6 +48,7 @@ import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "./AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
+
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -253,6 +255,10 @@ export default function HRDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
+          <IconButton
+            color="inherit"
+            edge="end"
+          ><NotificationsActiveIcon/></IconButton>
         </Toolbar>
       </AppBar>
       <Drawer

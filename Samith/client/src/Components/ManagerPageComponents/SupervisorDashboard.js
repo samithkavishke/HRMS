@@ -171,6 +171,10 @@ export default function SupervisorDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
+          <IconButton
+            color="inherit"
+            edge="end"
+          ><NotificationsActiveIcon/></IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
