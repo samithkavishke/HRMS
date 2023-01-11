@@ -112,7 +112,7 @@ export default function UserProfile(props) {
         variant={"contained"}
         onClick={() => {
           // setMainPageView(false);
-          props.updateValue(false);
+          props.updateView(false);
         }}
       >
         Change Password

@@ -25,8 +25,8 @@ export default function MainProfile() {
 
   return (
     <div>
-      {mainPageView && <UserProfile updateValue={setMainPageView} />}
-      {!mainPageView && <ChangePassword updateValue={setMainPageView} />}
+      {mainPageView && <UserProfile updateView={setMainPageView} />}
+      {!mainPageView && <ChangePassword updateView={setMainPageView} />}
     </div>
   );
 }
