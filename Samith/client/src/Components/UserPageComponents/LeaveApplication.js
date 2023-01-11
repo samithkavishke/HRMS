@@ -32,6 +32,9 @@ function LeaveForm(props) {
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
   console.log(employee_id);
+  // const rows = {};
+  let remain_leaves_dict = {};
+  const [remainDays, setRemaindays] = useState({});
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
       params: { employee_id: cookies.emp_id },
@@ -42,11 +45,20 @@ function LeaveForm(props) {
           const remain_leaves = response.data.remain_leaves;
           console.log(remain_leaves);
           console.log(response.data.status);
+          // remain_leaves_dict = response.data.remain_leaves;
+
+          setRemaindays(response.data.remain_leaves);
+
           return console.log("Not Applicable", employee_id);
           // return <Navigate />;
         }
-        const remain_leaves1 = response.data.remain_leaves;
-        console.log(remain_leaves1);
+        console.log("Applicable");
+        setRemaindays(response.data.remain_leaves);
+        console.log(response.data.remain_leaves);
+
+        console.log(remainDays);
+        // console.log(remain_leaves_dict);
+        // console.log(remain_leaves1);
       })
       .catch((e) => {
         console.log(e);
@@ -226,7 +238,13 @@ function LeaveForm(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => {
+            <TableRow key={0}>
+              <TableCell>{remainDays.Annual_leave}</TableCell>
+              <TableCell>{remainDays.Maternal_leave}</TableCell>
+              <TableCell>{remainDays.Casual_leave}</TableCell>
+              <TableCell>{remainDays.no_pay_leave}</TableCell>
+            </TableRow>
+            {/* {rows.map((row, index) => {
               return (
                 <TableRow key={index}>
                   <TableCell>{row.Annual_leave}</TableCell>
@@ -235,7 +253,7 @@ function LeaveForm(props) {
                   <TableCell>{row.no_pay_leave}</TableCell>
                 </TableRow>
               );
-            })}
+            })} */}
           </TableBody>
         </Table>
       </Container>
