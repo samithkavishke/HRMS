@@ -35,6 +35,7 @@ function LeaveForm(props) {
   // const rows = {};
   let remain_leaves_dict = {};
   const [remainDays, setRemaindays] = useState({});
+  
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
       params: { employee_id: cookies.emp_id },
