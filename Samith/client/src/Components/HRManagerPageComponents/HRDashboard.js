@@ -43,7 +43,8 @@ import NewUser from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
 import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+// import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -328,7 +329,7 @@ export default function HRDashboard() {
       {dashBoardSelect && dashboardContent}
       {leaveApproveSelect && <LeaveApplicationTable />}
       {editDetailsSelect && <EditDetails />}
-      {profileSelect && <UserProfile />}
+      {profileSelect && <MainProfile />}
       {ApplicationSelect && <LeaveForm />}
       {NewEmployeeSelect && <AddPersonalInfo />}
       {NewUserSelect && <AddNewUser />}

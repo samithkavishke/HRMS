@@ -43,7 +43,7 @@ export default function ChangePassword(props) {
         .catch((e) => {
           console.log(e);
         });
-      props.updateValue(true);
+      props.updateView(true);
     } else {
       setMismatch(true);
     }
@@ -116,7 +116,7 @@ export default function ChangePassword(props) {
             </Button>
             <Button
               onClick={() => {
-                props.updateValue(true);
+                props.updateView(true);
               }}
             >
               {" "}
