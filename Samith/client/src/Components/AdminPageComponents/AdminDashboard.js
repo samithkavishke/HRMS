@@ -42,6 +42,7 @@ import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
 import AddEmergencyInfo from "../HRManagerPageComponents/AddEmergencyInfo";
 import AddNewWorker from "../HRManagerPageComponents/AddNewWorker";
 import AddPersonalInfo from "../HRManagerPageComponents/AddPersonalInfo";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "../HRManagerPageComponents/AddEmployee";
