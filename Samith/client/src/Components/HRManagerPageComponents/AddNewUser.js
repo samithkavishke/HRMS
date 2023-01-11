@@ -128,9 +128,9 @@ export default function AddNewUser({ userData, setUserData }) {
               {usertypes.map((type) => {
                 return <MenuItem value={type}>{type}</MenuItem>;
               })}
-              {/* <MenuItem value={"finance"}>Finance</MenuItem>
+              <MenuItem value={"finance"}>Finance</MenuItem>
                     <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
-                    <MenuItem value={"IT"}>IT</MenuItem> */}
+                    <MenuItem value={"IT"}>IT</MenuItem>
             </TextField>
           </FormControl>
         </Grid>

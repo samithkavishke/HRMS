@@ -24,9 +24,12 @@ import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
 import ChangeBranchInfo from "./Components/HRManagerPageComponents/ChangeBranchInfo";
 import ChangeDependents from "./Components/HRManagerPageComponents/ChangeDependents";
 import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
+import EditCustomDetails from "./Components/CustomAttrinutePageComponents/AddCustomValues";
 
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";
+
+import AdminDashboard from "./Components/AdminPageComponents/AdminDashboard";
 // Addnewworker/personalinfo/addemergencyinfo/adddependant
 
 import {
@@ -71,7 +74,15 @@ function App() {
             </Route>
             {/* Routes accessible by admin */}
             <Route element={<AdminAuth />}>
+              {/* Having the below uncommented causes an issue with other dashboards being loaded */}
+              {/* <Route
+                path="/Home"
+                element={
+                  user === "admin" ? <AdminDashboard /> : <PersistentDrawerLeft />
+                }
+              ></Route> */}
               <Route path="/ChangeTable" element={<ChangeTable />}></Route>
+              <Route path="/AddNewUser" element={<AddNewUser />}></Route>
             </Route>
 
             {/* Routes accessible by regular employee */}
@@ -85,12 +96,18 @@ function App() {
               {/* <Route path="/LeaveApplication" element={<LeaveForm />}></Route> */}
             </Route>
 
-            {/* New pages added here -- Should be added to Manager or Supervisor*/}
+            {/* New pages added here -- Should be added to Supervisor*/}
             <Route
               path="/SupervisorHome"
               element={<SupervisorDashboard />}
             ></Route>
             <Route path="/ViewSubs" element={<ViewSubordinates />}></Route>
+
+            <Route
+              path="/AdminHome"
+              element={<AdminDashboard />}
+            ></Route>
+
 
             {/* Routes accessible by hrm */}
             <Route element={<ManagerAuth />}>

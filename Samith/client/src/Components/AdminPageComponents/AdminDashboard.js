@@ -13,7 +13,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
-import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -26,6 +25,7 @@ import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import TableViewIcon from '@mui/icons-material/TableView';
 import EditIcon from "@mui/icons-material/Edit";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,19 +34,22 @@ import { Link, Navigate, redirect } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
-import AddNewUser from "./AddNewUser";
-import AddDependent from "./AddDependent";
-import ChangeDependents from "./ChangeDependents";
-import ChangeSalary from "./ChangeSalary";
-import LeaveApplicationTable from "./AcceptLeave";
-import AddEmergencyInfo from "./AddEmergencyInfo";
-import NewUser from "./AddNewWorker";
-import AddPersonalInfo from "./AddPersonalInfo";
-import EditDetails from "./EditWoker";
+import AddNewUser from "../HRManagerPageComponents/AddNewUser";
+import AddDependent from "../HRManagerPageComponents/AddDependent";
+import ChangeDependents from "../HRManagerPageComponents/ChangeDependents";
+import ChangeSalary from "../HRManagerPageComponents/ChangeSalary";
+import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
+import AddEmergencyInfo from "../HRManagerPageComponents/AddEmergencyInfo";
+import AddNewWorker from "../HRManagerPageComponents/AddNewWorker";
+import AddPersonalInfo from "../HRManagerPageComponents/AddPersonalInfo";
+import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import AddEmployee from "./AddEmployee";
+import AddEmployee from "../HRManagerPageComponents/AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
+import ChangeTable from "./AlterTable";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
+import CustomizeTable from "../CustomAttrinutePageComponents/CustomizeTable";
+
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -96,7 +99,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function HRDashboard() {
+export default function AdminDashboard() {
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
   const { user, setUser } = useContext(UserContext);
 
@@ -111,7 +114,7 @@ export default function HRDashboard() {
   const [ApplicationSelect, enableApplication] = useState(false);
   const [NewEmployeeSelect, enableNewEmployee] = useState(false);
   const [NewUserSelect, enableNewUser] = useState(false);
-  const [EditCustomSelect, enableEditCustom] = useState(false);
+  const [CustomAttrSelect, enableCustomAttr] = useState(false);
 
   const toggleDashboard = () => {
     enableDashboard(true);
@@ -122,7 +125,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
   const toggleEditDetails = () => {
     enableDashboard(false);
@@ -133,7 +136,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
   const toggleApplication = () => {
     enableDashboard(false);
@@ -144,7 +147,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
   const toggleLeaveApprove = () => {
     enableDashboard(false);
@@ -155,7 +158,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
   const toggleSignout = () => {
     enableDashboard(false);
@@ -166,7 +169,7 @@ export default function HRDashboard() {
     enableSignout(true);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
 
   const toggleProfile = () => {
@@ -178,7 +181,7 @@ export default function HRDashboard() {
     enableSignout(true);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
 
   const toggleNewEmployee = () => {
@@ -190,7 +193,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(true);
     enableNewUser(false);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
   const toggleNewUser = () => {
     enableDashboard(false);
@@ -201,9 +204,10 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(true);
-    enableEditCustom(false);
+    enableCustomAttr(false);
   };
-  const toggleEditCustom = () => {
+
+  const toggleCustomAttr = () => {
     enableDashboard(false);
     enableProfile(false);
     enableApplication(false);
@@ -212,7 +216,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
-    enableEditCustom(true);
+    enableCustomAttr(true);
   };
 
   const handleDrawerOpen = () => {
@@ -239,7 +243,7 @@ export default function HRDashboard() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} color="success">
+      <AppBar position="fixed" open={open} color="warning">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -307,25 +311,25 @@ export default function HRDashboard() {
             <ListItemText primary="Add New Employee" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleEditDetails}>
+          <ListItemButton onClick={toggleNewUser}>
             <ListItemIcon>
-              <EditIcon />
+              <PublicIcon />
             </ListItemIcon>
-            <ListItemText primary="Edit Employee Details" />
-          </ListItemButton>
-
-          <ListItemButton onClick={toggleEditCustom}>
-            <ListItemIcon>
-              <EditLocationAltIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit Custom Field Details" />
+            <ListItemText primary="Add New User Account" />
           </ListItemButton>
           {/* <UserProfile2 /> */}
-          <ListItemButton onClick={toggleLeaveApprove} href="">
+          {/* <ListItemButton onClick={toggleLeaveApprove} href="">
             <ListItemIcon>
               <AddTaskIcon />
             </ListItemIcon>
             <ListItemText primary="Approve Leave Forms" />
+          </ListItemButton> */}
+
+          <ListItemButton onClick={toggleCustomAttr} href="">
+            <ListItemIcon>
+              <TableViewIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add New Custom Fields" />
           </ListItemButton>
         </List>
         <Divider />
@@ -355,7 +359,8 @@ export default function HRDashboard() {
       {ApplicationSelect && <LeaveForm />}
       {NewEmployeeSelect && <AddEmployee />}
       {NewUserSelect && <AddNewUser />}
-      {EditCustomSelect && <EditCustomDetails/>}
+      {CustomAttrSelect && <CustomizeTable/>}
+
     </Box>
   );
 }
