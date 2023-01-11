@@ -20,7 +20,7 @@ const theme = createTheme();
 
 export default function AddEmployee() {
   const title = [
-    "Add new worker",
+    "Add New Employee",
     "Provide Personal Info",
     "Provide Emergency Info",
     "Provide Dependant Info",
