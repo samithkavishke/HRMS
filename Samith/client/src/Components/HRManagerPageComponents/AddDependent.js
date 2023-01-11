@@ -13,24 +13,6 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 export default function AddDependent({ dependantData, setDependantData }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    Axios.post("http://localhost:3001/AddDependent", {
-      employee_id: "10001",
-      employee_contact: data.get("dependent_id"),
-      contact_first_name: data.get("dependent_first_name"),
-      contact_last_name: data.get("dependent_last_name"),
-      // password: data.get("password"),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   return (
     <Box

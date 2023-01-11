@@ -17,32 +17,7 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 const AddPersonalInfo = ({ personalData, setPersonalData }) => {
-  const [birthdate, setBirthDate] = useState();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    Axios.post("http://localhost:3001/AddNewPersonalInfo", {
-      employee_id: "10005",
-      first_name: data.get("first_name"),
-      last_name: data.get("last_name"),
-      address_line_1: data.get("address_line_1"),
-      address_line_2: data.get("address_line_2"),
-      town: data.get("town"),
-      contact_number: data.get("contact_number"),
-      birthdate: birthdate,
-      marital_status: data.get("marital_status"),
-      gender: data.get("gender"),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
@@ -55,12 +30,7 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
             alignItems: "center",
           }}
         >
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box noValidate sx={{ mt: 3 }}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TextField
@@ -149,12 +119,11 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                   <DatePicker
                     format
                     label="BirthDate"
-                    value={birthdate}
+                    value={personalData.birthdate}
                     onChange={(newValue) => {
-                      setBirthDate(newValue);
                       setPersonalData({
                         ...personalData,
-                        birthdate: birthdate,
+                        birthdate: newValue,
                       });
                     }}
                     renderInput={(params) => <TextField {...params} />}

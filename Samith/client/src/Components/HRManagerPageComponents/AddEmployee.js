@@ -38,7 +38,7 @@ export default function AddEmployee() {
     address_line_2: "",
     town: "",
     contact_number: "",
-    birthdate: "",
+    birthdate: new Date(),
     marital_status: "",
     gender: "",
   });
@@ -59,10 +59,24 @@ export default function AddEmployee() {
     contract_period: "",
     department: "",
   });
-  console.log(workerData);
+  // console.log(workerData);
 
   const submit = () => {
     // Axios.post()
+    const handleSubmit = (event) => {
+      Axios.post("http://localhost:3001/AddEmployeeInfo", {
+        workerData: workerData,
+        personalData: personalData,
+        emergencyData: emergencyData,
+        dependantData: dependantData,
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
   };
 
   return (

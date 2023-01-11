@@ -13,26 +13,6 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    Axios.post("http://localhost:3001/AddEmergencyInfo", {
-      employee_id: "10001",
-      ec_emp_contact: data.get("employee_contact"),
-      ec_first_name: data.get("contact_first_name"),
-      ec_last_name: data.get("contact_last_name"),
-      ec_phone_number: data.get("contact_phone_number"),
-      ec_relation: data.get("employee_contact"),
-      // password: data.get("password"),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   return (
     <Box

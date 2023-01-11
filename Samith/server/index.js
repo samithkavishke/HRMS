@@ -33,6 +33,7 @@ app.use(
 );
 
 /* Routing the request to the NewEmployee Routes file. */
+app.use("/AddEmployeeInfo", "./routes/NewEmployeeRoutes/AddEmployeeInfo.jsx");
 app.use(
   "/AddNewWorker",
   require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
