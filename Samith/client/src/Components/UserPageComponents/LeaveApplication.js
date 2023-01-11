@@ -18,7 +18,13 @@ import Axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import Navigate from "react";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 
 const theme = createTheme();
 
@@ -47,9 +53,7 @@ function LeaveForm(props) {
       });
   }, []);
 
-
-
-  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code 
+  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code
   const { classes } = props;
   const [rows, setRows] = useState([]);
   useEffect(() => {
@@ -210,7 +214,6 @@ function LeaveForm(props) {
           </Box>
         </Box>
 
-
         <br></br>
         <Typography variant="h5">Number of days of leave remaining</Typography>
         <Table>
@@ -223,21 +226,18 @@ function LeaveForm(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => {
-              return(
-                <TableRow key={row.employee_id}>
+            {rows.map((row, index) => {
+              return (
+                <TableRow key={index}>
                   <TableCell>{row.Annual_leave}</TableCell>
                   <TableCell>{row.Maternal_leave}</TableCell>
                   <TableCell>{row.Casual_leave}</TableCell>
                   <TableCell>{row.no_pay_leave}</TableCell>
                 </TableRow>
-              )
+              );
             })}
           </TableBody>
-
         </Table>
-      
-
       </Container>
     </ThemeProvider>
   );
