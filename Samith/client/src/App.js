@@ -79,52 +79,19 @@ function App() {
               <Route
                 path="/Home"
                 element={
-                  user === "user" ? <PersistentDrawerLeft /> : <HRDashboard />
+                  user === "user" ? (
+                    <PersistentDrawerLeft />
+                  ) : user === "hrm" ? (
+                    <HRDashboard />
+                  ) : user === "supervisor" ? (
+                    <SupervisorDashboard />
+                  ) : (
+                    <HRDashboard />
+                    // <AdminDashboard /> here
+                  )
                 }
               ></Route>
               {/* <Route path="/LeaveApplication" element={<LeaveForm />}></Route> */}
-            </Route>
-
-            {/* New pages added here -- Should be added to Manager or Supervisor*/}
-            <Route
-              path="/SupervisorHome"
-              element={<SupervisorDashboard />}
-            ></Route>
-            <Route path="/ViewSubs" element={<ViewSubordinates />}></Route>
-
-            {/* Routes accessible by hrm */}
-            <Route element={<ManagerAuth />}>
-              <Route
-                path="/DepartmentLeaves"
-                element={<DepartmentLeaves />}
-              ></Route>
-              <Route path="/LeaveForm" element={<LeaveForm />}></Route>
-              <Route
-                path="/LeaveApplicationTable"
-                element={<LeaveApplicationTable />}
-              ></Route>
-              <Route
-                path="/ChangeDependents"
-                element={<ChangeDependents />}
-              ></Route>
-              <Route
-                path="/ChangeBranchInfo"
-                element={<ChangeBranchInfo />}
-              ></Route>
-              <Route path="/ChangeSalary" element={<ChangeSalary />}></Route>
-              <Route path="/AddNewUser" element={<AddNewUser />}></Route>
-              <Route path="/EditDetails" element={<EditDetails />}></Route>
-              <Route
-                path="/AddPersonalInfo"
-                element={<AddPersonalInfo />}
-              ></Route>
-              <Route
-                path="/AddEmergencyInfo"
-                element={<AddEmergencyInfo />}
-              ></Route>
-              <Route path="/Newuser" element={<NewUser />}></Route>
-              <Route path="/Filter" element={<Reports />}></Route>
-              <Route path="/AddDependent" element={<AddDependent />}></Route>
             </Route>
 
             {/* Routes accessible when not logged in */}

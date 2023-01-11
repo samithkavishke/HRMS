@@ -18,7 +18,13 @@ import Axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import Navigate from "react";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 
 const theme = createTheme();
 
@@ -26,6 +32,9 @@ function LeaveForm(props) {
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
   console.log(employee_id);
+  // const rows = {};
+  let remain_leaves_dict = {};
+  const [remainDays, setRemaindays] = useState({});
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
       params: { employee_id: cookies.emp_id },
@@ -36,20 +45,27 @@ function LeaveForm(props) {
           const remain_leaves = response.data.remain_leaves;
           console.log(remain_leaves);
           console.log(response.data.status);
+          // remain_leaves_dict = response.data.remain_leaves;
+
+          setRemaindays(response.data.remain_leaves);
+
           return console.log("Not Applicable", employee_id);
           // return <Navigate />;
         }
-        const remain_leaves1 = response.data.remain_leaves;
-        console.log(remain_leaves1);
+        console.log("Applicable");
+        setRemaindays(response.data.remain_leaves);
+        console.log(response.data.remain_leaves);
+
+        console.log(remainDays);
+        // console.log(remain_leaves_dict);
+        // console.log(remain_leaves1);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
 
-
-
-  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code 
+  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code
   const { classes } = props;
   const [rows, setRows] = useState([]);
   useEffect(() => {
@@ -210,7 +226,6 @@ function LeaveForm(props) {
           </Box>
         </Box>
 
-
         <br></br>
         <Typography variant="h5">Number of days of leave remaining</Typography>
         <Table>
@@ -223,21 +238,24 @@ function LeaveForm(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => {
-              return(
-                <TableRow key={row.employee_id}>
+            <TableRow key={0}>
+              <TableCell>{remainDays.Annual_leave}</TableCell>
+              <TableCell>{remainDays.Maternal_leave}</TableCell>
+              <TableCell>{remainDays.Casual_leave}</TableCell>
+              <TableCell>{remainDays.no_pay_leave}</TableCell>
+            </TableRow>
+            {/* {rows.map((row, index) => {
+              return (
+                <TableRow key={index}>
                   <TableCell>{row.Annual_leave}</TableCell>
                   <TableCell>{row.Maternal_leave}</TableCell>
                   <TableCell>{row.Casual_leave}</TableCell>
                   <TableCell>{row.no_pay_leave}</TableCell>
                 </TableRow>
-              )
-            })}
+              );
+            })} */}
           </TableBody>
-
         </Table>
-      
-
       </Container>
     </ThemeProvider>
   );

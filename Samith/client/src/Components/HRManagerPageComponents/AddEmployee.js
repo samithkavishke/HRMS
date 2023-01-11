@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -51,16 +51,18 @@ export default function AddEmployee() {
     ec_relation: "",
   });
 
-  const [userData, setUserData] = useState({
+  const [workerData, setWorkerData] = useState({
     employee_id: "",
-    username: "",
-    password: "",
-    user_type: "",
-    branch_code: "",
+    job_title: "",
+    pay_grade: "",
+    employee_status: "",
+    contract_period: "",
+    department: "",
   });
+  console.log(workerData);
 
   const submit = () => {
-    // Submit userdata, emergencyData, personalData, dependantData
+    // Axios.post()
   };
 
   return (
@@ -80,7 +82,7 @@ export default function AddEmployee() {
               onClick={() =>
                 console.log(
                   personalData,
-                  userData,
+                  workerData,
                   emergencyData,
                   dependantData
                 )
@@ -102,7 +104,10 @@ export default function AddEmployee() {
             {title[page]}
           </Typography>
           {page === 0 && (
-            <AddNewWorker userData={userData} setUserData={setUserData} />
+            <AddNewWorker
+              workerData={workerData}
+              setWorkerData={setWorkerData}
+            />
           )}
           {page === 1 && (
             <AddPersonalInfo
@@ -122,7 +127,7 @@ export default function AddEmployee() {
               setDependantData={setDependantData}
             />
           )}
-          <Box component="form" noValidate onSubmit={2} sx={{ mt: 3 }}>
+          <Box component={"form"} noValidate sx={{ mt: 3 }}>
             <Button
               disabled={page === 0}
               onClick={() => {
@@ -147,7 +152,7 @@ export default function AddEmployee() {
               </Button>
             ) : (
               <Button
-                disabled={page === title.length - 1}
+                disabled={!workerData.employee_id}
                 onClick={() => {
                   setPage((page) => page + 1);
                 }}

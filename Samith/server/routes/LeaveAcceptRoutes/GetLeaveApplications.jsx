@@ -8,7 +8,8 @@ let employee_id = "";
 router.get("/", (req, res) => {
   //   console.log(req.query);
   pool.query(
-    `SELECT * FROM ${dbname}.leave_application where approval_status is NULL `,
+    `SELECT * FROM ${dbname}.leave_application join ${dbname}.subordinates where subordinate_id = employee_id and supervisor_id = ? and approval_status is NULL `,
+    [req.query.employee_id],
 
     (err, rows, field) => {
       if (err) {
