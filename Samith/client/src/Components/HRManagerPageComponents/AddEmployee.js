@@ -12,7 +12,7 @@ import { AppBar, Toolbar } from "@mui/material";
 import AddDependent from "./AddDependent";
 import AddNewUser from "./AddNewUser";
 import AddEmergencyInfo from "./AddEmergencyInfo";
-import NewUser from "./AddNewWorker";
+import AddNewWorker from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
 
 const theme = createTheme();
@@ -102,7 +102,7 @@ export default function AddEmployee() {
             {title[page]}
           </Typography>
           {page === 0 && (
-            <AddNewUser userData={userData} setUserData={setUserData} />
+            <AddNewWorker userData={userData} setUserData={setUserData} />
           )}
           {page === 1 && (
             <AddPersonalInfo
