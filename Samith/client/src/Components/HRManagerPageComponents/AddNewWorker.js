@@ -124,14 +124,6 @@ export default function AddNewWorker() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              ADD EMPLOYEE
-            </Button>
           </Box>
         </Box>
       </Container>

@@ -147,7 +147,10 @@ export default function AddEmployee() {
               </Button>
             ) : (
               <Button
-                disabled={page === title.length - 1}
+                // {...(userData.employee_id !== "" && {
+                //   disabled: page === title.length - 1,
+                // })}
+                disabled={Boolean(userData.employee_id)}
                 onClick={() => {
                   setPage((page) => page + 1);
                 }}
