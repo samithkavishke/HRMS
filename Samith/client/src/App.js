@@ -17,6 +17,7 @@ import AddPersonalInfo from "./Components/HRManagerPageComponents/AddPersonalInf
 import EditDetails from "./Components/HRManagerPageComponents/EditWoker";
 import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
 import AddDependent from "./Components/HRManagerPageComponents/AddDependent";
+import AddEmployee from "./Components/HRManagerPageComponents/AddEmployee";
 
 import ChangeTable from "./Components/AdminPageComponents/AlterTable";
 import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
@@ -26,6 +27,7 @@ import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";
+// Addnewworker/personalinfo/addemergencyinfo/adddependant
 
 import {
   GuestAuth,

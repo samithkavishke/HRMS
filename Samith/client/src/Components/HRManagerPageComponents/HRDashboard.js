@@ -43,7 +43,7 @@ import NewUser from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
 import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-// import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+import AddEmployee from "./AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
@@ -285,13 +285,6 @@ export default function HRDashboard() {
             <ListItemText primary="Add New Employee" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleNewUser}>
-            <ListItemIcon>
-              <PublicIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add New User Account" />
-          </ListItemButton>
-
           <ListItemButton onClick={toggleEditDetails}>
             <ListItemIcon>
               <EditIcon />
@@ -331,7 +324,7 @@ export default function HRDashboard() {
       {editDetailsSelect && <EditDetails />}
       {profileSelect && <MainProfile />}
       {ApplicationSelect && <LeaveForm />}
-      {NewEmployeeSelect && <AddPersonalInfo />}
+      {NewEmployeeSelect && <AddEmployee />}
       {NewUserSelect && <AddNewUser />}
     </Box>
   );

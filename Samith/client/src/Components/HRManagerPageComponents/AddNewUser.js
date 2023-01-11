@@ -20,8 +20,8 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-export default function AddNewUser() {
-  const usertypes = ["Level 1", "Level 2"];
+export default function AddNewUser({ userData, setUserData }) {
+  const usertypes = ["user", "hrm", "admin", "supervisor"];
 
   const [userType, setUserType] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
@@ -54,139 +54,125 @@ export default function AddNewUser() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-          </Toolbar>
-        </AppBar>
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            Add New USer
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="employee_id"
-                  label="Employee ID"
-                  name="employee_id"
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="branch_code"
-                  required
-                  fullWidth
-                  id="branch_code"
-                  label="Branch Code"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="username"
-                  required
-                  fullWidth
-                  id="username"
-                  label="UserName"
-                  autoFocus
-                  
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
-                  <TextField
-                    id="usertype-select"
-                    value={userType}
-                    onChange={(e) => {
-                      setUserType(e.target.value);
-                    }}
-                    label="User Type"
-                    select
-                  >
-                    <MenuItem value="None">
-                      <em>None</em>
-                    </MenuItem>
-                    {usertypes.map((type) => {
-                      return <MenuItem value={type}>{type}</MenuItem>;
-                    })}
-                    {/* <MenuItem value={"finance"}>Finance</MenuItem>
+    <Box
+      sx={{
+        marginTop: 2,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            required
+            fullWidth
+            label="Employee ID"
+            defaultValue={userData.employee_id}
+            onChange={(e) =>
+              setUserData({
+                ...userData,
+                employee_id: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            autoComplete="given-name"
+            required
+            fullWidth
+            label="Branch Code"
+            defaultValue={userData.branch_code}
+            onChange={(e) =>
+              setUserData({
+                ...userData,
+                branch_code: e.target.value,
+              })
+            }
+            autoFocus
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            autoComplete="given-name"
+            required
+            fullWidth
+            label="UserName"
+            defaultValue={userData.username}
+            onChange={(e) =>
+              setUserData({
+                ...userData,
+                username: e.target.value,
+              })
+            }
+            autoFocus
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <FormControl fullWidth>
+            <TextField
+              id="usertype-select"
+              value={userType}
+              onChange={(e) => {
+                setUserType(e.target.value);
+                setUserData({
+                  ...userData,
+                  user_type: e.target.value,
+                });
+              }}
+              label="User Type"
+              defaultValue={userData.user_type}
+              select
+            >
+              {usertypes.map((type) => {
+                return <MenuItem value={type}>{type}</MenuItem>;
+              })}
+              {/* <MenuItem value={"finance"}>Finance</MenuItem>
                     <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
                     <MenuItem value={"IT"}>IT</MenuItem> */}
-                  </TextField>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="new_password"
-                  label="Password"
-                  type="password"
-                  id="new_password"
-                  //   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirm_password"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirm_password"
-                  //   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                {/* <FormControlLabel
+            </TextField>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="new_password"
+            label="Password"
+            type="password"
+            id="new_password"
+            defaultValue={userData.password}
+            onChange={(e) =>
+              setUserData({
+                ...userData,
+                password: e.target.value,
+              })
+            }
+            //   autoComplete="new-password"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="confirm_password"
+            label="Confirm Password"
+            type="password"
+            id="confirm_password"
+            //   autoComplete="new-password"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          {/* <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 /> */}
-              </Grid>
-            </Grid>
-            {errorMessage && (
-              <Typography value="Password didn't match"></Typography>
-            )}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Grid>
+      </Grid>
+      {errorMessage && <Typography value="Password didn't match"></Typography>}
+    </Box>
   );
 }

@@ -16,7 +16,7 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-const AddPersonalInfo = () => {
+const AddPersonalInfo = ({ personalData, setPersonalData }) => {
   const [birthdate, setBirthDate] = useState();
 
   const handleSubmit = (event) => {
@@ -44,123 +44,150 @@ const AddPersonalInfo = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm" style={{ height: "100%" }}>
-        <CssBaseline />
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-          </Toolbar>
-        </AppBar>
-        <Box
-          sx={{
-            marginTop: 6,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h3" align="center">
-            Add Personal Info
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
-          >
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="first_name"
-                  label="First Name"
-                  id="first_name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="last_name"
-                  required
-                  fullWidth
-                  id="last_name"
-                  label="Last Name"
-                  autoFocus
-                />
-              </Grid>
+    <Box
+      sx={{
+        marginTop: 8,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="first_name"
+            label="First Name"
+            id="first_name"
+            defaultValue={personalData.first_name}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                first_name: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name="last_name"
+            required
+            fullWidth
+            id="last_name"
+            label="Last Name"
+            defaultValue={personalData.last_name}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                last_name: e.target.value,
+              })
+            }
+            autoFocus
+          />
+        </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="address_line_1"
-                  label="Address Line"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="address_line_2"
-                  label="Address Line 2"
-                  name="address_line_2"
-                />
-              </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="address_line_1"
+            label="Address Line 1"
+            defaultValue={personalData.address_line_1}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                address_line_1: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="address_line_2"
+            label="Address Line 2"
+            name="address_line_2"
+            defaultValue={personalData.address_line_2}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                address_line_2: e.target.value,
+              })
+            }
+          />
+        </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="town"
-                  label="Town"
-                  name="town"
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    format
-                    label="BirthDate"
-                    value={birthdate}
-                    onChange={(newValue) => {
-                      setBirthDate(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="marital_status"
-                  label="Marital Status"
-                  name="marital_status"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="gender"
-                  label="Gender"
-                  id="gender"
-                />
-              </Grid>
-            </Grid>
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Add Details
-              </Button>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="town"
+            label="Town"
+            name="town"
+            defaultValue={personalData.town}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                town: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              format
+              label="BirthDate"
+              value={birthdate}
+              onChange={(newValue) => {
+                setBirthDate(newValue);
+                setPersonalData({
+                  ...personalData,
+                  birthdate: birthdate,
+                });
+              }}
+              renderInput={(params) => <TextField {...params} />}
+              defaultValue={personalData.birthdate}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            required
+            fullWidth
+            id="marital_status"
+            label="Marital Status"
+            name="marital_status"
+            defaultValue={personalData.marital_status}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                marital_status: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="gender"
+            label="Gender"
+            id="gender"
+            defaultValue={personalData.gender}
+            onChange={(e) =>
+              setPersonalData({
+                ...personalData,
+                gender: e.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Button onClick={() => console.log(personalData)}>LOG</Button>
+      </Grid>
+    </Box>
   );
 };
 

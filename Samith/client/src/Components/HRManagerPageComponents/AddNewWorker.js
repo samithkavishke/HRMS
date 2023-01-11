@@ -16,18 +16,18 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-export default function NewUser() {
+export default function AddNewWorker() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    Axios.post("http://localhost:3001/AddNewUser", {
+    Axios.post("http://localhost:3001/AddNewWorker", {
       employee_id: data.get("employee_id"),
       job_title: data.get("job_title"),
       pay_grade: data.get("pay_grade"),
       employee_status: data.get("employee_status"),
       contract_period: data.get("contract_period"),
-      department: data.get("department")
+      department: data.get("department"),
     })
       .then((response) => {
         console.log(response);
@@ -41,11 +41,11 @@ export default function NewUser() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
-        <AppBar position="relative" color='primary'>
+        {/* <AppBar position="relative" color='primary'>
           <Toolbar>
             <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         <Box
           sx={{
             marginTop: 8,
@@ -54,9 +54,9 @@ export default function NewUser() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h2" align="center">
+          {/* <Typography component="h1" variant="h2" align="center">
             Add New Employee
-          </Typography>
+          </Typography> */}
           <Box
             component="form"
             noValidate
