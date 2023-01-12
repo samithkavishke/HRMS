@@ -44,6 +44,31 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
     }
   }, [workerData.pay_grade]);
 
+    // useEffect(() => {
+    //   if (workerData.pay_grade !== "") {
+    //     Axios.get(`http://localhost:3001/get_supervisors`, {
+    //       params: {
+    //         pay_grade: workerData.pay_grade,
+    //         department: workerData.department,
+    //       },
+    //     })
+    //       .then((response) => {
+    //         if (response.data.result !== undefined) {
+    //           setSupervisors(response.data.result);
+    //         } else {
+    //           setSupervisors([]);
+    //         }
+
+    //         // console.log(fields);
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    //   } else {
+    //     setSupervisors([]);
+    //   }
+    // }, [workerData.employee]);
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">

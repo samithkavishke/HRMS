@@ -7,24 +7,30 @@ let employee_id = "";
 
 router.get("/", (req, res) => {
   //   console.log(req.query);
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
-  let month = todayDate.getMonth() + 1;
-  let day = todayDate.getDate();
+  // const Value = new Date();
+  function changeDate(value) {
+    const Value = new Date(value);
+    const year = Value.getFullYear();
+    let month = Value.getMonth() + 1;
+    let day = Value.getDate();
 
-  if (month < 10) {
-    month = `0${month}`;
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    const date = `${year}${month}${day}`;
+    // console.log();
+    // console.log(today);
+    return date;
   }
-  if (day < 10) {
-    day = `0${day}`;
-  }
-  const today = `${year}${month}${day}`;
-  console.log();
-  console.log(today);
-
-  pool.query(
-    `select t1.department,count-COALESCE(no_leaves,0) as no_present , COALESCE(no_leaves,0) as no_leaves,count as total from (SELECT department ,count(employee_id) as count from ${dbname}.employee_work group by department) as t1 left join  (SELECT department,count(${dbname}.leave_application.employee_id) as no_leaves FROM ${dbname}.employee_work join ${dbname}.leave_application WHERE ${dbname}.leave_application.employee_id =  ${dbname}.employee_work.employee_id and approval_status = 1 and from_date<=${today} and ${today}<=to_date group by department ) as t2 on t1.department = t2.department;`,
-    [],
+  console.log(req.query);
+  const from_date = changeDate(req.query.fromValue);
+  const to_date = changeDate(req.query.toValue);
+  const string_query = `select t1.department,count-COALESCE(no_leaves,0) as no_present , COALESCE(no_leaves,0) as no_leaves,count as total from (SELECT department ,count(employee_id) as count from ${dbname}.employee_work group by department) as t1 left join  (SELECT Count(employee_id) as no_leaves,department FROM (SELECT distinct ${dbname}.employee_work.employee_id,department FROM ${dbname}.employee_work join ${dbname}.leave_application WHERE ${dbname}.leave_application.employee_id =  ${dbname}.employee_work.employee_id and approval_status = 1 and ((${from_date}<=from_date and from_date <=${to_date}) or  (${from_date}<= to_date and to_date <=${to_date} ))) as t3 group by department ) as t2 on t1.department = t2.department;`;
+  console.log(string_query)
+  pool.query(string_query,
     (err, rows, field) => {
       if (err) {
         return console.log(err);

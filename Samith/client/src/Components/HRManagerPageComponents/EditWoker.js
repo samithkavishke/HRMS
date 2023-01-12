@@ -99,7 +99,7 @@ export default function EditDetails() {
             response.data.result[1]["birth_year"];
 
           const date = new Date(birthDateString);
-
+          console.log(birthDateString);
           setJobTitle(response.data.result[0]["job_title"]);
           setPayGrade(response.data.result[0]["pay_grade"]);
           setEmployeeStatus(response.data.result[0]["employee_status"]);
@@ -196,383 +196,389 @@ export default function EditDetails() {
 
   return (
     <div>
-      <AppBar position="relative" color='primary'>
+      <AppBar position="relative" color="primary">
         <Toolbar>
-          <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+          <Button
+            href="http://localhost:3000/Home"
+            variant="contained"
+            color="info"
+          >
+            Home
+          </Button>
         </Toolbar>
       </AppBar>
-    <Box justifyItems={"center"}>
-      <Box
-        sx={{
-          alignItems: "center",
-        }}
-      >
-        <Box component="form" onSubmit={search} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="employee_id"
-            label="Employee ID"
-            name="employee_id"
-            autoComplete="employee_id"
-            autoFocus
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Search
-          </Button>
-        </Box>
+      <Box justifyItems={"center"}>
         <Box
-          component="form"
-          onSubmit={SubmitChanges}
-          noValidate
-          sx={{ mt: 1 }}
+          sx={{
+            alignItems: "center",
+          }}
         >
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            marginTop={2}
-          >
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Employee's ID</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField disabled value={employee_id}>
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Job Title</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setJobTitle(e.target.value);
-                }}
-                value={job_title}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Pay Grade</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setPayGrade(e.target.value);
-                }}
-                value={pay_grade}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Employee's Status</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setPayGrade(e.target.value);
-                }}
-                value={employee_status}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Contract Period</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setConractPeriod(e.target.value);
-                }}
-                value={contract_period}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Department</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setDepartment(e.target.value);
-                }}
-                value={department}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">First Name</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-                value={first_name}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Last Name</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-                value={last_name}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Address Line 1</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setAddressLine1(e.target.value);
-                }}
-                value={address_line1}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Address Line 2</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setAddressLine2(e.target.value);
-                }}
-                value={address_line2}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Town</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setTown(e.target.value);
-                }}
-                value={town}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Birth Date</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="Birth Date"
-                  value={birth_dater}
-                  onChange={(newValue) => {
-                    setBirthDateR(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Marital Status</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setMaritalStatus(e.target.value);
-                }}
-                value={marital_status}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Gender</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setGender(e.target.value);
-                }}
-                value={gender}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">
-                  Employee's Contact Number
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setEmployeeContact(e.target.value);
-                }}
-                value={employee_contact}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Contact's First Name</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setContactFirstName(e.target.value);
-                }}
-                value={contact_first_name}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Contact's Last Name</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setContactLastName(e.target.value);
-                }}
-                value={contact_last_name}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Contact Relation</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setContactRelation(e.target.value);
-                }}
-                value={contact_relation}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6}>
-              <Paper elevation={0}>
-                <Typography align="center">Contact's Phone Number</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                onChange={(e) => {
-                  setContactPhoneNumber(e.target.value);
-                }}
-                value={contact_phone_number}
-              >
-                {" "}
-                baba
-              </TextField>
-            </Grid>
-          </Grid>
-          <Grid justifyItems={"center"}>
+          <Box component="form" onSubmit={search} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="employee_id"
+              label="Employee ID"
+              name="employee_id"
+              autoComplete="employee_id"
+              autoFocus
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              {" "}
-              Save Changes
+              Search
             </Button>
-          </Grid>
+          </Box>
+          <Box
+            component="form"
+            onSubmit={SubmitChanges}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              marginTop={2}
+            >
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Employee's ID</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField disabled value={employee_id}>
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Job Title</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setJobTitle(e.target.value);
+                  }}
+                  value={job_title}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Pay Grade</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setPayGrade(e.target.value);
+                  }}
+                  value={pay_grade}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Employee's Status</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setPayGrade(e.target.value);
+                  }}
+                  value={employee_status}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Contract Period</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setConractPeriod(e.target.value);
+                  }}
+                  value={contract_period}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Department</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setDepartment(e.target.value);
+                  }}
+                  value={department}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">First Name</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setFirstName(e.target.value);
+                  }}
+                  value={first_name}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Last Name</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setLastName(e.target.value);
+                  }}
+                  value={last_name}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Address Line 1</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setAddressLine1(e.target.value);
+                  }}
+                  value={address_line1}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Address Line 2</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setAddressLine2(e.target.value);
+                  }}
+                  value={address_line2}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Town</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setTown(e.target.value);
+                  }}
+                  value={town}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Birth Date</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Birth Date"
+                    value={birth_dater}
+                    onChange={(newValue) => {
+                      setBirthDateR(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Marital Status</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setMaritalStatus(e.target.value);
+                  }}
+                  value={marital_status}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Gender</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setGender(e.target.value);
+                  }}
+                  value={gender}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">
+                    Employee's Contact Number
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setEmployeeContact(e.target.value);
+                  }}
+                  value={employee_contact}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Contact's First Name</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setContactFirstName(e.target.value);
+                  }}
+                  value={contact_first_name}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Contact's Last Name</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setContactLastName(e.target.value);
+                  }}
+                  value={contact_last_name}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Contact Relation</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setContactRelation(e.target.value);
+                  }}
+                  value={contact_relation}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Paper elevation={0}>
+                  <Typography align="center">Contact's Phone Number</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  onChange={(e) => {
+                    setContactPhoneNumber(e.target.value);
+                  }}
+                  value={contact_phone_number}
+                >
+                  {" "}
+                  baba
+                </TextField>
+              </Grid>
+            </Grid>
+            <Grid justifyItems={"center"}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                {" "}
+                Save Changes
+              </Button>
+            </Grid>
+          </Box>
         </Box>
       </Box>
-    </Box>
     </div>
   );
 }
