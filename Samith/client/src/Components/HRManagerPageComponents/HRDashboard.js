@@ -21,6 +21,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
@@ -48,6 +49,7 @@ import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "./AddEmployee/AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
+import ChangeSalary from "./ChangeTables/ChangeSalary";
 
 import Reports from "../ManagerPageComponents/FilterPage";
 import DepartmentLeaves from "../Reports/TotalLeaves";
@@ -252,6 +254,20 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Approve Leave Forms" />
           </ListItemButton>
+          
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Salary Details");
+            }}
+          >
+            <ListItemIcon>
+              <LocalAtmIcon />
+            </ListItemIcon>
+            <ListItemText primary="Salary Details" />
+          </ListItemButton>
+
+
+
           <ListItemButton
             onClick={() => {
               setActiveFeature("Reports");
@@ -302,6 +318,7 @@ export default function HRDashboard() {
       {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
       {activeFeature === "Reports" && <Reports />}
       {activeFeature === "Absent Count" && <DepartmentLeaves />}
+      {activeFeature === "Salary Details" && <ChangeSalary/>}
     </Box>
   );
 }

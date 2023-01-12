@@ -26,6 +26,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import TableViewIcon from '@mui/icons-material/TableView';
+import BusinessIcon from '@mui/icons-material/Business';
 import EditIcon from "@mui/icons-material/Edit";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +45,7 @@ import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import ChangeTable from "./AlterTable";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
 import CustomizeTable from "../CustomAttrinutePageComponents/CustomizeTable";
+import ChangeBranchInfo from "../HRManagerPageComponents/ChangeTables/ChangeBranchInfo";
 
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
@@ -110,6 +112,7 @@ export default function AdminDashboard() {
   const [NewEmployeeSelect, enableNewEmployee] = useState(false);
   const [NewUserSelect, enableNewUser] = useState(false);
   const [CustomAttrSelect, enableCustomAttr] = useState(false);
+  const [BranchInfoSelect, enableBranchInfo] = useState(false);
 
   const toggleDashboard = () => {
     enableDashboard(true);
@@ -121,6 +124,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
   const toggleEditDetails = () => {
     enableDashboard(false);
@@ -132,6 +136,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
   const toggleApplication = () => {
     enableDashboard(false);
@@ -143,6 +148,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
   const toggleLeaveApprove = () => {
     enableDashboard(false);
@@ -154,6 +160,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
   const toggleSignout = () => {
     enableDashboard(false);
@@ -165,6 +172,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
 
   const toggleProfile = () => {
@@ -177,6 +185,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
 
   const toggleNewEmployee = () => {
@@ -189,6 +198,7 @@ export default function AdminDashboard() {
     enableNewEmployee(true);
     enableNewUser(false);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
   const toggleNewUser = () => {
     enableDashboard(false);
@@ -200,6 +210,7 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(true);
     enableCustomAttr(false);
+    enableBranchInfo(false);
   };
 
   const toggleCustomAttr = () => {
@@ -212,6 +223,20 @@ export default function AdminDashboard() {
     enableNewEmployee(false);
     enableNewUser(false);
     enableCustomAttr(true);
+    enableBranchInfo(false);
+  };
+
+  const toggleBranchInfo = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
+    enableBranchInfo(true);
   };
 
   const handleDrawerOpen = () => {
@@ -330,6 +355,13 @@ export default function AdminDashboard() {
             </ListItemIcon>
             <ListItemText primary="Add New Custom Fields" />
           </ListItemButton>
+
+          <ListItemButton onClick={toggleBranchInfo} href="">
+            <ListItemIcon>
+              <BusinessIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add/View Branch Info" />
+          </ListItemButton>
         </List>
         <Divider />
         <List>
@@ -359,6 +391,7 @@ export default function AdminDashboard() {
       {NewEmployeeSelect && <AddEmployee />}
       {NewUserSelect && <AddNewUser />}
       {CustomAttrSelect && <CustomizeTable/>}
+      {BranchInfoSelect && <ChangeBranchInfo/>}
 
     </Box>
   );
