@@ -28,8 +28,8 @@ export default function Reports() {
   const [attributes, setAttributes] = useState([]);
 
   // const [rows, setRows] = useState([]);
-  console.log("attributes:", attributes);
-  console.log("fields:", fields);
+  // console.log("attributes:", attributes);
+  // console.log("fields:", fields);
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_custom_columns`)

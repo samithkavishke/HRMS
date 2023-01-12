@@ -58,6 +58,7 @@ export default function AddEmployee() {
     employee_status: "",
     contract_period: "",
     department: "",
+    supervisor: "",
   });
 
 
