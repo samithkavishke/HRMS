@@ -36,16 +36,14 @@ import { Link, Navigate, redirect } from "react-router-dom";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 import AddNewUser from "./AddNewUser";
-import AddDependent from "./AddDependent";
-import ChangeDependents from "./ChangeDependents";
-import ChangeSalary from "./ChangeSalary";
+import AddDependent from "./AddEmployee/AddDependent";
 import LeaveApplicationTable from "./AcceptLeave";
-import AddEmergencyInfo from "./AddEmergencyInfo";
-import NewUser from "./AddNewWorker";
-import AddPersonalInfo from "./AddPersonalInfo";
+import AddEmergencyInfo from "./AddEmployee/AddEmergencyInfo";
+import NewUser from "./AddEmployee/AddNewWorker";
+import AddPersonalInfo from "./AddEmployee/AddPersonalInfo";
 import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import AddEmployee from "./AddEmployee";
+import AddEmployee from "./AddEmployee/AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
 

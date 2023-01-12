@@ -11,17 +11,21 @@ import { useEffect, useState } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import Axios from "axios";
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
+import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { useContext } from "react";
 
-function ViewSubordinates(props) {
-  const { classes } = props;
+
+function ViewSubordinates() {
   const [rows, setRows] = useState([]);
+
+    const { cookies } = useContext(LoginContext);
+    const employee_id = cookies.emp_id;
+
   useEffect(() => {
-    Axios.get(`http://localhost:3001/get_leave_applications`, {})
+    Axios.get(`http://localhost:3001/get_subordinates`, {
+      params:{
+        employee_id:employee_id
+    }})
       .then((response) => {
         let fetchedrows = response.data.result;
         if (fetchedrows === undefined) {
@@ -36,31 +40,6 @@ function ViewSubordinates(props) {
       });
   }, []);
 
-//   const handleAccept = (id) => {
-//     Axios.post("http://localhost:3001/accept_leave", {
-//       leave_id: id,
-//     })
-//       .then((response) => {
-//         console.log(response);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//     console.log(id);
-//   };
-
-//   const handleReject = (id) => {
-//     Axios.post("http://localhost:3001/reject_leave", {
-//       leave_id: id,
-//     })
-//       .then((response) => {
-//         console.log(response);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//     console.log(id);
-//   };
 
   return (
     <div>

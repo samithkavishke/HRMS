@@ -16,7 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -34,7 +34,8 @@ import { LoginContext, UserContext } from "../../Helper/UserContext";
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+import MainProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+import ViewSubordinates from "./ViewSubordinates";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -91,48 +92,8 @@ export default function SupervisorDashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const [dashBoardSelect, enableDashboard] = useState(true);
-  const [editDetailsSelect, enableEditDetails] = useState(false);
-  const [leaveApproveSelect, enableLeaveApprove] = useState(false);
-  const [profileSelect, enableProfile] = useState(false);
-  const [ApplicationSelect, enableApplication] = useState(false);
+  const [activeFeature, setActiveFeature] = useState("Dashboard");
 
-  const toggleDashboard = () => {
-    enableDashboard(true);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-  };
-  const toggleEditDetails = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(true);
-    enableLeaveApprove(false);
-  };
-  const toggleApplication = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(true);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-  };
-  const toggleLeaveApprove = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(true);
-  };
-
-  const toggleProfile = () => {
-    enableDashboard(false);
-    enableProfile(true);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -172,10 +133,9 @@ export default function SupervisorDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
-          <IconButton
-            color="inherit"
-            edge="end"
-          ><NotificationsActiveIcon/></IconButton>
+          <IconButton color="inherit" edge="end">
+            <NotificationsActiveIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -202,35 +162,56 @@ export default function SupervisorDashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItemButton onClick={toggleDashboard}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Dashboard");
+            }}
+          >
             <ListItemIcon>
               <DashboardCustomizeIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleProfile}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Profile");
+            }}
+          >
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleApplication} href="">
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Leave Application");
+            }}
+          >
             <ListItemIcon>
               <FeedIcon />
             </ListItemIcon>
             <ListItemText primary="Leave Application" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleEditDetails}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("View Subordinate Details");
+            }}
+          >
             <ListItemIcon>
               <GroupsIcon />
             </ListItemIcon>
             <ListItemText primary="View Subordinate Details" />
           </ListItemButton>
           {/* <UserProfile2 /> */}
-          <ListItemButton onClick={toggleLeaveApprove} href="">
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Approve Leave Forms");
+            }}
+            href=""
+          >
             <ListItemIcon>
               <AddTaskIcon />
             </ListItemIcon>
@@ -257,11 +238,12 @@ export default function SupervisorDashboard() {
           </ListItemButton>
         </List>
       </Drawer>
-      {dashBoardSelect && dashboardContent}
-      {leaveApproveSelect && <LeaveApplicationTable />}
-      {editDetailsSelect && <EditDetails />}
-      {profileSelect && <UserProfile />}
-      {ApplicationSelect && <LeaveForm />}
+      {activeFeature === "Dashboard" && dashboardContent}
+      {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
+      {/* {activeFeature === "Leave Application" && <EditDetails />} */}
+      {activeFeature === "Profile" && <MainProfile />}
+      {activeFeature === "View Subordinate Details" && <ViewSubordinates />}
+      {activeFeature === "Leave Application" && <LeaveForm />}
     </Box>
   );
 }

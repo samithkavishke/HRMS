@@ -9,21 +9,9 @@ import { LoginContext, UserContext } from "./Helper/UserContext";
 import { useCookies } from "react-cookie";
 
 import SignUp from "./Components/SignupPageComponents/Signup";
-import Reports from "./Components/ManagerPageComponents/FilterPage";
-import NewUser from "./Components/HRManagerPageComponents/AddNewWorker";
-import AddEmergencyInfo from "./Components/HRManagerPageComponents/AddEmergencyInfo";
 import Welcome from "./Components/WelcomePageComponents/Welcome";
-import AddPersonalInfo from "./Components/HRManagerPageComponents/AddPersonalInfo";
-import EditDetails from "./Components/HRManagerPageComponents/EditWoker";
-import AddNewUser from "./Components/HRManagerPageComponents/AddNewUser";
-import AddDependent from "./Components/HRManagerPageComponents/AddDependent";
-import AddEmployee from "./Components/HRManagerPageComponents/AddEmployee";
 
 import ChangeTable from "./Components/AdminPageComponents/AlterTable";
-import ChangeSalary from "./Components/HRManagerPageComponents/ChangeSalary";
-import ChangeBranchInfo from "./Components/HRManagerPageComponents/ChangeBranchInfo";
-import ChangeDependents from "./Components/HRManagerPageComponents/ChangeDependents";
-import LeaveForm from "./Components/UserPageComponents/LeaveApplication";
 
 import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
 import DepartmentLeaves from "./Components/Reports/TotalLeaves";

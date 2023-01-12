@@ -9,7 +9,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AppBar, Toolbar } from "@mui/material";
 import AddDependent from "./AddDependent";
-import AddNewUser from "./AddNewUser";
 import AddEmergencyInfo from "./AddEmergencyInfo";
 import AddNewWorker from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";

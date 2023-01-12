@@ -35,17 +35,11 @@ import { Link, Navigate, redirect } from "react-router-dom";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 import AddNewUser from "../HRManagerPageComponents/AddNewUser";
-import AddDependent from "../HRManagerPageComponents/AddDependent";
-import ChangeDependents from "../HRManagerPageComponents/ChangeDependents";
-import ChangeSalary from "../HRManagerPageComponents/ChangeSalary";
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
-import AddEmergencyInfo from "../HRManagerPageComponents/AddEmergencyInfo";
-import AddNewWorker from "../HRManagerPageComponents/AddNewWorker";
-import AddPersonalInfo from "../HRManagerPageComponents/AddPersonalInfo";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import AddEmployee from "../HRManagerPageComponents/AddEmployee";
+import AddEmployee from "../HRManagerPageComponents/AddEmployee/AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import ChangeTable from "./AlterTable";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";

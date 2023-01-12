@@ -23,9 +23,6 @@ export default function DepartmentLeaves() {
         if (fetchedrows === undefined) {
           fetchedrows = [];
         }
-        // for (let i = 0; i < response.data.result.length; i++) {
-        //   fetchedrows[i].id = i + 1;
-        // }
         setRows(fetchedrows);
         console.log(fetchedrows);
       })
@@ -45,8 +42,7 @@ export default function DepartmentLeaves() {
             <TableCell>Department</TableCell>
             <TableCell align="right">No: Absents</TableCell>
             <TableCell align="right">No: Presents</TableCell>
-            {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
+
           </TableRow>
         </TableHead>
         <TableBody>

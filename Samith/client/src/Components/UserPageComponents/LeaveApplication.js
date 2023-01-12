@@ -35,7 +35,7 @@ function LeaveForm(props) {
   // const rows = {};
   let remain_leaves_dict = {};
   const [remainDays, setRemaindays] = useState({});
-  
+
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
       params: { employee_id: cookies.emp_id },
@@ -67,23 +67,23 @@ function LeaveForm(props) {
   }, []);
 
   /////// DUMMY Code for the Remaining Number of Days fro Leaves Code
-  const { classes } = props;
-  const [rows, setRows] = useState([]);
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/get_leave_applications`, {})
-      .then((response) => {
-        let fetchedrows = response.data.result;
-        if (fetchedrows === undefined) {
-          fetchedrows = [];
-        }
-        // setRows(fetchedrows);
-        setRows(fetchedrows);
-        console.log(fetchedrows);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+  // const { classes } = props;
+  // const [rows, setRows] = useState([]);
+  // useEffect(() => {
+  //   Axios.get(`http://localhost:3001/get_leave_applications`, {})
+  //     .then((response) => {
+  //       let fetchedrows = response.data.result;
+  //       if (fetchedrows === undefined) {
+  //         fetchedrows = [];
+  //       }
+  //       // setRows(fetchedrows);
+  //       setRows(fetchedrows);
+  //       console.log(fetchedrows);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // }, []);
   ///////////////////////////////////////////
 
   const handleSubmit = (event) => {

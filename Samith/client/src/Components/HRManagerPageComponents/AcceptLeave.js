@@ -73,7 +73,7 @@ function LeaveApplicationTable(props) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (employee_id !== undefined) {
+    if (employee_id !== "NULL" ) {
       Axios.get(`http://localhost:3001/get_leave_applications`, {
         params: {
           employee_id: employee_id,
