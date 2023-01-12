@@ -76,6 +76,8 @@ router.post("/", (req, res) => {
             );
             // console.log(req.body.employerID);
             // console.log(req.body);
+          } else {
+            res.send({success:false});
           }
         }
       );
