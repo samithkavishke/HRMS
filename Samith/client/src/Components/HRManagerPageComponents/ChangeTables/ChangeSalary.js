@@ -88,7 +88,10 @@ export default function ChangeSalary() {
   };
 
   return (
-    <div style={{ height: 300, width: "100%" }}>
+    <div style={{ height: 520, width: "100%" }}>
+      <br></br>
+      <br></br>
+      <br></br>
       <DataGrid
         editMode="cell"
         rows={rows}
