@@ -55,6 +55,8 @@ export default function Reports() {
         .catch((e) => {
           console.log(e);
         });
+    } else {
+      setAttributes([]);
     }
   }, [customField]);
 
@@ -186,8 +188,10 @@ export default function Reports() {
                 label="Custom Field"
                 select
               >
-                <MenuItem value="None"></MenuItem>
-                <em>None</em>
+                <MenuItem value="None">
+                  <em>None</em>
+                </MenuItem>
+
                 {fields.map((field_name, index) => {
                   return (
                     <MenuItem key={index} value={field_name}>
@@ -205,8 +209,10 @@ export default function Reports() {
                 label="Custom Attribute"
                 select
               >
-                <MenuItem value="None"></MenuItem>
-                <em>None</em>
+                <MenuItem value="None">
+                  <em>None</em>
+                </MenuItem>
+
                 {attributes.map((field_name, index) => {
                   return (
                     <MenuItem key={index} value={field_name}>
