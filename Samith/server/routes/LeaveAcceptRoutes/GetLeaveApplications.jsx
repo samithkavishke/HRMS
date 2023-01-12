@@ -3,18 +3,16 @@ const { pool, dbname } = require("../../lib/pool.jsx");
 const router = express.Router();
 const cors = require("cors");
 
-
 let employee_id = "";
 
 router.get("/", (req, res) => {
   //   console.log(req.query);
 
   const status = req.query.status;
-  
-  let status_query = status=="NULL" ?" is NULL" : "=" + status;
+  console.log(req.query);
+  let status_query = status == "NULL" ? " is NULL" : "=" + status;
 
   pool.query(
-
     `SELECT * FROM ${dbname}.leave_application join ${dbname}.subordinates where subordinate_id = employee_id and supervisor_id = ? and approval_status${status_query} `,
     [req.query.employee_id],
 

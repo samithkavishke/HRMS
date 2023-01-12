@@ -20,7 +20,7 @@ import { AppBar, Toolbar } from "@mui/material";
 
 const theme = createTheme();
 
-export default function AddNewUser({ userData, setUserData }) {
+export default function AddNewUser() {
   const usertypes = ["user", "hrm", "admin", "supervisor"];
 
   const [userType, setUserType] = useState("");
@@ -29,13 +29,14 @@ export default function AddNewUser({ userData, setUserData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data.get("employee_id"));
     if (data.get("new_password") === data.get("confirm_password")) {
       setErrorMessage(false);
       Axios.post("http://localhost:3001/AddNewUser", {
         employee_id: data.get("employee_id"),
         username: data.get("username"),
         password: data.get("new_password"),
-        user_type: userType,
+        user_type: data.get("user-type"),
         branch_code: data.get("branch_code"),
       })
         .then((response) => {
@@ -54,125 +55,116 @@ export default function AddNewUser({ userData, setUserData }) {
   };
 
   return (
-    <Box
-      sx={{
-        marginTop: 2,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            required
-            fullWidth
-            label="Employee ID"
-            defaultValue={userData.employee_id}
-            onChange={(e) =>
-              setUserData({
-                ...userData,
-                employee_id: e.target.value,
-              })
-            }
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            autoComplete="given-name"
-            required
-            fullWidth
-            label="Branch Code"
-            defaultValue={userData.branch_code}
-            onChange={(e) =>
-              setUserData({
-                ...userData,
-                branch_code: e.target.value,
-              })
-            }
-            autoFocus
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            autoComplete="given-name"
-            required
-            fullWidth
-            label="UserName"
-            defaultValue={userData.username}
-            onChange={(e) =>
-              setUserData({
-                ...userData,
-                username: e.target.value,
-              })
-            }
-            autoFocus
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <FormControl fullWidth>
-            <TextField
-              id="usertype-select"
-              value={userType}
-              onChange={(e) => {
-                setUserType(e.target.value);
-                setUserData({
-                  ...userData,
-                  user_type: e.target.value,
-                });
-              }}
-              label="User Type"
-              defaultValue={userData.user_type}
-              select
-            >
-              {usertypes.map((type) => {
-                return <MenuItem value={type}>{type}</MenuItem>;
-              })}
-              {/* <MenuItem value={"finance"}>Finance</MenuItem>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="sm">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography component="h1" variant="h2" align="center">
+            ADD NEW USER
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Employee ID"
+                  name="employee_id"
+                  id="employee_id"
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  autoComplete="given-name"
+                  required
+                  fullWidth
+                  label="Branch Code"
+                  name="branch_code"
+                  id="branch_code"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  autoComplete="given-name"
+                  required
+                  fullWidth
+                  label="UserName"
+                  name="username"
+                  id="username"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    id="usertype-select"
+                    label="User Type"
+                    name="user-type"
+                    select
+                  >
+                    {usertypes.map((type) => {
+                      return <MenuItem value={type}>{type}</MenuItem>;
+                    })}
+                    {/* <MenuItem value={"finance"}>Finance</MenuItem>
                     <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
                     <MenuItem value={"IT"}>IT</MenuItem> */}
-            </TextField>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            fullWidth
-            name="new_password"
-            label="Password"
-            type="password"
-            id="new_password"
-            defaultValue={userData.password}
-            onChange={(e) =>
-              setUserData({
-                ...userData,
-                password: e.target.value,
-              })
-            }
-            //   autoComplete="new-password"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            fullWidth
-            name="confirm_password"
-            label="Confirm Password"
-            type="password"
-            id="confirm_password"
-            //   autoComplete="new-password"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          {/* <FormControlLabel
+                  </TextField>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="new_password"
+                  label="Password"
+                  type="password"
+                  id="new_password"
+                  //   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirm_password"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirm_password"
+                  //   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                {/* <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 /> */}
-        </Grid>
-      </Grid>
-      {errorMessage && <Typography value="Password didn't match"></Typography>}
-    </Box>
+              </Grid>
+              <Button type="submit" variant="contained">
+                {" "}
+                Save User
+              </Button>
+            </Grid>
+            {errorMessage && (
+              <Typography value="Password didn't match"></Typography>
+            )}
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
