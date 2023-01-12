@@ -105,6 +105,12 @@ app.use(
 );
 app.use("/is_applicable", require("./routes/LeaveFillRoutes/Applicable.jsx"));
 
+/*Routing the request to insert Number of Days for each type of Leave*/
+// app.use(
+//   "/edit-leave-days",
+//   require("")
+// );
+
 /* Routing the request to the Custom Attributes file */
 app.use(
   "/add_custom_field",

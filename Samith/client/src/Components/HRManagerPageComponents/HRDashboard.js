@@ -23,6 +23,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import PublicIcon from "@mui/icons-material/Public";
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -51,6 +52,7 @@ import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues"
 
 import Reports from "../ManagerPageComponents/FilterPage";
 import DepartmentLeaves from "../Reports/TotalLeaves";
+import ChangeNumOfLeaves from "./ChangeNumOfLeaves";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -272,6 +274,18 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Absent Count" />
           </ListItemButton>
+
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Set No. of Leaves");
+            }}
+          >
+            <ListItemIcon>
+              <RecentActorsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Set No. of Leaves" />
+          </ListItemButton>
+
         </List>
         <Divider />
         <List>
@@ -302,6 +316,7 @@ export default function HRDashboard() {
       {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
       {activeFeature === "Reports" && <Reports />}
       {activeFeature === "Absent Count" && <DepartmentLeaves />}
+      {activeFeature === "Set No. of Leaves" && <ChangeNumOfLeaves/>}
     </Box>
   );
 }
