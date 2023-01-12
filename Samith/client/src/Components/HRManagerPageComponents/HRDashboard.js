@@ -331,6 +331,7 @@ export default function HRDashboard() {
       {activeFeature === "Edit Custom Field Details" && <EditCustomDetails />}
       {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
       {activeFeature === "Reports" && <Reports />}
+      {activeFeature === "Salary Details" && <ChangeSalary />}
       {activeFeature === "Absent Count" && <DepartmentLeaves />}
       {activeFeature === "Set No. of Leaves" && <ChangeNumOfLeaves/>}
 

@@ -163,25 +163,25 @@ const columns = [
   {
     field: "Annual_leave",
     headerName: "Annual Leave",
-    width: 100,
+    width: 180,
     editable: true,
   },
   {
     field: "Maternal_leave",
     headerName: "Maternal Leave",
-    width: 100,
+    width: 180,
     editable: true,
   },
   {
     field: "Casual_leave",
     headerName: "Casual Leave",
-    width: 100,
+    width: 180,
     editable: true,
   },
   {
     field: "no_pay_leave",
     headerName: "No Pay Leave",
-    width: 100,
+    width: 180,
     editable: true,
   },
 ];
