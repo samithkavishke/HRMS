@@ -13,11 +13,10 @@ import { AppBar, Toolbar } from "@mui/material";
 const theme = createTheme();
 
 export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
-
   return (
     <Box
       sx={{
-        marginTop: 8,
+        marginTop: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -38,6 +37,7 @@ export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
                 ec_emp_contact: e.target.value,
               })
             }
+            autoFocus
           />
         </Grid>
         <Grid item xs={12}>
@@ -54,7 +54,6 @@ export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
                 ec_first_name: e.target.value,
               })
             }
-            autoFocus
           />
         </Grid>
 
@@ -108,7 +107,6 @@ export default function AddEmergencyInfo({ emergencyData, setEmergencyData }) {
             }
           />
         </Grid>
-        <Button onClick={() => console.log(emergencyData)}>LOG</Button>
       </Grid>
     </Box>
   );

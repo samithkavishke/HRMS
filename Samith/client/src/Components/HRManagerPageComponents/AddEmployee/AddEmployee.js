@@ -37,7 +37,7 @@ export default function AddEmployee() {
     address_line_1: "",
     address_line_2: "",
     town: "",
-    contact_number: "",
+    // contact_number: "",
     birthdate: new Date(),
     marital_status: "",
     gender: "",
@@ -61,7 +61,6 @@ export default function AddEmployee() {
     supervisor: "",
   });
 
-
   const submit = () => {
     console.log(dependantData);
     Axios.post("http://localhost:3001/AddEmployeeInfo", {
@@ -78,6 +77,21 @@ export default function AddEmployee() {
       });
   };
 
+  const disableButton = () => {
+    switch (page) {
+      case 0:
+        return !Object.values(workerData).every((val) => val);
+      case 1:
+        return !Object.values(personalData).every((val) => val);
+      case 2:
+        return !Object.values(emergencyData).every((val) => val);
+      case 3:
+        return !Object.values(dependantData).every((val) => val);
+      default:
+        return false;
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
@@ -90,18 +104,6 @@ export default function AddEmployee() {
               color="info"
             >
               Home
-            </Button>
-            <Button
-              onClick={() =>
-                console.log(
-                  personalData,
-                  workerData,
-                  emergencyData,
-                  dependantData
-                )
-              }
-            >
-              Log
             </Button>
           </Toolbar>
         </AppBar>
@@ -155,6 +157,7 @@ export default function AddEmployee() {
             {page === title.length - 1 ? (
               <Button
                 onClick={submit}
+                disabled={disableButton()}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
@@ -163,7 +166,7 @@ export default function AddEmployee() {
               </Button>
             ) : (
               <Button
-                disabled={!workerData.employee_id}
+                disabled={disableButton()}
                 onClick={() => {
                   setPage((page) => page + 1);
                 }}

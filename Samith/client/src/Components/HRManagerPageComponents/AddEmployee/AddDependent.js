@@ -16,7 +16,7 @@ export default function AddDependent({ dependantData, setDependantData }) {
   return (
     <Box
       sx={{
-        marginTop: 8,
+        marginTop: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -37,6 +37,7 @@ export default function AddDependent({ dependantData, setDependantData }) {
                 dependant_id: e.target.value,
               })
             }
+            autoFocus
           />
         </Grid>
         <Grid item xs={12}>
@@ -53,7 +54,6 @@ export default function AddDependent({ dependantData, setDependantData }) {
                 dependant_first_name: e.target.value,
               })
             }
-            autoFocus
           />
         </Grid>
 
@@ -74,7 +74,6 @@ export default function AddDependent({ dependantData, setDependantData }) {
           />
         </Grid>
       </Grid>
-      <Button onClick={() => console.log(dependantData)}>LOG</Button>
     </Box>
   );
 }
