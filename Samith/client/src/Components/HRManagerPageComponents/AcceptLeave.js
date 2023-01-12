@@ -15,11 +15,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import ClearIcon from '@mui/icons-material/Clear';
-import CheckIcon from '@mui/icons-material/Check';
-import PendingIcon from '@mui/icons-material/Pending';
-import { pink, blue, green } from '@mui/material/colors';
-
+import ClearIcon from "@mui/icons-material/Clear";
+import CheckIcon from "@mui/icons-material/Check";
+import PendingIcon from "@mui/icons-material/Pending";
+import { pink, blue, green } from "@mui/material/colors";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 import { useContext } from "react";
@@ -74,58 +73,64 @@ function LeaveApplicationTable(props) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/get_leave_applications`, {
-    params: {
-        employee_id: employee_id,
-        status:"0"
-      }})
-      .then((response) => {
-        let fetchedrows = response.data.result;
-        if (fetchedrows === undefined) {
-          fetchedrows = [];
-        }
-        // setRows(fetchedrows);
-        setDeclinedRows(fetchedrows);
-        console.log(fetchedrows);
+    if (employee_id !== undefined) {
+      Axios.get(`http://localhost:3001/get_leave_applications`, {
+        params: {
+          employee_id: employee_id,
+          status: "0",
+        },
       })
-      .catch((e) => {
-        console.log(e);
-      });
+        .then((response) => {
+          let fetchedrows = response.data.result;
+          if (fetchedrows === undefined) {
+            fetchedrows = [];
+          }
+          // setRows(fetchedrows);
+          setDeclinedRows(fetchedrows);
+          console.log(fetchedrows);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
-      Axios.get(`http://localhost:3001/get_leave_applications`, {params: {
-        employee_id: employee_id,
-        status:"1"
-      }})
-      .then((response) => {
-        let fetchedrows = response.data.result;
-        if (fetchedrows === undefined) {
-          fetchedrows = [];
-        }
-        // setRows(fetchedrows);
-        setApprovedRows(fetchedrows);
-        console.log(fetchedrows);
+      Axios.get(`http://localhost:3001/get_leave_applications`, {
+        params: {
+          employee_id: employee_id,
+          status: "1",
+        },
       })
-      .catch((e) => {
-        console.log(e);
-      });
+        .then((response) => {
+          let fetchedrows = response.data.result;
+          if (fetchedrows === undefined) {
+            fetchedrows = [];
+          }
+          // setRows(fetchedrows);
+          setApprovedRows(fetchedrows);
+          console.log(fetchedrows);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
-      Axios.get(`http://localhost:3001/get_leave_applications`, { params: {
-        employee_id: employee_id,
-        status:"NULL"
-      }})
-      .then((response) => {
-        let fetchedrows = response.data.result;
-        if (fetchedrows === undefined) {
-          fetchedrows = [];
-        }
-        // setRows(fetchedrows);
-        setPendingRows(fetchedrows);
-        console.log(fetchedrows);
+      Axios.get(`http://localhost:3001/get_leave_applications`, {
+        params: {
+          employee_id: employee_id,
+          status: "NULL",
+        },
       })
-      .catch((e) => {
-        console.log(e);
-      });
-
+        .then((response) => {
+          let fetchedrows = response.data.result;
+          if (fetchedrows === undefined) {
+            fetchedrows = [];
+          }
+          // setRows(fetchedrows);
+          setPendingRows(fetchedrows);
+          console.log(fetchedrows);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   }, []);
 
   const handleAccept = (id) => {
@@ -134,8 +139,15 @@ function LeaveApplicationTable(props) {
     })
       .then((response) => {
         console.log(response);
-        setApprovedRows([...approvedRows, pendingRows.find(row => row.leave_id === id)]);
-        setPendingRows(pendingRows.filter(function(row) { return row.leave_id != id; }));
+        setApprovedRows([
+          ...approvedRows,
+          pendingRows.find((row) => row.leave_id === id),
+        ]);
+        setPendingRows(
+          pendingRows.filter(function (row) {
+            return row.leave_id != id;
+          })
+        );
       })
       .catch((e) => {
         console.log(e);
@@ -149,8 +161,15 @@ function LeaveApplicationTable(props) {
     })
       .then((response) => {
         console.log(response);
-        setDeclinedRows([...declinedRows, pendingRows.find(row => row.leave_id === id)]);
-        setPendingRows(pendingRows.filter(function(row) { return row.leave_id != id; }));
+        setDeclinedRows([
+          ...declinedRows,
+          pendingRows.find((row) => row.leave_id === id),
+        ]);
+        setPendingRows(
+          pendingRows.filter(function (row) {
+            return row.leave_id != id;
+          })
+        );
       })
       .catch((e) => {
         console.log(e);
@@ -177,14 +196,32 @@ function LeaveApplicationTable(props) {
       </AppBar>
       <Paper>
         <Tabs
-        variant = "fullWidth"
+          variant="fullWidth"
           value={value}
           onChange={handleChange}
           aria-label="icon label tabs example"
         >
-          <Tab icon={<PendingIcon />} label="PENDING" fontSize="large" sx={{ color: blue[500] }} {...a11yProps(0)} />
-          <Tab icon={<CheckIcon />} label="ACCEPTED" fontSize="large"  sx={{ color: green[900] }} {...a11yProps(1)} />
-          <Tab icon={<ClearIcon />} label="DECLINED" fontSize="large" sx={{ color: pink[500] }} {...a11yProps(2)} />
+          <Tab
+            icon={<PendingIcon />}
+            label="PENDING"
+            fontSize="large"
+            sx={{ color: blue[500] }}
+            {...a11yProps(0)}
+          />
+          <Tab
+            icon={<CheckIcon />}
+            label="ACCEPTED"
+            fontSize="large"
+            sx={{ color: green[900] }}
+            {...a11yProps(1)}
+          />
+          <Tab
+            icon={<ClearIcon />}
+            label="DECLINED"
+            fontSize="large"
+            sx={{ color: pink[500] }}
+            {...a11yProps(2)}
+          />
         </Tabs>
         <TabPanel value={value} index={0}>
           <Table>
@@ -213,7 +250,7 @@ function LeaveApplicationTable(props) {
                     <TableCell>
                       <Button
                         variant="contained"
-                        color= "primary"
+                        color="primary"
                         startIcon={<CheckIcon />}
                         onClick={() => handleAccept(row.leave_id)}
                       >
@@ -224,7 +261,7 @@ function LeaveApplicationTable(props) {
                       <Button
                         variant="contained"
                         startIcon={<ClearIcon />}
-                        color= "inherit"
+                        color="inherit"
                         onClick={() => handleReject(row.leave_id)}
                       >
                         Decline
@@ -237,7 +274,7 @@ function LeaveApplicationTable(props) {
           </Table>
         </TabPanel>
         <TabPanel value={value} index={1}>
-        <Table>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Leave ID </TableCell>
@@ -263,7 +300,7 @@ function LeaveApplicationTable(props) {
                     <TableCell>
                       <Button
                         variant="contained"
-                        color= "success"
+                        color="success"
                         startIcon={<CheckIcon />}
                       >
                         Accepted
@@ -276,7 +313,7 @@ function LeaveApplicationTable(props) {
           </Table>
         </TabPanel>
         <TabPanel value={value} index={2}>
-        <Table>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Leave ID </TableCell>
@@ -300,9 +337,9 @@ function LeaveApplicationTable(props) {
                     <TableCell>{row.from_date}</TableCell>
                     <TableCell>{row.to_date}</TableCell>
                     <TableCell>
-                    <Button
+                      <Button
                         variant="contained"
-                        color= "error"
+                        color="error"
                         startIcon={<ClearIcon />}
                       >
                         Declined

@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
-import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
+import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -24,7 +24,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import EditIcon from "@mui/icons-material/Edit";
@@ -49,6 +49,7 @@ import AddEmployee from "./AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
 
+import Reports from "../ManagerPageComponents/FilterPage";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -105,117 +106,7 @@ export default function HRDashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const [dashBoardSelect, enableDashboard] = useState(true);
-  const [editDetailsSelect, enableEditDetails] = useState(false);
-  const [leaveApproveSelect, enableLeaveApprove] = useState(false);
-  const [signoutSelect, enableSignout] = useState(false);
-  const [profileSelect, enableProfile] = useState(false);
-  const [ApplicationSelect, enableApplication] = useState(false);
-  const [NewEmployeeSelect, enableNewEmployee] = useState(false);
-  const [NewUserSelect, enableNewUser] = useState(false);
-  const [EditCustomSelect, enableEditCustom] = useState(false);
-
-  const toggleDashboard = () => {
-    enableDashboard(true);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-  const toggleEditDetails = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(true);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-  const toggleApplication = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(true);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-  const toggleLeaveApprove = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(true);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-  const toggleSignout = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(true);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-
-  const toggleProfile = () => {
-    enableDashboard(false);
-    enableProfile(true);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(true);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-
-  const toggleNewEmployee = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(true);
-    enableNewUser(false);
-    enableEditCustom(false);
-  };
-  const toggleNewUser = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(true);
-    enableEditCustom(false);
-  };
-  const toggleEditCustom = () => {
-    enableDashboard(false);
-    enableProfile(false);
-    enableApplication(false);
-    enableEditDetails(false);
-    enableLeaveApprove(false);
-    enableSignout(false);
-    enableNewEmployee(false);
-    enableNewUser(false);
-    enableEditCustom(true);
-  };
+  const [activeFeature, setActiveFeature] = useState("Dashboard");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -255,10 +146,9 @@ export default function HRDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
-          <IconButton
-            color="inherit"
-            edge="end"
-          ><NotificationsActiveIcon/></IconButton>
+          <IconButton color="inherit" edge="end">
+            <NotificationsActiveIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -285,53 +175,91 @@ export default function HRDashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItemButton onClick={toggleDashboard}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Dashboard");
+            }}
+          >
             <ListItemIcon>
               <DashboardCustomizeIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleProfile}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Profile");
+            }}
+          >
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleApplication} href="">
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Leave Application");
+            }}
+          >
             <ListItemIcon>
               <FeedIcon />
             </ListItemIcon>
             <ListItemText primary="Leave Application" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleNewEmployee}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Add New Employee");
+            }}
+          >
             <ListItemIcon>
               <AddIcon />
             </ListItemIcon>
             <ListItemText primary="Add New Employee" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleEditDetails}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Edit Employee Details");
+            }}
+          >
             <ListItemIcon>
               <EditIcon />
             </ListItemIcon>
             <ListItemText primary="Edit Employee Details" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleEditCustom}>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Edit Custom Field Details");
+            }}
+          >
             <ListItemIcon>
               <EditLocationAltIcon />
             </ListItemIcon>
             <ListItemText primary="Edit Custom Field Details" />
           </ListItemButton>
           {/* <UserProfile2 /> */}
-          <ListItemButton onClick={toggleLeaveApprove} href="">
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Approve Leave Forms");
+            }}
+          >
             <ListItemIcon>
               <AddTaskIcon />
             </ListItemIcon>
             <ListItemText primary="Approve Leave Forms" />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Reports");
+            }}
+          >
+            <ListItemIcon>
+              <AddTaskIcon />
+            </ListItemIcon>
+            <ListItemText primary="Reports" />
           </ListItemButton>
         </List>
         <Divider />
@@ -354,14 +282,14 @@ export default function HRDashboard() {
           </ListItemButton>
         </List>
       </Drawer>
-      {dashBoardSelect && dashboardContent}
-      {leaveApproveSelect && <LeaveApplicationTable />}
-      {editDetailsSelect && <EditDetails />}
-      {profileSelect && <MainProfile />}
-      {ApplicationSelect && <LeaveForm />}
-      {NewEmployeeSelect && <AddEmployee />}
-      {NewUserSelect && <AddNewUser />}
-      {EditCustomSelect && <EditCustomDetails/>}
+      {activeFeature === "Dashboard" && dashboardContent}
+      {activeFeature === "Profile" && <MainProfile />}
+      {activeFeature === "Edit Employee Details" && <EditDetails />}
+      {activeFeature === "Leave Application" && <LeaveForm />}
+      {activeFeature === "Add New Employee" && <AddEmployee />}
+      {activeFeature === "Edit Custom Field Details" && <EditCustomDetails />}
+      {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
+      {activeFeature === "Reports" && <Reports />}
     </Box>
   );
 }

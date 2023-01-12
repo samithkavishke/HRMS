@@ -9,7 +9,8 @@ router.get("/", (req, res) => {
   //   console.log(req.query);
 
   const status = req.query.status;
-  console.log(req.query);
+  // console.log(req.query);
+  console.log(req.query, req.query.employee_id);
   let status_query = status == "NULL" ? " is NULL" : "=" + status;
 
   pool.query(
