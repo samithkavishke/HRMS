@@ -35,7 +35,10 @@ export default function DepartmentLeaves() {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{marginTop : 8}}
+    >
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>

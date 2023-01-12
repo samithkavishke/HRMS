@@ -50,6 +50,7 @@ import MainProfile from "../UserPageComponents/ProfilePage/Profile";
 import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
 
 import Reports from "../ManagerPageComponents/FilterPage";
+import DepartmentLeaves from "../Reports/TotalLeaves";
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -261,6 +262,16 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Reports" />
           </ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              setActiveFeature("Absent Count");
+            }}
+          >
+            <ListItemIcon>
+              <AddTaskIcon />
+            </ListItemIcon>
+            <ListItemText primary="Absent Count" />
+          </ListItemButton>
         </List>
         <Divider />
         <List>
@@ -290,6 +301,7 @@ export default function HRDashboard() {
       {activeFeature === "Edit Custom Field Details" && <EditCustomDetails />}
       {activeFeature === "Approve Leave Forms" && <LeaveApplicationTable />}
       {activeFeature === "Reports" && <Reports />}
+      {activeFeature === "Absent Count" && <DepartmentLeaves />}
     </Box>
   );
 }
