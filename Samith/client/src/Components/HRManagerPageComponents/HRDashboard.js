@@ -24,10 +24,12 @@ import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import EditIcon from "@mui/icons-material/Edit";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -256,7 +258,7 @@ export default function HRDashboard() {
             }}
           >
             <ListItemIcon>
-              <AddTaskIcon />
+              <SummarizeIcon />
             </ListItemIcon>
             <ListItemText primary="Reports" />
           </ListItemButton>
@@ -266,7 +268,7 @@ export default function HRDashboard() {
             }}
           >
             <ListItemIcon>
-              <AddTaskIcon />
+              <PeopleOutlineIcon />
             </ListItemIcon>
             <ListItemText primary="Absent Count" />
           </ListItemButton>
