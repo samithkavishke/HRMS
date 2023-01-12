@@ -202,7 +202,7 @@ export default function Reports() {
                 id="custom-field-select"
                 value={customAttribute}
                 onChange={handleCustomAttributeChange}
-                label="Custom Field"
+                label="Custom Attribute"
                 select
               >
                 <MenuItem value="None"></MenuItem>
