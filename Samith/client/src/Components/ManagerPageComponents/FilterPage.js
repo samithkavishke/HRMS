@@ -129,8 +129,11 @@ export default function Reports() {
                   <em>None</em>
                 </MenuItem>
                 <MenuItem value={"finance"}>Finance</MenuItem>
-                <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
+                <MenuItem value={"human resource"}>Human Resource</MenuItem>
                 <MenuItem value={"IT"}>IT</MenuItem>
+                <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
+                <MenuItem value={"research and development"}>Research & Development</MenuItem>
+                <MenuItem value={"sales"}>Sales</MenuItem>
               </TextField>
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 150 }}>
@@ -161,9 +164,14 @@ export default function Reports() {
                   <em>None</em>
                 </MenuItem>
                 <MenuItem value={"accountant"}>Accountant</MenuItem>
-                <MenuItem value={"manager"}>Manager</MenuItem>
+                <MenuItem value={"clerk"}>Clerk</MenuItem>
                 <MenuItem value={"designer"}>Designer</MenuItem>
                 <MenuItem value={"engineer"}>Engineer</MenuItem>
+                <MenuItem value={"factory staff"}>Factory Staff</MenuItem>
+                <MenuItem value={"manager"}>Manager</MenuItem>
+                <MenuItem value={"receptionist"}>Receptionist</MenuItem>
+                <MenuItem value={"supervisor"}>Supervisor</MenuItem>
+                
               </TextField>
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 150 }}>

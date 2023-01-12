@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   }
 
   pool.query(
-    `SELECT * FROM ${dbname}.employee_work join ${dbname}.add_emp_details on ${dbname}.employee_work.employee_id = ${dbname}.add_emp_details.employee_id where ` +
+    `SELECT * FROM ${dbname}.add_emp_details right outer join ${dbname}.employee_work on ${dbname}.employee_work.employee_id = ${dbname}.add_emp_details.employee_id where ` +
       dept_string +
       ` and ` +
       grade_string +

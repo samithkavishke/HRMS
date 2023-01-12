@@ -53,23 +53,36 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="job_title"
-                  required
-                  fullWidth
-                  id="job_title"
-                  label="Job Title"
-                  defaultValue={workerData.job_title}
-                  onChange={(e) => {
-                    setWorkerData({
-                      ...workerData,
-                      job_title: e.target.value,
-                    });
-                  }}
-                  autoFocus
-                />
+        
+              <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="job_title" defaultValue={""}>
+                    Job Title
+                  </InputLabel>
+                  <Select
+                    id="job_title"
+                    value={workerData.job_title}
+                    label="Job Title"
+                    onChange={(e) => {
+                      setWorkerData({
+                        ...workerData,
+                        job_title: e.target.value,
+                      });
+                    }}
+                    defaultValue=""
+                  >
+                      <MenuItem value={"accountant"}>Accountant</MenuItem>
+                      <MenuItem value={"manager"}>Manager</MenuItem>
+                      <MenuItem value={"designer"}>Designer</MenuItem>
+                      <MenuItem value={"engineer"}>Engineer</MenuItem>
+                      <MenuItem value={"receptionist"}>Receptionist</MenuItem>
+                      <MenuItem value={"factory staff"}>Factory Staff</MenuItem>
+                      <MenuItem value={"supervisor"}>Supervisor</MenuItem>
+                      <MenuItem value={"clerk"}>Clerk</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
+
               
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
