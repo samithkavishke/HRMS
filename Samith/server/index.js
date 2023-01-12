@@ -110,10 +110,18 @@ app.use(
 app.use("/is_applicable", require("./routes/LeaveFillRoutes/Applicable.jsx"));
 
 /*Routing the request to insert Number of Days for each type of Leave*/
-// app.use(
-//   "/edit-leave-days",
-//   require("")
-// );
+app.use(
+  "/change_leave_days",
+  require("./routes/EditLeaveCountRoutes/ChangeLeaveDays.jsx")
+);
+app.use(
+  "/get_leave_days",
+  require("./routes/EditLeaveCountRoutes/GetLeaveDays.jsx")
+);
+app.use(
+  "/add_leave_days",
+  require("./routes/EditLeaveCountRoutes/AddLeaveDayEntry.jsx")
+);
 
 /* Routing the request to the Custom Attributes file */
 app.use(
@@ -151,4 +159,3 @@ app.use(
   "/get_custom_attributes",
   require("./routes/ReportGeneration/GetCustomAttributes.jsx")
 );
-
