@@ -59,11 +59,9 @@ export default function AddEmployee() {
     contract_period: "",
     department: "",
   });
-  // console.log(workerData);
+
 
   const submit = () => {
-    console.log("hi");
-    // Axios.post()
     console.log(dependantData);
     Axios.post("http://localhost:3001/AddEmployeeInfo", {
       workerData: workerData,

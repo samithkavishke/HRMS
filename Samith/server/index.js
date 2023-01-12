@@ -22,7 +22,6 @@ app.use(cookieParser());
 // Route for index
 app.use("/login", require("./routes/Login.jsx"));
 
-app.use("/filter", require("./routes/FilterData.jsx"));
 app.use(
   "/details-by-employee-id",
   require("./routes/EditEmployeeRoutes/EmployeeData.jsx")
@@ -134,3 +133,12 @@ app.use(
   "/get_subordinates",
   require("./routes/ViewSubordinates/GetSubordinates.jsx")
 );
+
+/* Routing the request to the Report Generation file */
+app.use("/filter", require("./routes/ReportGeneration/FilterData.jsx"));
+
+app.use(
+  "/get_custom_attributes",
+  require("./routes/ReportGeneration/GetCustomAttributes.jsx")
+);
+
