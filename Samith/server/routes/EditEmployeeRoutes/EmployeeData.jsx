@@ -6,8 +6,6 @@ const cors = require("cors");
 let employee_id = "";
 
 router.get("/", (req, res) => {
-  // let result1 = [];
-  // console.log(req.params.employee_id);
   const employee_id = req.query.employee_id;
   pool.query(
     `SELECT job_title, pay_grade, employee_status, contract_period, department FROM ${dbname}.employee_work where employee_id =  ` +

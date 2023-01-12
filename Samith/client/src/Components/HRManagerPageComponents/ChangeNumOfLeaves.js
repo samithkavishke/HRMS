@@ -13,77 +13,80 @@ import { AppBar, Toolbar } from "@mui/material";
 export default function ChangeNumOfLeaves() {
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/get_branch_info`, {})
-      .then((response) => {
-        const fetchedrows = response.data.result;
-        for (let i = 0; i < response.data.result.length; i++) {
-          fetchedrows[i].id = i + 1;
-        }
-        setRows(fetchedrows);
-        console.log(fetchedrows);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Axios.get(`http://localhost:3001/get_branch_info`, {})
+  //     .then((response) => {
+  //       const fetchedrows = response.data.result;
+  //       for (let i = 0; i < response.data.result.length; i++) {
+  //         fetchedrows[i].id = i + 1;
+  //       }
+  //       setRows(fetchedrows);
+  //       console.log(fetchedrows);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // }, []);
 
-  const handleRowEditCommit = (params) => {
-    console.log("hi");
-    const id = params.id;
-    const key = params.field;
-    const value = params.value;
-    console.log(params.id);
+  // const handleRowEditCommit = (params) => {
+  //   console.log("hi");
+  //   const id = params.id;
+  //   const key = params.field;
+  //   const value = params.value;
+  //   console.log(params.id);
 
-    // Find the index of the row that was edited
-    const index = rows.findIndex((row) => row.id === id);
+  //   // Find the index of the row that was edited
+  //   const index = rows.findIndex((row) => row.id === id);
 
-    // Create a new copy of the rows array
-    const updatedRows = [...rows];
+  //   // Create a new copy of the rows array
+  //   const updatedRows = [...rows];
 
-    // Update the value of the edited cell in the new rows array
-    updatedRows[index] = {
-      ...updatedRows[index],
-      [key]: value,
-    };
-    // Update the rows state with the new rows array
-    setRows(updatedRows);
-    console.log(updatedRows[index]);
-    Axios.post("http://localhost:3001/change_branch_info", {
-      pay_grade: updatedRows[index].pay_grade,
-      gender: updatedRows[index].gender,
-      Annual_leave: updatedRows[index].Annual_leave,
-      Maternal_leave: updatedRows[index].Maternal_leave,
-      Casual_leave: updatedRows[index].Casual_leave,
-      no_pay_leave: updatedRows[index].no_pay_leave,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  //   // Update the value of the edited cell in the new rows array
+  //   updatedRows[index] = {
+  //     ...updatedRows[index],
+  //     [key]: value,
+  //   };
+  //   // Update the rows state with the new rows array
+  //   setRows(updatedRows);
+  //   console.log(updatedRows[index]);
+  //   Axios.post("http://localhost:3001/change_branch_info", {
+  //     pay_grade: updatedRows[index].pay_grade,
+  //     gender: updatedRows[index].gender,
+  //     Annual_leave: updatedRows[index].Annual_leave,
+  //     Maternal_leave: updatedRows[index].Maternal_leave,
+  //     Casual_leave: updatedRows[index].Casual_leave,
+  //     no_pay_leave: updatedRows[index].no_pay_leave,
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // console.log(data.get("username"));
-    Axios.post("http://localhost:3001/edit-leave-days", {
-      pay_grade: data.get("pay_grade"),
-      gender: data.get("gender"),
-      Annual_leave: data.get("Annual_leave"),
-      Maternal_leave: data.get("Maternal_leave"),
-      Casual_leave: data.get("Casual_leave"),
-      no_pay_leave: data.get("no_pay_leave"),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // console.log(data.get("username"));
+  //   Axios.post("http://localhost:3001/edit-leave-days", {
+  //     pay_grade: data.get("pay_grade"),
+  //     gender: data.get("gender"),
+  //     Annual_leave: data.get("Annual_leave"),
+  //     Maternal_leave: data.get("Maternal_leave"),
+  //     Casual_leave: data.get("Casual_leave"),
+  //     no_pay_leave: data.get("no_pay_leave"),
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
+  const handleRowEditCommit = () => {}
+  const handleSubmit = () => {};
+
 
   return (
     <div style={{ height: 480, width: "100%" }}>

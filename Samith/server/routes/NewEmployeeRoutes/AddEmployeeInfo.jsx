@@ -26,6 +26,20 @@ router.post("/", (req, res) => {
     "|birth_year:",
     birth_year
   );
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   pool.query(
     `INSERT INTO ${dbname}.employee_work (employee_id, job_title, pay_grade, employee_status, contract_period, department) VALUES (?,?,?,?,?,?);`,
@@ -51,7 +65,7 @@ router.post("/", (req, res) => {
           personalData.address_line_2,
           personalData.town,
           birth_year,
-          birth_month + 1,
+          monthNames[birth_month],
           birth_date,
           personalData.marital_status,
           personalData.gender,
