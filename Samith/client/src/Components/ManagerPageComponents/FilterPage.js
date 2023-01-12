@@ -60,20 +60,6 @@ export default function Reports() {
     }
   }, [customField]);
 
-  // useEffect(() => {
-  //   Axios.get(`http://localhost:3001/get_custom_data`, {
-  //     params: { attribute: customAttribute, field: customField },
-  //   })
-  //     .then((response) => {
-  //       setAttributes(response.data.result);
-  //       // console.log(fields);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, [customField]);
-
-  // handleCustomAttributeChange;
 
   useEffect(() => {
     console.log("customAttribute :", customAttribute);

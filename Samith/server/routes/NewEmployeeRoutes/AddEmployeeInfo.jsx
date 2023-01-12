@@ -11,6 +11,22 @@ router.post("/", (req, res) => {
   const emergencyData = req.body.emergencyData;
   const dependantData = req.body.dependantData;
 
+  const BirthDate = new Date(personalData.birthdate);
+
+  const birth_date = BirthDate.getDate();
+  const birth_month = BirthDate.getMonth();
+  const birth_year = BirthDate.getFullYear();
+  console.log(
+    "BirthDate:",
+    BirthDate,
+    "|birth_date:",
+    birth_date,
+    "|birth_month:",
+    birth_month,
+    "|birth_year:",
+    birth_year
+  );
+
   pool.query(
     `INSERT INTO ${dbname}.employee_work (employee_id, job_title, pay_grade, employee_status, contract_period, department) VALUES (?,?,?,?,?,?);`,
     [
@@ -34,9 +50,9 @@ router.post("/", (req, res) => {
           personalData.address_line_1,
           personalData.address_line_2,
           personalData.town,
-          personalData.birth_year,
-          personalData.birth_month,
-          personalData.birth_date,
+          birth_year,
+          birth_month + 1,
+          birth_date,
           personalData.marital_status,
           personalData.gender,
         ],
