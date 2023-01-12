@@ -11,16 +11,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
-import { useContext } from "react";
-import { AppBar, Toolbar } from "@mui/material";
+import { useContext, useState } from "react";
+import { AppBar, Toolbar, Alert } from "@mui/material";
 
 const theme = createTheme();
 //Login start
 
 export default function SignIn() {
-
   const { setLoggedIn, setCookie } = useContext(LoginContext);
-  const { info, setUser, setInfo, setId } = useContext(UserContext)
+  const { setUser, setInfo } = useContext(UserContext);
+  const [alert, setAlert] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,16 +35,20 @@ export default function SignIn() {
         if (response.data.success) {
           console.log(response.data.info);
           setLoggedIn(true);
-          setUser(response.data.info.user_type)
-          setInfo([response.data.info.emp_id, response.data.info.supervisors])
-          setCookie('user_type', response.data.info.user_type, {path: "/"})
-          setCookie('emp_id', response.data.info.emp_id, {path: "/"})
-          setCookie('depends', response.data.info.supervisors, {path: "/"})
-          
+          setUser(response.data.info.user_type);
+          setInfo([response.data.info.emp_id, response.data.info.supervisors]);
+          setCookie("user_type", response.data.info.user_type, { path: "/" });
+          setCookie("emp_id", response.data.info.emp_id, { path: "/" });
+          setCookie("depends", response.data.info.supervisors, { path: "/" });
+
           return <Navigate to="/Home" />;
+        } else {
+          console.log(response.data);
+          setAlert("Error logging in");
         }
       })
       .catch((e) => {
+        setAlert("Error logging in");
         console.log(e);
       });
   };
@@ -81,6 +85,7 @@ export default function SignIn() {
             noValidate
             sx={{ mt: 1 }}
           >
+            {alert && <Alert severity="error">{alert}</Alert>}
             <TextField
               margin="normal"
               required

@@ -24,6 +24,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Alert,
 } from "@mui/material";
 
 const theme = createTheme();
@@ -35,6 +36,7 @@ function LeaveForm(props) {
   // const rows = {};
   let remain_leaves_dict = {};
   const [remainDays, setRemaindays] = useState({});
+  const [alert, setAlert] = useState();
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/is_applicable`, {
@@ -49,7 +51,7 @@ function LeaveForm(props) {
           // remain_leaves_dict = response.data.remain_leaves;
 
           setRemaindays(response.data.remain_leaves);
-
+          setAlert("ERROR: LEAVE_NOT_APPLICABLE");
           return console.log("Not Applicable", employee_id);
           // return <Navigate />;
         }
@@ -63,6 +65,7 @@ function LeaveForm(props) {
       })
       .catch((e) => {
         console.log(e);
+        setAlert(`ERROR: ${e.code}`);
       });
   }, []);
 
@@ -148,6 +151,11 @@ function LeaveForm(props) {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
+            {alert && (
+              <Alert severity="error" sx={{ marginBottom: 2 }}>
+                {alert}
+              </Alert>
+            )}
             <Grid container spacing={2}>
               {/* <Grid item xs={12} sm={12}>
                 <TextField

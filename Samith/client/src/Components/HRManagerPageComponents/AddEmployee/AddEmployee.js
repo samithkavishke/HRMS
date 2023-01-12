@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar, Alert } from "@mui/material";
 import AddDependent from "./AddDependent";
 import AddEmergencyInfo from "./AddEmergencyInfo";
 import AddNewWorker from "./AddNewWorker";
@@ -18,6 +18,7 @@ import Axios from "axios";
 const theme = createTheme();
 
 export default function AddEmployee() {
+  const [alert, setAlert] = useState();
   const title = [
     "Add New Employee",
     "Provide Personal Info",
@@ -62,7 +63,7 @@ export default function AddEmployee() {
   });
 
   const submit = () => {
-    console.log(dependantData);
+    // console.log(dependantData);
     Axios.post("http://localhost:3001/AddEmployeeInfo", {
       workerData: workerData,
       emergencyData: emergencyData,
@@ -70,10 +71,12 @@ export default function AddEmployee() {
       dependantData: dependantData,
     })
       .then((response) => {
+        setAlert(`ERROR: ${response.data.error}`);
         console.log(response);
       })
       .catch((e) => {
         console.log(e);
+        setAlert(`ERROR: ${e.code}`);
       });
   };
 
@@ -118,30 +121,43 @@ export default function AddEmployee() {
           <Typography component="h1" variant="h2" align="center">
             {title[page]}
           </Typography>
-          {page === 0 && (
-            <AddNewWorker
-              workerData={workerData}
-              setWorkerData={setWorkerData}
-            />
-          )}
-          {page === 1 && (
-            <AddPersonalInfo
-              personalData={personalData}
-              setPersonalData={setPersonalData}
-            />
-          )}
-          {page === 2 && (
-            <AddEmergencyInfo
-              emergencyData={emergencyData}
-              setEmergencyData={setEmergencyData}
-            />
-          )}
-          {page === 3 && (
-            <AddDependent
-              dependantData={dependantData}
-              setDependantData={setDependantData}
-            />
-          )}
+          <Box
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {alert && (
+              <Alert severity="error" sx={{ marginBottom: 2 }}>
+                {alert}
+              </Alert>
+            )}
+            {page === 0 && (
+              <AddNewWorker
+                workerData={workerData}
+                setWorkerData={setWorkerData}
+              />
+            )}
+            {page === 1 && (
+              <AddPersonalInfo
+                personalData={personalData}
+                setPersonalData={setPersonalData}
+              />
+            )}
+            {page === 2 && (
+              <AddEmergencyInfo
+                emergencyData={emergencyData}
+                setEmergencyData={setEmergencyData}
+              />
+            )}
+            {page === 3 && (
+              <AddDependent
+                dependantData={dependantData}
+                setDependantData={setDependantData}
+              />
+            )}
+          </Box>
           <Box component={"form"} noValidate sx={{ mt: 3 }}>
             <Button
               disabled={page === 0}
