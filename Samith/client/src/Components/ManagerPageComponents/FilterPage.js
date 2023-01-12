@@ -81,6 +81,7 @@ export default function Reports() {
               <MenuItem value={"finance"}>Finance</MenuItem>
               <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
               <MenuItem value={"IT"}>IT</MenuItem>
+              <MenuItem value={"human resource"}>Human Resource</MenuItem>
             </TextField>
           </FormControl>
           <FormControl sx={{ m: 2, minWidth: 200 }}>
@@ -114,6 +115,8 @@ export default function Reports() {
               <MenuItem value={"manager"}>Manager</MenuItem>
               <MenuItem value={"designer"}>Designer</MenuItem>
               <MenuItem value={"engineer"}>Engineer</MenuItem>
+              <MenuItem value={"receptionist"}>Receptionist</MenuItem>
+              <MenuItem value={"garment worker"}>Factory Staff</MenuItem>
             </TextField>
           </FormControl>
           {/* <Button type="submit"> Click Here</Button> */}
@@ -130,6 +133,7 @@ export default function Reports() {
                 <TableCell align="right">Pay Grade</TableCell>
                 <TableCell align="right">Employee Status</TableCell>
                 <TableCell align="right">Contract Period</TableCell>
+                <TableCell align="right">Department</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -147,6 +151,7 @@ export default function Reports() {
                   <TableCell align="right">{row.pay_grade}</TableCell>
                   <TableCell align="right">{row.employee_status}</TableCell>
                   <TableCell align="right">{row.contract_period}</TableCell>
+                  <TableCell align="right">{row.department}</TableCell>
                 </TableRow>
               ))}
               {/* })} */}
