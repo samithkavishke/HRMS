@@ -14,6 +14,11 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
 const theme = createTheme();
 
 const AddPersonalInfo = ({ personalData, setPersonalData }) => {
@@ -131,7 +136,55 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                   />
                 </LocalizationProvider>
               </Grid>
+
               <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="marital_status" defaultValue={""}>
+                    Martial Status
+                  </InputLabel>
+                  <Select
+                    id="marital_status"
+                    value={personalData.marital_status}
+                    label="Martial Status"
+                    onChange={(e) => {
+                      setPersonalData({
+                        ...personalData,
+                        marital_status: e.target.value,
+                      });
+                    }}
+                    defaultValue=""
+                  >
+                    <MenuItem value={"single"}>Single</MenuItem>
+                    <MenuItem value={"married"}>Married</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid> 
+
+              <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="gender" defaultValue={""}>
+                    Gender
+                  </InputLabel>
+                  <Select
+                    id="gender"
+                    value={personalData.gender}
+                    label="Gender"
+                    onChange={(e) => {
+                      setPersonalData({
+                        ...personalData,
+                        gender: e.target.value,
+                      });
+                    }}
+                    defaultValue=""
+                  >
+                    <MenuItem value={"male"}>Male</MenuItem>
+                    <MenuItem value={"female"}>Female</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid> 
+
+
+              {/* <Grid item xs={12} sm={12}>
                 <TextField
                   required
                   fullWidth
@@ -146,8 +199,8 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                     })
                   }
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </Grid> */}
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -162,7 +215,7 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                     })
                   }
                 />
-              </Grid>
+              </Grid> */}
 
               <Button onClick={() => console.log(personalData)}>LOG</Button>
             </Grid>
