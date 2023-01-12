@@ -23,6 +23,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
+import AssessmentIcon from '@mui/icons-material/Assessment';
 import PublicIcon from "@mui/icons-material/Public";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -257,7 +258,7 @@ export default function HRDashboard() {
             }}
           >
             <ListItemIcon>
-              <AddTaskIcon />
+              <AssessmentIcon />
             </ListItemIcon>
             <ListItemText primary="Reports" />
           </ListItemButton>
