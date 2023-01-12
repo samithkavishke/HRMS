@@ -10,12 +10,13 @@ router.get("/", (req, res) => {
   //   console.log(req.query);
 
   const status = req.query.status;
-
-  let query = status=="NULL" ?" is NULL" : "=" + status;
+  
+  let status_query = status=="NULL" ?" is NULL" : "=" + status;
 
   pool.query(
 
-    `SELECT * FROM ${dbname}.leave_application where approval_status${query} `,
+    `SELECT * FROM ${dbname}.leave_application join ${dbname}.subordinates where subordinate_id = employee_id and supervisor_id = ? and approval_status${status_query} `,
+    [req.query.employee_id],
 
     (err, rows, field) => {
       if (err) {

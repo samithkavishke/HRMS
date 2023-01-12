@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
+import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -23,6 +24,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import EditIcon from "@mui/icons-material/Edit";
@@ -45,6 +47,8 @@ import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "./AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
+import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
+
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -109,6 +113,7 @@ export default function HRDashboard() {
   const [ApplicationSelect, enableApplication] = useState(false);
   const [NewEmployeeSelect, enableNewEmployee] = useState(false);
   const [NewUserSelect, enableNewUser] = useState(false);
+  const [EditCustomSelect, enableEditCustom] = useState(false);
 
   const toggleDashboard = () => {
     enableDashboard(true);
@@ -119,6 +124,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
   const toggleEditDetails = () => {
     enableDashboard(false);
@@ -129,6 +135,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
   const toggleApplication = () => {
     enableDashboard(false);
@@ -139,6 +146,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
   const toggleLeaveApprove = () => {
     enableDashboard(false);
@@ -149,6 +157,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
   const toggleSignout = () => {
     enableDashboard(false);
@@ -159,6 +168,7 @@ export default function HRDashboard() {
     enableSignout(true);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
 
   const toggleProfile = () => {
@@ -170,6 +180,7 @@ export default function HRDashboard() {
     enableSignout(true);
     enableNewEmployee(false);
     enableNewUser(false);
+    enableEditCustom(false);
   };
 
   const toggleNewEmployee = () => {
@@ -181,6 +192,7 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(true);
     enableNewUser(false);
+    enableEditCustom(false);
   };
   const toggleNewUser = () => {
     enableDashboard(false);
@@ -191,6 +203,18 @@ export default function HRDashboard() {
     enableSignout(false);
     enableNewEmployee(false);
     enableNewUser(true);
+    enableEditCustom(false);
+  };
+  const toggleEditCustom = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableEditCustom(true);
   };
 
   const handleDrawerOpen = () => {
@@ -231,6 +255,10 @@ export default function HRDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
+          <IconButton
+            color="inherit"
+            edge="end"
+          ><NotificationsActiveIcon/></IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -291,6 +319,13 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Edit Employee Details" />
           </ListItemButton>
+
+          <ListItemButton onClick={toggleEditCustom}>
+            <ListItemIcon>
+              <EditLocationAltIcon />
+            </ListItemIcon>
+            <ListItemText primary="Edit Custom Field Details" />
+          </ListItemButton>
           {/* <UserProfile2 /> */}
           <ListItemButton onClick={toggleLeaveApprove} href="">
             <ListItemIcon>
@@ -326,6 +361,7 @@ export default function HRDashboard() {
       {ApplicationSelect && <LeaveForm />}
       {NewEmployeeSelect && <AddEmployee />}
       {NewUserSelect && <AddNewUser />}
+      {EditCustomSelect && <EditCustomDetails/>}
     </Box>
   );
 }

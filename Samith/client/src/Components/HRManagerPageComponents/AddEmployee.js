@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Axios from "axios";
 import { AppBar, Toolbar } from "@mui/material";
 import AddDependent from "./AddDependent";
 import AddNewUser from "./AddNewUser";
@@ -15,20 +14,22 @@ import AddEmergencyInfo from "./AddEmergencyInfo";
 import AddNewWorker from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
 
+import Axios from "axios";
+
 const theme = createTheme();
 
 export default function AddEmployee() {
   const title = [
-    "Add new worker",
+    "Add New Employee",
     "Provide Personal Info",
     "Provide Emergency Info",
     "Provide Dependant Info",
   ];
   const [page, setPage] = useState(0);
   const [dependantData, setDependantData] = useState({
-    employee_contact: "",
-    contact_first_name: "",
-    contact_last_name: "",
+    dependant_id: "",
+    dependant_first_name: "",
+    dependant_last_name: "",
   });
 
   const [personalData, setPersonalData] = useState({
@@ -38,7 +39,7 @@ export default function AddEmployee() {
     address_line_2: "",
     town: "",
     contact_number: "",
-    birthdate: "",
+    birthdate: new Date(),
     marital_status: "",
     gender: "",
   });
@@ -51,16 +52,32 @@ export default function AddEmployee() {
     ec_relation: "",
   });
 
-  const [userData, setUserData] = useState({
+  const [workerData, setWorkerData] = useState({
     employee_id: "",
-    username: "",
-    password: "",
-    user_type: "",
-    branch_code: "",
+    job_title: "",
+    pay_grade: "",
+    employee_status: "",
+    contract_period: "",
+    department: "",
   });
+  // console.log(workerData);
 
   const submit = () => {
-    // Submit userdata, emergencyData, personalData, dependantData
+    console.log("hi");
+    // Axios.post()
+    console.log(dependantData);
+    Axios.post("http://localhost:3001/AddEmployeeInfo", {
+      workerData: workerData,
+      emergencyData: emergencyData,
+      personalData: personalData,
+      dependantData: dependantData,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -80,7 +97,7 @@ export default function AddEmployee() {
               onClick={() =>
                 console.log(
                   personalData,
-                  userData,
+                  workerData,
                   emergencyData,
                   dependantData
                 )
@@ -102,7 +119,10 @@ export default function AddEmployee() {
             {title[page]}
           </Typography>
           {page === 0 && (
-            <AddNewWorker userData={userData} setUserData={setUserData} />
+            <AddNewWorker
+              workerData={workerData}
+              setWorkerData={setWorkerData}
+            />
           )}
           {page === 1 && (
             <AddPersonalInfo
@@ -122,7 +142,7 @@ export default function AddEmployee() {
               setDependantData={setDependantData}
             />
           )}
-          <Box component="form" noValidate onSubmit={2} sx={{ mt: 3 }}>
+          <Box component={"form"} noValidate sx={{ mt: 3 }}>
             <Button
               disabled={page === 0}
               onClick={() => {
@@ -136,9 +156,7 @@ export default function AddEmployee() {
             </Button>
             {page === title.length - 1 ? (
               <Button
-                onClick={() => {
-                  submit();
-                }}
+                onClick={submit}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
@@ -147,7 +165,7 @@ export default function AddEmployee() {
               </Button>
             ) : (
               <Button
-                disabled={page === title.length - 1}
+                disabled={!workerData.employee_id}
                 onClick={() => {
                   setPage((page) => page + 1);
                 }}

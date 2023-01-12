@@ -39,7 +39,7 @@ export default function EditCustomDetails() {
   const SubmitChanges = (event) => {
     event.preventDefault();
 
-    Axios.post("http://localhost:3001/add_details", {
+    Axios.post("http://localhost:3001/AddEmployeeInfo", {
       column: column,
       value: customColumnValue,
       employee_id: employee_id,

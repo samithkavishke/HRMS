@@ -16,13 +16,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
-import GroupsIcon from "@mui/icons-material/Groups";
+import AddIcon from "@mui/icons-material/Add";
+import PublicIcon from "@mui/icons-material/Public";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import TableViewIcon from '@mui/icons-material/TableView';
 import EditIcon from "@mui/icons-material/Edit";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,10 +34,23 @@ import { Link, Navigate, redirect } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
+import AddNewUser from "../HRManagerPageComponents/AddNewUser";
+import AddDependent from "../HRManagerPageComponents/AddDependent";
+import ChangeDependents from "../HRManagerPageComponents/ChangeDependents";
+import ChangeSalary from "../HRManagerPageComponents/ChangeSalary";
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
+import AddEmergencyInfo from "../HRManagerPageComponents/AddEmergencyInfo";
+import AddNewWorker from "../HRManagerPageComponents/AddNewWorker";
+import AddPersonalInfo from "../HRManagerPageComponents/AddPersonalInfo";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
-import UserProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
+import AddEmployee from "../HRManagerPageComponents/AddEmployee";
+import MainProfile from "../UserPageComponents/ProfilePage/Profile";
+import ChangeTable from "./AlterTable";
+import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
+import CustomizeTable from "../CustomAttrinutePageComponents/CustomizeTable";
+
 // import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
@@ -84,7 +100,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function SupervisorDashboard() {
+export default function AdminDashboard() {
   const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
   const { user, setUser } = useContext(UserContext);
 
@@ -94,8 +110,12 @@ export default function SupervisorDashboard() {
   const [dashBoardSelect, enableDashboard] = useState(true);
   const [editDetailsSelect, enableEditDetails] = useState(false);
   const [leaveApproveSelect, enableLeaveApprove] = useState(false);
+  const [signoutSelect, enableSignout] = useState(false);
   const [profileSelect, enableProfile] = useState(false);
   const [ApplicationSelect, enableApplication] = useState(false);
+  const [NewEmployeeSelect, enableNewEmployee] = useState(false);
+  const [NewUserSelect, enableNewUser] = useState(false);
+  const [CustomAttrSelect, enableCustomAttr] = useState(false);
 
   const toggleDashboard = () => {
     enableDashboard(true);
@@ -103,6 +123,10 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(false);
     enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
   };
   const toggleEditDetails = () => {
     enableDashboard(false);
@@ -110,6 +134,10 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(true);
     enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
   };
   const toggleApplication = () => {
     enableDashboard(false);
@@ -117,6 +145,10 @@ export default function SupervisorDashboard() {
     enableApplication(true);
     enableEditDetails(false);
     enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
   };
   const toggleLeaveApprove = () => {
     enableDashboard(false);
@@ -124,6 +156,21 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(false);
     enableLeaveApprove(true);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
+  };
+  const toggleSignout = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(true);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
   };
 
   const toggleProfile = () => {
@@ -132,6 +179,45 @@ export default function SupervisorDashboard() {
     enableApplication(false);
     enableEditDetails(false);
     enableLeaveApprove(false);
+    enableSignout(true);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(false);
+  };
+
+  const toggleNewEmployee = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(true);
+    enableNewUser(false);
+    enableCustomAttr(false);
+  };
+  const toggleNewUser = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(true);
+    enableCustomAttr(false);
+  };
+
+  const toggleCustomAttr = () => {
+    enableDashboard(false);
+    enableProfile(false);
+    enableApplication(false);
+    enableEditDetails(false);
+    enableLeaveApprove(false);
+    enableSignout(false);
+    enableNewEmployee(false);
+    enableNewUser(false);
+    enableCustomAttr(true);
   };
 
   const handleDrawerOpen = () => {
@@ -158,7 +244,7 @@ export default function SupervisorDashboard() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} color="secondary">
+      <AppBar position="fixed" open={open} color="warning">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -223,18 +309,32 @@ export default function SupervisorDashboard() {
             <ListItemText primary="Leave Application" />
           </ListItemButton>
 
-          <ListItemButton onClick={toggleEditDetails}>
+          <ListItemButton onClick={toggleNewEmployee}>
             <ListItemIcon>
-              <GroupsIcon />
+              <AddIcon />
             </ListItemIcon>
-            <ListItemText primary="View Subordinate Details" />
+            <ListItemText primary="Add New Employee" />
+          </ListItemButton>
+
+          <ListItemButton onClick={toggleNewUser}>
+            <ListItemIcon>
+              <PublicIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add New User Account" />
           </ListItemButton>
           {/* <UserProfile2 /> */}
-          <ListItemButton onClick={toggleLeaveApprove} href="">
+          {/* <ListItemButton onClick={toggleLeaveApprove} href="">
             <ListItemIcon>
               <AddTaskIcon />
             </ListItemIcon>
             <ListItemText primary="Approve Leave Forms" />
+          </ListItemButton> */}
+
+          <ListItemButton onClick={toggleCustomAttr} href="">
+            <ListItemIcon>
+              <TableViewIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add New Custom Fields" />
           </ListItemButton>
         </List>
         <Divider />
@@ -260,8 +360,12 @@ export default function SupervisorDashboard() {
       {dashBoardSelect && dashboardContent}
       {leaveApproveSelect && <LeaveApplicationTable />}
       {editDetailsSelect && <EditDetails />}
-      {profileSelect && <UserProfile />}
+      {profileSelect && <MainProfile />}
       {ApplicationSelect && <LeaveForm />}
+      {NewEmployeeSelect && <AddEmployee />}
+      {NewUserSelect && <AddNewUser />}
+      {CustomAttrSelect && <CustomizeTable/>}
+
     </Box>
   );
 }

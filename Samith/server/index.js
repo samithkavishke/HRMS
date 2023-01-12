@@ -34,21 +34,25 @@ app.use(
 
 /* Routing the request to the NewEmployee Routes file. */
 app.use(
-  "/AddNewWorker",
-  require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
+  "/AddEmployeeInfo",
+  require("./routes/NewEmployeeRoutes/AddEmployeeInfo.jsx")
 );
-app.use(
-  "/AddNewPersonalInfo",
-  require("./routes/NewEmployeeRoutes/AddNewPersonalInfo.jsx")
-);
-app.use(
-  "/AddEmergencyInfo",
-  require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
-);
-app.use(
-  "/AddNewDependent",
-  require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
-);
+// app.use(
+//   "/AddNewWorker",
+//   require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
+// );
+// app.use(
+//   "/AddNewPersonalInfo",
+//   require("./routes/NewEmployeeRoutes/AddNewPersonalInfo.jsx")
+// );
+// app.use(
+//   "/AddEmergencyInfo",
+//   require("./routes/NewEmployeeRoutes/AddNewEmergencyInfo.jsx")
+// );
+// app.use(
+//   "/AddNewDependent",
+//   require("./routes/NewEmployeeRoutes/AddNewWorker.jsx")
+// );
 
 /* Routing the request to the NewUser Routes file. */
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));

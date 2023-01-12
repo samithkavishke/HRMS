@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import Axios from "axios";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -19,6 +20,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import PendingIcon from '@mui/icons-material/Pending';
 import { pink, blue, green } from '@mui/material/colors';
 
+
+import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { useContext } from "react";
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -61,13 +65,20 @@ function a11yProps(index) {
 
 function LeaveApplicationTable(props) {
   const { classes } = props;
+  const { cookies } = useContext(LoginContext);
+  const employee_id = cookies.emp_id;
+
   const [pendingRows, setPendingRows] = useState([]);
   const [approvedRows, setApprovedRows] = useState([]);
   const [declinedRows, setDeclinedRows] = useState([]);
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/get_leave_applications?status=0`, {})
+    Axios.get(`http://localhost:3001/get_leave_applications`, {
+    params: {
+        employee_id: employee_id,
+        status:"0"
+      }})
       .then((response) => {
         let fetchedrows = response.data.result;
         if (fetchedrows === undefined) {
@@ -81,7 +92,10 @@ function LeaveApplicationTable(props) {
         console.log(e);
       });
 
-      Axios.get(`http://localhost:3001/get_leave_applications?status=1`, {})
+      Axios.get(`http://localhost:3001/get_leave_applications`, {params: {
+        employee_id: employee_id,
+        status:"1"
+      }})
       .then((response) => {
         let fetchedrows = response.data.result;
         if (fetchedrows === undefined) {
@@ -95,7 +109,10 @@ function LeaveApplicationTable(props) {
         console.log(e);
       });
 
-      Axios.get(`http://localhost:3001/get_leave_applications?status=NULL`, {})
+      Axios.get(`http://localhost:3001/get_leave_applications`, { params: {
+        employee_id: employee_id,
+        status:"NULL"
+      }})
       .then((response) => {
         let fetchedrows = response.data.result;
         if (fetchedrows === undefined) {
