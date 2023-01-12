@@ -36,6 +36,10 @@ app.use(
   "/AddEmployeeInfo",
   require("./routes/NewEmployeeRoutes/AddEmployeeInfo.jsx")
 );
+app.use(
+  "/get_supervisors",
+  require("./routes/NewEmployeeRoutes/GetSupervisors.jsx")
+);
 
 /* Routing the request to the NewUser Routes file. */
 app.use("/AddNewUser", require("./routes/AddNewUser.jsx"));

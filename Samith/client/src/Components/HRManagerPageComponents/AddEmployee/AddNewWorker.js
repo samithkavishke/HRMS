@@ -6,17 +6,43 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-
+import { useEffect, useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
+import Axios from "axios";
 
 const theme = createTheme();
 
 export default function AddNewWorker({ workerData, setWorkerData }) {
+  const [supervisors, setSupervisors] = useState([]);
+
+  console.log(supervisors);
+  useEffect(() => {
+    if (workerData.pay_grade !== "") {
+      Axios.get(`http://localhost:3001/get_supervisors`, {
+        params: {
+          pay_grade: workerData.pay_grade,
+          department: workerData.department,
+        },
+      })
+        .then((response) => {
+          if (response.data.result !== undefined) {
+            setSupervisors(response.data.result);
+          } else {
+            setSupervisors([]);
+          }
+
+          // console.log(fields);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      setSupervisors([]);
+    }
+  }, [workerData.pay_grade]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,10 +57,7 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
             alignItems: "center",
           }}
         >
-          <Box
-            noValidate
-            sx={{ mt: 3 }}
-          >
+          <Box noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -53,7 +76,7 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                   autoFocus
                 />
               </Grid>
-        
+
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="job_title" defaultValue={""}>
@@ -71,19 +94,18 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                     }}
                     defaultValue=""
                   >
-                      <MenuItem value={"accountant"}>Accountant</MenuItem>
-                      <MenuItem value={"manager"}>Manager</MenuItem>
-                      <MenuItem value={"designer"}>Designer</MenuItem>
-                      <MenuItem value={"engineer"}>Engineer</MenuItem>
-                      <MenuItem value={"receptionist"}>Receptionist</MenuItem>
-                      <MenuItem value={"factory staff"}>Factory Staff</MenuItem>
-                      <MenuItem value={"supervisor"}>Supervisor</MenuItem>
-                      <MenuItem value={"clerk"}>Clerk</MenuItem>
+                    <MenuItem value={"accountant"}>Accountant</MenuItem>
+                    <MenuItem value={"manager"}>Manager</MenuItem>
+                    <MenuItem value={"designer"}>Designer</MenuItem>
+                    <MenuItem value={"engineer"}>Engineer</MenuItem>
+                    <MenuItem value={"receptionist"}>Receptionist</MenuItem>
+                    <MenuItem value={"factory staff"}>Factory Staff</MenuItem>
+                    <MenuItem value={"supervisor"}>Supervisor</MenuItem>
+                    <MenuItem value={"clerk"}>Clerk</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
 
-              
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="pay_grade" defaultValue={""}>
@@ -153,8 +175,8 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                     <MenuItem value={"part-time"}>Part Time</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid> 
-              
+              </Grid>
+
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="department" defaultValue={""}>
@@ -180,7 +202,34 @@ export default function AddNewWorker({ workerData, setWorkerData }) {
                     <MenuItem value={"sales"}>Sales</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid> 
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="supervisor" defaultValue={""}>
+                    Supervisor
+                  </InputLabel>
+                  <Select
+                    id="supervisor"
+                    value={workerData.supervisor}
+                    label="Supervisor"
+                    onChange={(e) => {
+                      setWorkerData({
+                        ...workerData,
+                        supervisor: e.target.value,
+                      });
+                    }}
+                    defaultValue=""
+                  >
+                    {supervisors.map((supervisor, index) => {
+                      return (
+                        <MenuItem key={index} value={supervisor}>
+                          {supervisor}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
 
               <Button onClick={() => console.log(workerData)}>LOG</Button>
             </Grid>

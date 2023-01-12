@@ -87,9 +87,18 @@ router.post("/", (req, res) => {
                 (err, row, field) => {
                   if (err) {
                     return console.log(err);
-                  } else {
-                    return res.send({ success: true });
                   }
+                  pool.query(
+                    `INSERT INTO ${dbname}.subordinates (subordinate_id, supervisor_id) VALUES (?,?);`,
+                    [workerData.employee_id, workerData.supervisor],
+                    (err, row, field) => {
+                      if (err) {
+                        return console.log(err);
+                      } else {
+                        return res.send({ success: true });
+                      }
+                    }
+                  );
                 }
               );
             }
