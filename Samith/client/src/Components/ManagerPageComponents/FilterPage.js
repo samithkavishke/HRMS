@@ -229,6 +229,7 @@ export default function Reports() {
                   <TableCell align="right">Pay Grade</TableCell>
                   <TableCell align="right">Employee Status</TableCell>
                   <TableCell align="right">Contract Period</TableCell>
+                  <TableCell align="right">Department</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -245,6 +246,7 @@ export default function Reports() {
                     <TableCell align="right">{row.pay_grade}</TableCell>
                     <TableCell align="right">{row.employee_status}</TableCell>
                     <TableCell align="right">{row.contract_period}</TableCell>
+                    <TableCell align="right">{row.department}</TableCell>
                   </TableRow>
                 ))}
                 {/* })} */}
