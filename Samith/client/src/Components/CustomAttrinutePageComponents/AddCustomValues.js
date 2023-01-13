@@ -14,7 +14,7 @@ import { AppBar, Toolbar } from "@mui/material";
 export default function EditCustomDetails() {
   const [columns, setColumns] = useState([]);
   const [column, setColumn] = useState("");
-  const [employee_id, setEmployerID] = useState("10001");
+  const [employee_id, setEmployerID] = useState("");
   const [customColumnValue, setCustomColumnValue] = useState("");
 
   useEffect(() => {
@@ -38,11 +38,12 @@ export default function EditCustomDetails() {
 
   const SubmitChanges = (event) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
 
-    Axios.post("http://localhost:3001/AddEmployeeInfo", {
+    Axios.post("http://localhost:3001/add_details", {
       column: column,
-      value: customColumnValue,
-      employee_id: employee_id,
+      value: data.get("custom_attribute"),
+      employee_id: data.get("employee_id"),
     })
       .then((response) => {
         console.log(response);
@@ -72,7 +73,7 @@ export default function EditCustomDetails() {
             alignItems: "center",
           }}
         >
-          <Box component="form" onSubmit={search} noValidate sx={{ mt: 1 }}>
+          <Box noValidate sx={{ mt: 1 }}>
             <FormControl sx={{ m: 2, minWidth: 200, marginLeft: 5 }}>
               <TextField
                 id="column-select"
@@ -113,10 +114,16 @@ export default function EditCustomDetails() {
                 </Paper>
               </Grid>
               <Grid item xs={6}>
-                <TextField value={employee_id} disabled>
-                  {" "}
-                  baba
-                </TextField>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="employee_id"
+                  label="Employee ID"
+                  name="employee_id"
+                  autoComplete="employee_id"
+                  autoFocus
+                ></TextField>
               </Grid>
 
               <Grid item xs={6}>
@@ -126,13 +133,15 @@ export default function EditCustomDetails() {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  onChange={(e) => {
-                    setCustomColumnValue(e.target.value);
-                  }}
-                >
-                  {" "}
-                  baba
-                </TextField>
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="custom_attribute"
+                  label="Custom Column Value"
+                  name="custom_attribute"
+                  autoComplete="custom_attribute"
+                  autoFocus
+                ></TextField>
               </Grid>
               <Grid justifyItems={"center"}>
                 <Button
@@ -141,7 +150,6 @@ export default function EditCustomDetails() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  {" "}
                   Save Changes
                 </Button>
               </Grid>
