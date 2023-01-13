@@ -159,3 +159,9 @@ app.use(
   "/get_custom_attributes",
   require("./routes/ReportGeneration/GetCustomAttributes.jsx")
 );
+
+// /add_custom_info
+app.use(
+  "/add_custom_info",
+  require("./routes/ReportGeneration/GetCustomAttributes.jsx")
+);
