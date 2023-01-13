@@ -23,12 +23,6 @@ import { pink, blue, green } from "@mui/material/colors";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 import { useContext } from "react";
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -62,7 +56,7 @@ function a11yProps(index) {
   };
 }
 
-function LeaveApplicationTable(props) {
+export default function LeaveApplicationTable(props) {
   const { classes } = props;
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
@@ -73,7 +67,7 @@ function LeaveApplicationTable(props) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (employee_id !== "NULL" ) {
+    if (employee_id !== "NULL") {
       Axios.get(`http://localhost:3001/get_leave_applications`, {
         params: {
           employee_id: employee_id,
@@ -85,7 +79,6 @@ function LeaveApplicationTable(props) {
           if (fetchedrows === undefined) {
             fetchedrows = [];
           }
-          // setRows(fetchedrows);
           setDeclinedRows(fetchedrows);
           console.log(fetchedrows);
         })
@@ -104,7 +97,6 @@ function LeaveApplicationTable(props) {
           if (fetchedrows === undefined) {
             fetchedrows = [];
           }
-          // setRows(fetchedrows);
           setApprovedRows(fetchedrows);
           console.log(fetchedrows);
         })
@@ -123,7 +115,6 @@ function LeaveApplicationTable(props) {
           if (fetchedrows === undefined) {
             fetchedrows = [];
           }
-          // setRows(fetchedrows);
           setPendingRows(fetchedrows);
           console.log(fetchedrows);
         })
@@ -355,9 +346,3 @@ function LeaveApplicationTable(props) {
     </div>
   );
 }
-
-// LeaveApplicationTable.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-export default LeaveApplicationTable;

@@ -10,19 +10,12 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
-import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
-import { AppBar, Toolbar } from "@mui/material";
 
-import InputLabel from "@mui/material/InputLabel";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
 export default function DepartmentLeaves() {
   const [rows, setRows] = useState([]);

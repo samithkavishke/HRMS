@@ -16,8 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import Navigate from "react";
-import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { LoginContext } from "../../Helper/UserContext";
 import {
   Table,
   TableBody,
@@ -29,12 +28,10 @@ import {
 
 const theme = createTheme();
 
-function LeaveForm(props) {
+export default function LeaveForm(props) {
   const { cookies } = useContext(LoginContext);
   const employee_id = cookies.emp_id;
   console.log(employee_id);
-  // const rows = {};
-  let remain_leaves_dict = {};
   const [remainDays, setRemaindays] = useState({});
   const [alert, setAlert] = useState();
 
@@ -48,20 +45,16 @@ function LeaveForm(props) {
           const remain_leaves = response.data.remain_leaves;
           console.log(remain_leaves);
           console.log(response.data.status);
-          // remain_leaves_dict = response.data.remain_leaves;
 
           setRemaindays(response.data.remain_leaves);
           setAlert("ERROR: LEAVE_NOT_APPLICABLE");
           return console.log("Not Applicable", employee_id);
-          // return <Navigate />;
         }
         console.log("Applicable");
         setRemaindays(response.data.remain_leaves);
         console.log(response.data.remain_leaves);
 
         console.log(remainDays);
-        // console.log(remain_leaves_dict);
-        // console.log(remain_leaves1);
       })
       .catch((e) => {
         console.log(e);
@@ -69,32 +62,10 @@ function LeaveForm(props) {
       });
   }, []);
 
-  /////// DUMMY Code for the Remaining Number of Days fro Leaves Code
-  // const { classes } = props;
-  // const [rows, setRows] = useState([]);
-  // useEffect(() => {
-  //   Axios.get(`http://localhost:3001/get_leave_applications`, {})
-  //     .then((response) => {
-  //       let fetchedrows = response.data.result;
-  //       if (fetchedrows === undefined) {
-  //         fetchedrows = [];
-  //       }
-  //       // setRows(fetchedrows);
-  //       setRows(fetchedrows);
-  //       console.log(fetchedrows);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, []);
-  ///////////////////////////////////////////
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     let totalValid = true;
-    // setEmployerID(event.target.employerid);
-    // setLeaveType(event.target.leavetype);
     console.log(toValue - fromValue);
     if (fromValue < toValue) {
       setValid(true);
@@ -109,8 +80,6 @@ function LeaveForm(props) {
         leaveType: leaveType,
         fromValue: fromValue,
         toValue: toValue,
-        // username: data.get("username"),
-        // password: data.get("password"),
       })
         .then((response) => {})
         .catch((e) => {
@@ -118,8 +87,6 @@ function LeaveForm(props) {
         });
     }
   };
-  // const handleSubmit = () =>{}
-  // const [employerID, setEmployerID] = useState("");
   const [leaveType, setLeaveType] = useState("");
   const [fromValue, setFromValue] = useState(null);
   const [toValue, setToValue] = useState(null);
@@ -157,24 +124,12 @@ function LeaveForm(props) {
               </Alert>
             )}
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="employerid"
-                  required
-                  fullWidth
-                  id="employerid"
-                  label="Employer ID"
-                  autoFocus
-                />
-              </Grid> */}
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
                   <InputLabel id="leave-type-label" defaultValue={""}>
                     Leave Type
                   </InputLabel>
                   <Select
-                    // labelId="leave-type-label"
                     id="leavetype"
                     value={leaveType}
                     label="Leave Type"
@@ -253,21 +208,9 @@ function LeaveForm(props) {
               <TableCell>{remainDays.Casual_leave}</TableCell>
               <TableCell>{remainDays.no_pay_leave}</TableCell>
             </TableRow>
-            {/* {rows.map((row, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>{row.Annual_leave}</TableCell>
-                  <TableCell>{row.Maternal_leave}</TableCell>
-                  <TableCell>{row.Casual_leave}</TableCell>
-                  <TableCell>{row.no_pay_leave}</TableCell>
-                </TableRow>
-              );
-            })} */}
           </TableBody>
         </Table>
       </Container>
     </ThemeProvider>
   );
 }
-
-export default LeaveForm;

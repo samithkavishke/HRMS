@@ -27,10 +27,6 @@ export default function Reports() {
   const [fields, setFields] = useState([]);
   const [attributes, setAttributes] = useState([]);
 
-  // const [rows, setRows] = useState([]);
-  // console.log("attributes:", attributes);
-  // console.log("fields:", fields);
-
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_custom_columns`)
       .then((response) => {
@@ -48,9 +44,7 @@ export default function Reports() {
         params: { field: customField },
       })
         .then((response) => {
-          // console.log("attributes:", response.data.result);
           setAttributes(response.data.result);
-          // console.log(fields);
         })
         .catch((e) => {
           console.log(e);
@@ -59,7 +53,6 @@ export default function Reports() {
       setAttributes([]);
     }
   }, [customField]);
-
 
   useEffect(() => {
     console.log("customAttribute :", customAttribute);
@@ -132,7 +125,9 @@ export default function Reports() {
                 <MenuItem value={"human resource"}>Human Resource</MenuItem>
                 <MenuItem value={"IT"}>IT</MenuItem>
                 <MenuItem value={"manufacturing"}>Manufacturing</MenuItem>
-                <MenuItem value={"research and development"}>Research & Development</MenuItem>
+                <MenuItem value={"research and development"}>
+                  Research & Development
+                </MenuItem>
                 <MenuItem value={"sales"}>Sales</MenuItem>
               </TextField>
             </FormControl>
@@ -171,7 +166,6 @@ export default function Reports() {
                 <MenuItem value={"manager"}>Manager</MenuItem>
                 <MenuItem value={"receptionist"}>Receptionist</MenuItem>
                 <MenuItem value={"supervisor"}>Supervisor</MenuItem>
-                
               </TextField>
             </FormControl>
             <FormControl sx={{ m: 2, minWidth: 150 }}>

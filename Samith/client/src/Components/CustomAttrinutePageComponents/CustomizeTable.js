@@ -7,16 +7,9 @@ import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 import Axios from "axios";
-import { useRef } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 
-// ...
-
 export default function CustomizeTable() {
-  // //   const currentColumnsRef = useRef();
-  //   const [tables, setTables] = useState([]);
-  //   const [table, setTable] = useState("None");
-  //   const [currentColumns, setCurrentColumns] = useState([]);
   const [datatype, setDataType] = useState("None");
 
   const dataTypes = [
@@ -58,7 +51,16 @@ export default function CustomizeTable() {
             </Button>
           </Toolbar>
         </AppBar>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{
+            mt: 3,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <FormControl sx={{ m: 2, minWidth: 200 }}>
             <TextField
               required
@@ -66,6 +68,7 @@ export default function CustomizeTable() {
               id="new_column_name"
               label="New Column Name"
               name="new_column_name"
+              autoFocus
             />
           </FormControl>
           <FormControl sx={{ m: 2, minWidth: 200 }}>
@@ -87,8 +90,11 @@ export default function CustomizeTable() {
               })}
             </TextField>
           </FormControl>
-          <Button variant="contained" type="submit">
-            {" "}
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{ m: 2, maxWidth: 150 }}
+          >
             Add New Field
           </Button>
         </Box>

@@ -12,8 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -21,16 +20,12 @@ import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useState, useContext, useEffect } from "react";
 import LeaveForm from "./LeaveApplication";
-import { useNavigate } from "react-router-dom";
 import MainProfile from "./ProfilePage/Profile";
-import Axios from "axios";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
-import { selectedIdsLookupSelector } from "@mui/x-data-grid";
 
 const drawerWidth = 240;
 
@@ -148,10 +143,9 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
-          <IconButton
-            color="inherit"
-            edge="end"
-          ><NotificationsActiveIcon/></IconButton>
+          <IconButton color="inherit" edge="end">
+            <NotificationsActiveIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -191,7 +185,6 @@ export default function PersistentDrawerLeft() {
             </ListItemIcon>
             <ListItemText primary="Your Profile" />
           </ListItemButton>
-          {/* <UserProfile2 /> */}
           <ListItemButton onClick={toggleApplication} href="">
             <ListItemIcon>
               <FeedIcon />

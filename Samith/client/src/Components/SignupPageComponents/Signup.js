@@ -13,11 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import Axios from "axios";
 import { AppBar, Toolbar } from "@mui/material";
-import Database from "./DatabaseDetails";
 
 const theme = createTheme();
-const passwordcheck = document.getElementById("password");
-const passwordcheck2 = document.getElementById("password2");
 
 export default function SignUp() {
   const handleSubmit = (event) => {
@@ -31,8 +28,6 @@ export default function SignUp() {
       .then((response) => {
         console.log(response);
         if (response.data.success) {
-          // setLoggedIn(true);
-          // setCookie("token", response.data.token, { path: "/" });
           return <Navigate to="/DB-details" />;
         }
       })
@@ -43,13 +38,19 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar position="relative" color='primary'>
-          <Toolbar>
-            <Button href="http://localhost:3000/" variant='contained' color='info'>Jupiter Human Resource Manager</Button>
-          </Toolbar>
-        </AppBar>
-        <Container component="main" maxWidth="sm">
+      <CssBaseline />
+      <AppBar position="relative" color="primary">
+        <Toolbar>
+          <Button
+            href="http://localhost:3000/"
+            variant="contained"
+            color="info"
+          >
+            Jupiter Human Resource Manager
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" maxWidth="sm">
         <Box
           sx={{
             marginTop: 8,

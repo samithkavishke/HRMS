@@ -14,7 +14,7 @@ import { AppBar, Toolbar } from "@mui/material";
 export default function EditCustomDetails() {
   const [columns, setColumns] = useState([]);
   const [column, setColumn] = useState("");
-  const [employee_id, setEmployerID] = useState("10001");
+  const [employee_id, setEmployeeID] = useState("10001");
   const [customColumnValue, setCustomColumnValue] = useState("");
 
   useEffect(() => {

@@ -12,7 +12,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -23,20 +22,15 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import GroupsIcon from "@mui/icons-material/Groups";
-import EditIcon from "@mui/icons-material/Edit";
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
-import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
 import MainProfile from "../UserPageComponents/ProfilePage/ProfileViewPage";
 import ViewSubordinates from "./ViewSubordinates";
-// import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
 
@@ -80,7 +74,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
@@ -93,7 +86,6 @@ export default function SupervisorDashboard() {
   const [open, setOpen] = React.useState(false);
 
   const [activeFeature, setActiveFeature] = useState("Dashboard");
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -112,7 +104,6 @@ export default function SupervisorDashboard() {
 
   console.log(loggedIn);
   if (!loggedIn) {
-    //console.log(loggedIn);
     return <Navigate to="/" />;
   }
 

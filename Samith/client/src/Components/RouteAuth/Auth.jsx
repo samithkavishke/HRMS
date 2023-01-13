@@ -5,7 +5,6 @@ import { Navigate, Outlet } from "react-router-dom";
 export const UserAuth = () => {
   const { loggedIn } = useContext(UserContext);
 
-
   if (loggedIn) {
     return <Outlet />;
   } else {
@@ -14,12 +13,12 @@ export const UserAuth = () => {
 };
 
 export const AdminAuth = () => {
-  const { user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   if (user === "admin") {
     return <Outlet />;
   } else if (user === "guest") {
-    return <Navigate to="SignIn" /> 
+    return <Navigate to="SignIn" />;
   } else {
     return <Navigate to="403" />;
   }
@@ -27,13 +26,13 @@ export const AdminAuth = () => {
 
 export const ManagerAuth = () => {
   const { user } = useContext(UserContext);
-  
+
   if (user === "hrm" || user === "admin") {
-    return <Outlet />
+    return <Outlet />;
   } else if (user === "guest") {
-    return <Navigate to="SignIn" />
+    return <Navigate to="SignIn" />;
   }
-  return <Navigate to="403" />
+  return <Navigate to="403" />;
 };
 
 export const GuestAuth = () => {
@@ -42,10 +41,6 @@ export const GuestAuth = () => {
   if (!loggedIn) {
     return <Outlet />;
   } else {
-    return <Navigate to="Home" />
+    return <Navigate to="Home" />;
   }
 };
-
-export const ProfileAuth = () => {
-  return <Outlet />
-}

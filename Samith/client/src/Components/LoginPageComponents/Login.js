@@ -9,13 +9,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 import { useContext, useState } from "react";
 import { AppBar, Toolbar, Alert } from "@mui/material";
 
 const theme = createTheme();
-//Login start
 
 export default function SignIn() {
   const { setLoggedIn, setCookie } = useContext(LoginContext);

@@ -3,17 +3,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
-import { MenuItem, Typography } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import axios from "axios";
 import { useRef } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 
-// ...
-
-export default function ChangeTable() {
+export default function AlterTable() {
   const currentColumnsRef = useRef();
   const [tables, setTables] = useState([]);
   const [table, setTable] = useState("None");
@@ -54,31 +51,10 @@ export default function ChangeTable() {
         setCurrentColumns((prevColumns) => response.data.result);
         currentColumnsRef.current = currentColumns;
         console.log(currentColumnsRef.current);
-        // console.log((currentColumns) => currentColumns());
       }
     }
     fetchData();
   }, [table]);
-
-  // useEffect(() => {
-  //   if (table != "None") {
-  //     console.log(table);
-  //     Axios.get(`http://localhost:3001/show_columns`, {
-  //       params: {
-  //         table: table,
-  //       },
-  //     })
-  //       .then((response) => {
-  //         console.log(response.data.result);
-  //         console.log(currentColumns);
-  //         setCurrentColumns(response.data.result);
-  //         console.log(currentColumns);
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
-  // }, [table]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -100,9 +76,15 @@ export default function ChangeTable() {
   return (
     <Container>
       <div>
-        <AppBar position="relative" color='primary'>
+        <AppBar position="relative" color="primary">
           <Toolbar>
-            <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
+            <Button
+              href="http://localhost:3000/Home"
+              variant="contained"
+              color="info"
+            >
+              Home
+            </Button>
           </Toolbar>
         </AppBar>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -156,7 +138,6 @@ export default function ChangeTable() {
             </TextField>
           </FormControl>
           <Button variant="contained" type="submit">
-            {" "}
             Add New Field
           </Button>
         </Box>
