@@ -84,8 +84,8 @@ router.post("/", (req, res) => {
               emergencyData.ec_emp_contact,
               emergencyData.ec_first_name,
               emergencyData.ec_last_name,
-              emergencyData.ec_phone_number,
               emergencyData.ec_relation,
+              emergencyData.ec_phone_number,
             ],
 
             (err, row, field) => {
