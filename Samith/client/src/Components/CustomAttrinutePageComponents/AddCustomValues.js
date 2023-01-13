@@ -54,18 +54,9 @@ export default function EditCustomDetails() {
 
   return (
     <div>
-      <AppBar position="relative" color="primary">
-        <Toolbar>
-          <Button
-            href="http://localhost:3000/Home"
-            variant="contained"
-            color="info"
-          >
-            Home
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <br></br>
+      <br></br>
+      <br></br>
       <Box justifyItems={"center"}>
         <Box
           sx={{

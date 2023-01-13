@@ -17,8 +17,8 @@ export default function CustomizeTable() {
     { name: "SHORT TEXT", val: "VARCHAR(5)" },
     { name: "LONG TEXT", val: "VARCHAR(20)" },
     { name: "INTEGER", val: "INT(20)" },
-    { name: "FIEXED SHORT TEXT", val: "CHAR(5)" },
-    { name: "FIEXED LONG TEXT", val: "CHAR(15)" },
+    { name: "FIXED SHORT TEXT", val: "CHAR(5)" },
+    { name: "FIXED LONG TEXT", val: "CHAR(15)" },
   ];
 
   const handleSubmit = (event) => {
@@ -40,17 +40,9 @@ export default function CustomizeTable() {
   return (
     <Container>
       <div>
-        <AppBar position="relative" color="primary">
-          <Toolbar>
-            <Button
-              href="http://localhost:3000/Home"
-              variant="contained"
-              color="info"
-            >
-              Home
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <br></br>
+        <br></br>
+        <br></br>
         <Box
           component="form"
           noValidate

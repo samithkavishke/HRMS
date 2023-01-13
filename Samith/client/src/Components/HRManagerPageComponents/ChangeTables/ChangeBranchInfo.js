@@ -124,11 +124,6 @@ export default function ChangeBranchInfo() {
           </Button>
         </Box>
       </div>
-      <AppBar position="relative" color='primary'>
-        <Toolbar>
-          <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-        </Toolbar>
-      </AppBar>
     </div>
   );
 }
