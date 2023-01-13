@@ -11,28 +11,12 @@ import { useCookies } from "react-cookie";
 import SignUp from "./Components/SignupPageComponents/Signup";
 import Welcome from "./Components/WelcomePageComponents/Welcome";
 
-import ChangeTable from "./Components/AdminPageComponents/AlterTable";
-
-import LeaveApplicationTable from "./Components/HRManagerPageComponents/AcceptLeave";
-import DepartmentLeaves from "./Components/Reports/TotalLeaves";
-// Addnewworker/personalinfo/addemergencyinfo/adddependant
-
-import {
-  GuestAuth,
-  ManagerAuth,
-  UserAuth,
-  AdminAuth,
-  ProfileAuth,
-} from "./Components/RouteAuth/Auth";
+import { GuestAuth, UserAuth } from "./Components/RouteAuth/Auth";
 import HRDashboard from "./Components/HRManagerPageComponents/HRDashboard";
-// import LeaveForm from "./Components/UserPageComponents/LeaveApplication copy";
-
-import UserProfile from "./Components/UserPageComponents/ProfilePage/ProfileViewPage";
 import SupervisorDashboard from "./Components/ManagerPageComponents/SupervisorDashboard";
-import ViewSubordinates from "./Components/ManagerPageComponents/ViewSubordinates";
 import AdminDashboard from "./Components/AdminPageComponents/AdminDashboard";
 
-function App() {
+export default function App() {
   const [cookies, setCookie, removeCookie] = useCookies([
     "user_type",
     "emp_id",
@@ -40,10 +24,10 @@ function App() {
   ]);
   const [loggedIn, setLoggedIn] = useState(
     cookies.user_type ? cookies.user_type !== "guest" : false
-  ); // Boolean(cookies.token)
+  );
   const [user, setUser] = useState(
     cookies.user_type ? cookies.user_type : "guest"
-  ); // guest, hrm, user, supervisor, admin
+  );
   const [info, setInfo] = useState([]);
   console.log(user, loggedIn, info);
 
@@ -54,15 +38,6 @@ function App() {
           value={{ loggedIn, setLoggedIn, cookies, setCookie, removeCookie }}
         >
           <Routes>
-            {/* Profile Routes !!! NOT COMPLETE */}
-            <Route element={<ProfileAuth />}>
-              {/* <Route path={`/user-profile/:id`} element={<UserProfile />} /> */}
-            </Route>
-            {/* Routes accessible by admin */}
-            <Route element={<AdminAuth />}>
-              <Route path="/ChangeTable" element={<ChangeTable />}></Route>
-            </Route>
-
             {/* Routes accessible by logged in user */}
             <Route element={<UserAuth />}>
               <Route
@@ -79,7 +54,6 @@ function App() {
                   )
                 }
               ></Route>
-              {/* <Route path="/LeaveApplication" element={<LeaveForm />}></Route> */}
             </Route>
 
             {/* Routes accessible when not logged in */}
@@ -97,5 +71,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

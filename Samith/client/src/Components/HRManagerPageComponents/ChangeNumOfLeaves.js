@@ -3,10 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
-import { MenuItem, Typography } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
 import Axios from "axios";
 import { AppBar, Toolbar } from "@mui/material";
 
@@ -68,7 +65,6 @@ export default function ChangeNumOfLeaves() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log(data.get("username"));
     Axios.post("http://localhost:3001/add_leave_days", {
       pay_grade: data.get("pay_grade"),
       gender: data.get("gender"),
@@ -84,9 +80,6 @@ export default function ChangeNumOfLeaves() {
         console.log(e);
       });
   };
-  // const handleRowEditCommit = () => {}
-  // const handleSubmit = () => {};
-
 
   return (
     <div style={{ height: 480, width: "100%" }}>
@@ -101,17 +94,8 @@ export default function ChangeNumOfLeaves() {
       />
       <div>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <TextField
-            id="pay_grade"
-            name="pay_grade"
-            label="Pay Grade"
-          />
-          <TextField
-            required
-            id="gender"
-            name="gender"
-            label="Gender"
-          />
+          <TextField id="pay_grade" name="pay_grade" label="Pay Grade" />
+          <TextField required id="gender" name="gender" label="Gender" />
           <TextField
             id="Annual_leave"
             name="Annual_leave"
@@ -122,27 +106,21 @@ export default function ChangeNumOfLeaves() {
             name="Maternal_leave"
             label="Maternal Leave"
           />
-          <TextField 
-            id="Casual_leave" 
-            name="Casual_leave" 
-            label="Casual Leave" 
+          <TextField
+            id="Casual_leave"
+            name="Casual_leave"
+            label="Casual Leave"
           />
-          <TextField 
-            id="no_pay_leave" 
-            name="no_pay_leave" 
+          <TextField
+            id="no_pay_leave"
+            name="no_pay_leave"
             label="No Pay Leave"
           />
           <Button variant="contained" type="submit">
-            {" "}
             Add New Entry
           </Button>
         </Box>
       </div>
-      <AppBar position="relative" color='primary'>
-        <Toolbar>
-          <Button href="http://localhost:3000/Home" variant='contained' color='info'>Home</Button>
-        </Toolbar>
-      </AppBar>
     </div>
   );
 }

@@ -12,7 +12,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
 import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -21,30 +20,20 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
-import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import PublicIcon from "@mui/icons-material/Public";
-import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import RecentActorsIcon from "@mui/icons-material/RecentActors";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import EditIcon from "@mui/icons-material/Edit";
-import SummarizeIcon from '@mui/icons-material/Summarize';
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import { Link, Navigate, redirect } from "react-router-dom";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
-import AddNewUser from "./AddNewUser";
-import AddDependent from "./AddEmployee/AddDependent";
 import LeaveApplicationTable from "./AcceptLeave";
-import AddEmergencyInfo from "./AddEmployee/AddEmergencyInfo";
-import NewUser from "./AddEmployee/AddNewWorker";
-import AddPersonalInfo from "./AddEmployee/AddPersonalInfo";
 import EditDetails from "./EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "./AddEmployee/AddEmployee";
@@ -127,12 +116,6 @@ export default function HRDashboard() {
       <Typography variant="h1">Hey {user}</Typography>
     </Main>
   );
-
-  console.log(loggedIn);
-  if (!loggedIn) {
-    //console.log(loggedIn);
-    return <Navigate to="/" />;
-  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -256,7 +239,7 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Approve Leave Forms" />
           </ListItemButton>
-          
+
           <ListItemButton
             onClick={() => {
               setActiveFeature("Salary Details");
@@ -267,8 +250,6 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Salary Details" />
           </ListItemButton>
-
-
 
           <ListItemButton
             onClick={() => {
@@ -301,7 +282,6 @@ export default function HRDashboard() {
             </ListItemIcon>
             <ListItemText primary="Set No. of Leaves" />
           </ListItemButton>
-
         </List>
         <Divider />
         <List>
@@ -333,8 +313,7 @@ export default function HRDashboard() {
       {activeFeature === "Reports" && <Reports />}
       {activeFeature === "Salary Details" && <ChangeSalary />}
       {activeFeature === "Absent Count" && <DepartmentLeaves />}
-      {activeFeature === "Set No. of Leaves" && <ChangeNumOfLeaves/>}
-
+      {activeFeature === "Set No. of Leaves" && <ChangeNumOfLeaves />}
     </Box>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,27 +10,26 @@ import { useEffect, useState } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import Axios from "axios";
 
-import { LoginContext, UserContext } from "../../Helper/UserContext";
+import { LoginContext } from "../../Helper/UserContext";
 import { useContext } from "react";
 
-
-function ViewSubordinates() {
+export default function ViewSubordinates() {
   const [rows, setRows] = useState([]);
 
-    const { cookies } = useContext(LoginContext);
-    const employee_id = cookies.emp_id;
+  const { cookies } = useContext(LoginContext);
+  const employee_id = cookies.emp_id;
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/get_subordinates`, {
-      params:{
-        employee_id:employee_id
-    }})
+      params: {
+        employee_id: employee_id,
+      },
+    })
       .then((response) => {
         let fetchedrows = response.data.result;
         if (fetchedrows === undefined) {
           fetchedrows = [];
         }
-        // setRows(fetchedrows);
         setRows(fetchedrows);
         console.log(fetchedrows);
       })
@@ -39,7 +37,6 @@ function ViewSubordinates() {
         console.log(e);
       });
   }, []);
-
 
   return (
     <div>
@@ -89,5 +86,3 @@ function ViewSubordinates() {
     </div>
   );
 }
-
-export default ViewSubordinates;

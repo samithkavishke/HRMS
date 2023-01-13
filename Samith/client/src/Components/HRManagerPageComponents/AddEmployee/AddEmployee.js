@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -12,7 +10,6 @@ import AddDependent from "./AddDependent";
 import AddEmergencyInfo from "./AddEmergencyInfo";
 import AddNewWorker from "./AddNewWorker";
 import AddPersonalInfo from "./AddPersonalInfo";
-
 import Axios from "axios";
 
 const theme = createTheme();
@@ -38,7 +35,6 @@ export default function AddEmployee() {
     address_line_1: "",
     address_line_2: "",
     town: "",
-    // contact_number: "",
     birthdate: new Date(),
     marital_status: "",
     gender: "",
@@ -63,7 +59,6 @@ export default function AddEmployee() {
   });
 
   const submit = () => {
-    // console.log(dependantData);
     Axios.post("http://localhost:3001/AddEmployeeInfo", {
       workerData: workerData,
       emergencyData: emergencyData,
@@ -72,10 +67,8 @@ export default function AddEmployee() {
     })
       .then((response) => {
         setAlert(`ERROR: ${response.data.error}`);
-        console.log(response);
       })
       .catch((e) => {
-        console.log(e);
         setAlert(`ERROR: ${e.code}`);
       });
   };
@@ -112,7 +105,7 @@ export default function AddEmployee() {
         </AppBar>
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 6,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

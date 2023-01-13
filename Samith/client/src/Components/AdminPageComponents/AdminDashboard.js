@@ -12,7 +12,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -20,34 +19,24 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FeedIcon from "@mui/icons-material/Feed";
-import AddTaskIcon from "@mui/icons-material/AddTask";
 import AddIcon from "@mui/icons-material/Add";
 import PublicIcon from "@mui/icons-material/Public";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import TableViewIcon from '@mui/icons-material/TableView';
-import BusinessIcon from '@mui/icons-material/Business';
-import EditIcon from "@mui/icons-material/Edit";
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import { Link, Navigate, redirect } from "react-router-dom";
+import TableViewIcon from "@mui/icons-material/TableView";
+import BusinessIcon from "@mui/icons-material/Business";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 import { LoginContext, UserContext } from "../../Helper/UserContext";
 
 import AddNewUser from "../HRManagerPageComponents/AddNewUser";
 import LeaveApplicationTable from "../HRManagerPageComponents/AcceptLeave";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import EditDetails from "../HRManagerPageComponents/EditWoker";
 import LeaveForm from "../UserPageComponents/LeaveApplication";
 import AddEmployee from "../HRManagerPageComponents/AddEmployee/AddEmployee";
 import MainProfile from "../UserPageComponents/ProfilePage/Profile";
-import ChangeTable from "./AlterTable";
-import EditCustomDetails from "../CustomAttrinutePageComponents/AddCustomValues";
 import CustomizeTable from "../CustomAttrinutePageComponents/CustomizeTable";
 import ChangeBranchInfo from "../HRManagerPageComponents/ChangeTables/ChangeBranchInfo";
-
-// import ChangeBranchInfo from "./ChangeBranchInfo";
 
 const drawerWidth = 240;
 
@@ -97,7 +86,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function AdminDashboard() {
-  const { loggedIn, setLoggedIn, removeCookie } = useContext(LoginContext);
+  const { setLoggedIn, removeCookie } = useContext(LoginContext);
   const { user, setUser } = useContext(UserContext);
 
   const theme = useTheme();
@@ -254,12 +243,6 @@ export default function AdminDashboard() {
     </Main>
   );
 
-  console.log(loggedIn);
-  if (!loggedIn) {
-    //console.log(loggedIn);
-    return <Navigate to="/" />;
-  }
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -277,10 +260,9 @@ export default function AdminDashboard() {
           <Typography variant="h6" noWrap component="div">
             Jupiter Human Resource Manager
           </Typography>
-          <IconButton
-            color="inherit"
-            edge="end"
-          ><NotificationsActiveIcon/></IconButton>
+          <IconButton color="inherit" edge="end">
+            <NotificationsActiveIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -341,13 +323,6 @@ export default function AdminDashboard() {
             </ListItemIcon>
             <ListItemText primary="Add New User Account" />
           </ListItemButton>
-          {/* <UserProfile2 /> */}
-          {/* <ListItemButton onClick={toggleLeaveApprove} href="">
-            <ListItemIcon>
-              <AddTaskIcon />
-            </ListItemIcon>
-            <ListItemText primary="Approve Leave Forms" />
-          </ListItemButton> */}
 
           <ListItemButton onClick={toggleCustomAttr} href="">
             <ListItemIcon>
@@ -390,9 +365,8 @@ export default function AdminDashboard() {
       {ApplicationSelect && <LeaveForm />}
       {NewEmployeeSelect && <AddEmployee />}
       {NewUserSelect && <AddNewUser />}
-      {CustomAttrSelect && <CustomizeTable/>}
-      {BranchInfoSelect && <ChangeBranchInfo/>}
-
+      {CustomAttrSelect && <CustomizeTable />}
+      {BranchInfoSelect && <ChangeBranchInfo />}
     </Box>
   );
 }
