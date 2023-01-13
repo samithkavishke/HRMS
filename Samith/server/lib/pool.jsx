@@ -1,14 +1,15 @@
 const { createPool } = require("mysql");
+const dotenv = require("dotenv");
 
-const dbname = "sql6588944";
+dotenv.config();
 
 const pool = createPool({
-  host: "sql6.freemysqlhosting.net",
-  user: "sql6588944",
-  password: "Ftx9mrBkri",
-  database: dbname,
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: +process.env.DB_PORT,
   connectionLimit: 50,
 });
 
-module.exports = { pool, dbname };
+module.exports = { pool, dbname: process.env.DB_NAME };

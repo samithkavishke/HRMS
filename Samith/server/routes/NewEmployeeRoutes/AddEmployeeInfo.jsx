@@ -53,7 +53,8 @@ router.post("/", (req, res) => {
     ],
     (err, row, field) => {
       if (err) {
-        return console.log(err);
+        console.log(err);
+        return res.send({ success: false, error: err.code });
       }
       pool.query(
         `INSERT INTO ${dbname}.employee_personal (employee_id, first_name, last_name, address_line1, address_line2, town, birth_year, birth_month, birth_date, marital_status, gender) VALUES (?,?,?,?,?,?,?,?,?,?,?);`,
@@ -73,7 +74,8 @@ router.post("/", (req, res) => {
 
         (err, row, field) => {
           if (err) {
-            return console.log(err);
+            console.log(err);
+            return res.send({ success: false, error: err.code });
           }
           pool.query(
             `INSERT INTO ${dbname}.emergency_info (employee_id, employee_contact, contact_first_name, contact_last_name, contact_relation, contact_phone_number) VALUES (?,?,?,?,?,?);`,
@@ -88,7 +90,8 @@ router.post("/", (req, res) => {
 
             (err, row, field) => {
               if (err) {
-                return console.log(err);
+                console.log(err.code);
+                return res.send({ success: false, error: err.code });
               }
               pool.query(
                 `INSERT INTO ${dbname}.dependent (dependent_id, employee_id, first_name, last_name) VALUES (?,?,?,?);`,
@@ -100,14 +103,16 @@ router.post("/", (req, res) => {
                 ],
                 (err, row, field) => {
                   if (err) {
-                    return console.log(err);
+                    console.log(err.code);
+                    return res.send({ success: false, error: err.code });
                   }
                   pool.query(
                     `INSERT INTO ${dbname}.subordinates (subordinate_id, supervisor_id) VALUES (?,?);`,
                     [workerData.employee_id, workerData.supervisor],
                     (err, row, field) => {
                       if (err) {
-                        return console.log(err);
+                        console.log(err.code);
+                        return res.send({ success: false, error: err.code });
                       } else {
                         return res.send({ success: true });
                       }

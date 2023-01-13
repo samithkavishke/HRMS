@@ -63,7 +63,7 @@ function App() {
               <Route path="/ChangeTable" element={<ChangeTable />}></Route>
             </Route>
 
-            {/* Routes accessible by regular employee */}
+            {/* Routes accessible by logged in user */}
             <Route element={<UserAuth />}>
               <Route
                 path="/Home"
@@ -75,7 +75,7 @@ function App() {
                   ) : user === "supervisor" ? (
                     <SupervisorDashboard />
                   ) : (
-                    <AdminDashboard/>
+                    <AdminDashboard />
                   )
                 }
               ></Route>

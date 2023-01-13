@@ -22,14 +22,13 @@ import MenuItem from "@mui/material/MenuItem";
 const theme = createTheme();
 
 const AddPersonalInfo = ({ personalData, setPersonalData }) => {
-  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -51,6 +50,7 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                       first_name: e.target.value,
                     })
                   }
+                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -67,7 +67,6 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                       last_name: e.target.value,
                     })
                   }
-                  autoFocus
                 />
               </Grid>
 
@@ -158,7 +157,7 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                     <MenuItem value={"married"}>Married</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid> 
+              </Grid>
 
               <Grid item xs={12} sm={12}>
                 <FormControl fullWidth>
@@ -181,8 +180,7 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                     <MenuItem value={"female"}>Female</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid> 
-
+              </Grid>
 
               {/* <Grid item xs={12} sm={12}>
                 <TextField
@@ -216,8 +214,6 @@ const AddPersonalInfo = ({ personalData, setPersonalData }) => {
                   }
                 />
               </Grid> */}
-
-              <Button onClick={() => console.log(personalData)}>LOG</Button>
             </Grid>
           </Box>
         </Box>
