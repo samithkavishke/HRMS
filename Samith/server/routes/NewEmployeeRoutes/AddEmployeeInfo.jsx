@@ -42,14 +42,19 @@ router.post("/", (req, res) => {
   ];
 
   pool.query(
-    `INSERT INTO ${dbname}.employee_work (employee_id, job_title, pay_grade, employee_status, contract_period, department) VALUES (?,?,?,?,?,?);`,
+    `INSERT INTO ${dbname}.employee_personal (employee_id, first_name, last_name, address_line1, address_line2, town, birth_year, birth_month, birth_date, marital_status, gender) VALUES (?,?,?,?,?,?,?,?,?,?,?);`,
     [
       workerData.employee_id,
-      workerData.job_title,
-      workerData.pay_grade,
-      workerData.employee_status,
-      workerData.contract_period,
-      workerData.department,
+      personalData.first_name,
+      personalData.last_name,
+      personalData.address_line_1,
+      personalData.address_line_2,
+      personalData.town,
+      birth_year,
+      monthNames[birth_month],
+      birth_date,
+      personalData.marital_status,
+      personalData.gender,
     ],
     (err, row, field) => {
       if (err) {
@@ -57,19 +62,14 @@ router.post("/", (req, res) => {
         return res.send({ success: false, error: err.code });
       }
       pool.query(
-        `INSERT INTO ${dbname}.employee_personal (employee_id, first_name, last_name, address_line1, address_line2, town, birth_year, birth_month, birth_date, marital_status, gender) VALUES (?,?,?,?,?,?,?,?,?,?,?);`,
+        `INSERT INTO ${dbname}.employee_work (employee_id, job_title, pay_grade, employee_status, contract_period, department) VALUES (?,?,?,?,?,?);`,
         [
           workerData.employee_id,
-          personalData.first_name,
-          personalData.last_name,
-          personalData.address_line_1,
-          personalData.address_line_2,
-          personalData.town,
-          birth_year,
-          monthNames[birth_month],
-          birth_date,
-          personalData.marital_status,
-          personalData.gender,
+          workerData.job_title,
+          workerData.pay_grade,
+          workerData.employee_status,
+          workerData.contract_period,
+          workerData.department,
         ],
 
         (err, row, field) => {
@@ -84,8 +84,8 @@ router.post("/", (req, res) => {
               emergencyData.ec_emp_contact,
               emergencyData.ec_first_name,
               emergencyData.ec_last_name,
-              emergencyData.ec_phone_number,
               emergencyData.ec_relation,
+              emergencyData.ec_phone_number,
             ],
 
             (err, row, field) => {
