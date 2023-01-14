@@ -40,18 +40,19 @@ export default function EditCustomDetails() {
   const SubmitChanges = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    Axios.post("http://localhost:3001/add_details", {
-      column: column,
-      value: data.get("custom_attribute"),
-      employee_id: data.get("employee_id"),
-    })
-      .then((response) => {
-        console.log(response);
+    if (column !== "None") {
+      Axios.post("http://localhost:3001/add_details", {
+        column: column,
+        value: data.get("custom_attribute"),
+        employee_id: data.get("employee_id"),
       })
-      .catch((e) => {
-        console.log(e);
-      });
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   return (
@@ -76,8 +77,10 @@ export default function EditCustomDetails() {
                 label="Column Name"
                 select
               >
-                <MenuItem value="None"></MenuItem>
-                <em>None</em>
+                <MenuItem value="None">
+                  <em>None</em>
+                </MenuItem>
+
                 {columns.map((column_name, index) => {
                   return (
                     <MenuItem key={index} value={column_name}>
@@ -92,7 +95,7 @@ export default function EditCustomDetails() {
             component="form"
             onSubmit={SubmitChanges}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, ml: 5 }}
           >
             <Grid
               container
@@ -135,7 +138,7 @@ export default function EditCustomDetails() {
                   autoFocus
                 ></TextField>
               </Grid>
-              <Grid justifyItems={"center"}>
+              <Grid sx={{ mt: 3, ml: 6 }} justifyItems={"center"}>
                 <Button
                   type="submit"
                   fullWidth
